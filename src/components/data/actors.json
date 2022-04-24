@@ -1,0 +1,13 @@
+[
+  {"firstName": "Robert", "lastName": "Pattinson",
+    "actorId": "201", "dateOfBirth": "5/13/1986",
+    "profilePicture": "/images/robert.jpg",
+    "UserType": "Actor"
+  },
+  {
+    "firstName": "Tom", "lastName": "Hollland",
+    "actorId": "202", "dateOfBirth": "6/1/1996",
+    "profilePicture": "/images/tom.jpg",
+    "UserType": "Actor"
+  }
+]
