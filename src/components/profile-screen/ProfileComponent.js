@@ -3,8 +3,8 @@ import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import "./profile.css"
 
-const ProfileComponent = () => {
-    const profile = useSelector(state => state.profile);
+const ProfileComponent = ({profile}) => {
+    // const profile = useSelector(state => state.profile);
     // const profile = profileList[0]
     return(
         <div className="mb-4 mt-2">
@@ -31,14 +31,14 @@ const ProfileComponent = () => {
                         IMBD member since {profile.dateJoined}
                     </div>
 
-                    <div>
-                        <Link to="/edit">
-                            <button className="btn btn-dar rounded-pill border-dark mt-2 text-white"
-                                    style={{fontSize:'14px'}}>
-                                Edit Profile
-                            </button>
-                        </Link>
-                    </div>
+                    {/*<div>*/}
+                    {/*    <Link to="/edit">*/}
+                    {/*        <button className="btn btn-dar rounded-pill border-dark mt-2 text-white"*/}
+                    {/*                style={{fontSize:'14px'}}>*/}
+                    {/*            Edit Profile*/}
+                    {/*        </button>*/}
+                    {/*    </Link>*/}
+                    {/*</div>*/}
 
                 </div>
             </div>

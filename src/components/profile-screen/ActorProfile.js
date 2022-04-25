@@ -4,18 +4,18 @@ import {Link, useParams} from "react-router-dom";
 import "./profile.css"
 import axios from "axios";
 
-const ActorProfile = () => {
+const ActorProfile = ({actor}) => {
     // const actor = useSelector(state => state.actor);
-    const [actor, setActor] = useState({})
-    const {uid} = useParams()
-    const findActorByUserID = async () => {
-        const response = await axios.get(`http://localhost:4000/api/${uid}`)
-        setActor(response.data)
-    }
-
-    useEffect(() => {
-        findActorByUserID()
-    }, [])
+    // const [actor, setActor] = useState({})
+    // const {uid} = useParams()
+    // const findActorByUserID = async () => {
+    //     const response = await axios.get(`http://localhost:4000/api/${uid}`)
+    //     setActor(response.data)
+    // }
+    //
+    // useEffect(() => {
+    //     findActorByUserID()
+    // }, [])
 
     return(
         <div className="mb-4 mt-2">
@@ -35,7 +35,7 @@ const ActorProfile = () => {
 
                     <div className="wd-profile-date">
                         <i className="fas fa-calendar-alt me-2"></i>
-                        Birthday: {actor.dateJoined}
+                        Joined IMBD: {actor.joined}
                     </div>
 
 
