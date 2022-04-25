@@ -6,23 +6,23 @@ import Login from "./screens/login";
 
 function App() {
   return (
-    <ProfileProvider>
+    // <ProfileProvider>
     <BrowserRouter>
       <div className="container">
         <Routes>
-          <Route path="/">
-            <Route path="/profile" element={
-              <SecureRoute>
-                <Profile/>
-              </SecureRoute>
-            }/>
+          {/*<Route path="/">*/}
+            {/*<Route path="/profile" element={*/}
+            {/*  <SecureRoute>*/}
+            {/*    <Profile/>*/}
+            {/*  </SecureRoute>*/}
+            {/*}/>*/}
             <Route path="/login" element={<Login/>}/>
             <Route path="/signup" element={<Signup/>}/>
-          </Route>
+          {/*</Route>*/}
         </Routes>
       </div>
     </BrowserRouter>
-    </ProfileProvider>
+    // </ProfileProvider>
   );
 }
 
