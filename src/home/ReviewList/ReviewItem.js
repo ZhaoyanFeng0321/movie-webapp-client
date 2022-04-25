@@ -1,4 +1,6 @@
-
+import movie_service from "../../services/movie-service";
+import service from "../../services/user-service";
+import {useEffect, useState} from "react";
 
 const ReviewItem = ({
     item = {
@@ -10,7 +12,20 @@ const ReviewItem = ({
         "postedOn": "now"
     }
                              }) => {
+    const[name, setname] = useState();
 
+    useEffect(async () => {
+        const user = await service.findUserById(item.from);
+        setname(user.username);
+    })
+
+    const[poster,setposter] = useState();
+    const[title,settitle] = useState();
+    useEffect(async () => {
+        const movie = await movie_service.findMovieById(item.to);
+        setposter(movie.poster);
+        settitle(movie.title);
+    })
 
     return (
         <>
@@ -19,8 +34,8 @@ const ReviewItem = ({
 
                 <div className="col-3 d-md-block d-sm-none d-none">
 
-                    <img className="wd-poster wd-section-left" src={item.to.poster} alt=""/>
-                    <p className="wd-movie wd-gold">{item.to.title}</p>
+                    <img className="wd-poster wd-section-left" src={poster} alt=""/>
+                    <p className="wd-movie wd-gold">{title}</p>
                 </div>
 
 
@@ -30,7 +45,7 @@ const ReviewItem = ({
                     <span className="fw-bold">{item.rating}/10</span>
                     <p className="mt-1">{item.postedOn}</p>
                     <p>{item.review}</p>
-                    <p className="wd-right fst-italic">by.{item.from}</p>
+                    <p className="wd-right fst-italic">by.{name}</p>
                 </div>
 
             </div>
