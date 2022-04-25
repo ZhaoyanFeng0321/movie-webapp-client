@@ -1,6 +1,3 @@
-import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
-import * as service from "../../services/user-service";
 
 
 const ReviewItem = ({
