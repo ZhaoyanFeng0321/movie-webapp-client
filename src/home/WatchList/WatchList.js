@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom";
 const WatchList = () => {
     return (
         <>
@@ -12,9 +13,9 @@ const WatchList = () => {
                     <i className="fa fa-list wd-grey mb-3 fa-2x"/>
                     <p className="wd-white fw-bold">Sign in to access your Watchlist</p>
                     <p className="wd-white">Save shows and movies to keep track of what you want to watch.</p>
-                    <a href="Login.html">
+                    <Link to="/login">
                         <button className="wd-bg-button">Sign In</button>
-                    </a>
+                    </Link>
                 </div>
             </div>
         </>
