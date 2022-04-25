@@ -1,0 +1,18 @@
+.wd-profile-name {
+    font-weight: bold;
+    font-size: large;
+    color: white;
+}
+
+.wd-profile-username {
+    font-weight: bold;
+    font-size: 28px;
+    color: white;
+}
+
+.wd-profile-date {
+    font-size: 12px;
+}
+
+.wd-imbd-yellow {
+    color: #F5DE50;}
