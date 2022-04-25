@@ -1,8 +1,11 @@
 import './App.css';
-
+import './vendors/bootstrap/bootstrap.min.css';
+import './vendors/fontawesome/css/all.min.css';
+import './utils/index.css';
 import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import Signup from "./screens/signup";
 import Login from "./screens/login";
+import HomeScreen from "./home/HomeScreen/HomeScreen";
 
 function App() {
   return (
@@ -16,6 +19,12 @@ function App() {
             {/*    <Profile/>*/}
             {/*  </SecureRoute>*/}
             {/*}/>*/}
+
+            <Route path="/">
+                <Route index element={<HomeScreen/>} />
+                <Route path="home" exact={true} element={<HomeScreen/>}/>
+            </Route>
+
             <Route path="/login" element={<Login/>}/>
             <Route path="/signup" element={<Signup/>}/>
           {/*</Route>*/}
