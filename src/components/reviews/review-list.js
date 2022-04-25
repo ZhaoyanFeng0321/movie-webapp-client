@@ -1,9 +1,12 @@
-import {useSelector} from "react-redux";
-import React from "react";
+import {useDispatch, useSelector} from "react-redux";
+import React, {useEffect} from "react";
 import ReviewItem from "./review-item";
+import {findAllReviews} from "../actions/reviews-actions";
 
 const ReviewList = () => {
     const reviews = useSelector(state => state.reviews);
+    const dispatch = useDispatch();
+    useEffect(() => findAllReviews(dispatch), [dispatch]);
     return(
         <>
             <h3 style={{color:'#F5DE50'}}>Your Reviews</h3>

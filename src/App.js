@@ -34,7 +34,7 @@ function App() {
                              element={<ProfileScreen/>}/>
                       <Route path="/edit"
                              element={<EditProfile/>}/>
-                      <Route path="/profile/:actorID"
+                      <Route path="/profile/:uid"
                              element={<ActorProfile/>}/>
                       {/*</Route>*/}
                   </Routes>

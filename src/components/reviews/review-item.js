@@ -1,12 +1,12 @@
 import React from "react";
 import {useDispatch} from "react-redux";
-// import {deleteMovie} from "../actions/movies-actions";
+import {deleteReview} from "../actions/reviews-actions";
 
 const ReviewItem = ({review}) => {
     const dispatch = useDispatch();
-    const deleteReview = (review) => {
-        dispatch({type: 'delete-review', review: review})
-    }
+    // const deleteReview = (review) => {
+    //     dispatch({type: 'delete-review', review: review})
+    // }
     return (
         <>
             <div className="list-group-item pt-2 pb-2">
@@ -34,7 +34,7 @@ const ReviewItem = ({review}) => {
                         {/*   className="fas fa-times-circle*/}
                         {/*fa-pull-right"></i>*/}
                         <i className="fas fa-times-circle float-end"
-                           onClick={() => deleteReview(review)}></i>
+                           onClick={() => deleteReview(dispatch, review)}></i>
 
 
 

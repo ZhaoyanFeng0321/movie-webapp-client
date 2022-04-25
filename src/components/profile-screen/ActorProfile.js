@@ -1,10 +1,21 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import "./profile.css"
+import axios from "axios";
 
 const ActorProfile = () => {
-    const actor = useSelector(state => state.actor);
+    // const actor = useSelector(state => state.actor);
+    const [actor, setActor] = useState({})
+    const {uid} = useParams()
+    const findActorByUserID = async () => {
+        const response = await axios.get(`http://localhost:4000/api/${uid}`)
+        setActor(response.data)
+    }
+
+    useEffect(() => {
+        findActorByUserID()
+    }, [])
 
     return(
         <div className="mb-4 mt-2">

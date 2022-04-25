@@ -1,12 +1,12 @@
 import React from "react";
 import {useDispatch} from "react-redux";
-// import {deleteMovie} from "../actions/movies-actions";
+import {deleteMovie} from "../actions/movies-actions";
 
 const WatchlistItem = ({movie}) => {
     const dispatch = useDispatch();
-    const deleteMovie = (movie) => {
-        dispatch({type: 'delete-movie', movie: movie})
-    }
+    // const deleteMovie = (movie) => {
+    //     dispatch({type: 'delete-movie', movie: movie})
+    // }
     return (
         <>
             <div className="list-group-item pt-2 pb-2">
@@ -21,7 +21,7 @@ const WatchlistItem = ({movie}) => {
                         {/*   className="fas fa-times-circle*/}
                         {/*fa-pull-right"></i>*/}
                         <i className="fas fa-times-circle float-end"
-                           onClick={() => deleteMovie(movie)}></i>
+                           onClick={() => deleteMovie(dispatch, movie)}></i>
 
                         {movie.title}
 

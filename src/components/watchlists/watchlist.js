@@ -7,9 +7,9 @@ import WatchlistItem from "./watchlist-item";
 const Watchlist = () => {
     const movies = useSelector(state => state.movies);
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-    // useEffect(() => findAllMovies(dispatch),[dispatch]);
+    useEffect(() => findAllMovies(dispatch),[dispatch]);
 
 
     return (
