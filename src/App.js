@@ -6,6 +6,8 @@ import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import Signup from "./screens/signup";
 import Login from "./screens/login";
 import HomeScreen from "./home/HomeScreen/HomeScreen";
+import Search from "./home/Search/Search";
+import ResultScreen from "./home/Search/ResultScreen";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
                 <Route index element={<HomeScreen/>} />
                 <Route path="home" exact={true} element={<HomeScreen/>}/>
             </Route>
+            <Route path="/search" element={<Search/>}/>
+            <Route path="/result/:movieSearch" element={<ResultScreen/>}/>
 
             <Route path="/login" element={<Login/>}/>
             <Route path="/signup" element={<Signup/>}/>
