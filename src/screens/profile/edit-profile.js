@@ -43,9 +43,6 @@ const EditProfile = () => {
     useEffect(async () => {
         try {
             let user = await authService.profile();
-            // if (user.dateOfBirth !== undefined) {
-            //     user.dateOfBirth = user.dateOfBirth.substring(0, 10).toString();
-            // }
             setProfile(user);
             setUpdateUser(user);
         } catch (e) {
