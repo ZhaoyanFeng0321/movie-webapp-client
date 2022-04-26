@@ -2,7 +2,7 @@ import React  from "react";
 import {Link} from "react-router-dom";
 import "./profile.css"
 
-const ActorProfile = ({actor}) => {
+const ActorProfile = ({actor,cur}) => {
 
     return(
         <div className="mb-4 mt-2">
@@ -15,7 +15,7 @@ const ActorProfile = ({actor}) => {
                           <i className="fas fa-check fa-stack-1x fa-inverse"></i>
                         </span></div>
 
-                <Link to={`/home/${actor.username}`}><i className="far fa-arrow-alt-circle-left fa-lg wd-imbd-yellow"> </i></Link>
+                <Link to={`/home/${cur}`}><i className="far fa-arrow-alt-circle-left fa-lg wd-imbd-yellow"> </i></Link>
                 <span className="wd-profile-name ms-3">{actor.firstName} {actor.lastName}</span>
             </div>
 

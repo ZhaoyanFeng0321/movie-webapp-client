@@ -61,14 +61,14 @@ const Profile = () => {
             }
             {
                 profile.accountType === "PERSONAL"  &&
-                <UserProfile profile={profile}/>
+                <UserProfile profile={profile} cur={currentUser.username}/>
                 // <ReviewList/> &&
                 // <br/> &&
                 // <Watchlist/>
             }
             {
                 profile.accountType === "ACTOR"  &&
-                <ActorProfile actor={profile}/>
+                <ActorProfile actor={profile} cur={currentUser.username}/>
             }
 
 
