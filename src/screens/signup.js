@@ -11,7 +11,7 @@ const Signup = () => {
     const navigate = useNavigate();
     const signup = () =>
         service.signup(newUser)
-            .then(() => navigate(`/profile/${newUser.username}`))
+            .then(() => navigate(`/profile/${newUser.username}/edit`))
             .catch(e => alert(e));
     return (
         <>

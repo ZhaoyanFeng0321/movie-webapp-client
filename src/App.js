@@ -2,7 +2,7 @@ import './App.css';
 import './vendors/bootstrap/bootstrap.min.css';
 import './vendors/fontawesome/css/all.min.css';
 import './utils/index.css';
-import {HashRouter, Link, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import Signup from "./screens/signup";
 import Login from "./screens/login";
 import Profile from "./screens/profile";
@@ -14,7 +14,7 @@ import {Provider} from "react-redux";
 
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <div className="container">
         <Routes>
           {/*<Route path="/">*/}
@@ -35,7 +35,7 @@ function App() {
           {/*</Route>*/}
         </Routes>
       </div>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
