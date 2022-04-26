@@ -9,10 +9,9 @@ import {
     useParams
 } from "react-router-dom";
 import * as authService from "../../services/auth-service"
-import UserProfile from "./user-profile";
-import ActorProfile from "./actor-profile";
-import ReviewList from "./reviewlist";
-
+import UserProfile from "../profile-screen/ProfileComponent";
+import ActorProfile from "../profile-screen/ActorProfile";
+import ReviewList from "../../screens/profile/reviewlist";
 
 const Profile = () => {
     const {username} = useParams();
@@ -62,9 +61,9 @@ const Profile = () => {
             }
             {
                 profile.accountType === "PERSONAL"  &&
-                <UserProfile profile={profile}/>
-                // <ReviewList/>
-                // <br/> &&
+                <UserProfile profile={profile}/> &&
+                <ReviewList/>
+                // <br/>
                 // <Watchlist/>
             }
             {
