@@ -15,9 +15,7 @@ const ActorProfile = ({actor,cur}) => {
                           <i className="fas fa-check fa-stack-1x fa-inverse"></i>
                         </span></div>
 
-                <Link to={`/home/${cur}`}><i className="far fa-arrow-alt-circle-left fa-lg wd-imbd-yellow"> </i></Link>
-                <span className="wd-profile-name ms-3">{actor.firstName} {actor.lastName}</span>
-                <Link to={`/home/${actor.username}`}><i
+                <Link to={`/home/${cur}`}><i
                     className="far fa-arrow-alt-circle-left fa-lg wd-imbd-yellow"> </i></Link>
                 <span className="wd-profile-name ms-3">Home</span>
             </div>
