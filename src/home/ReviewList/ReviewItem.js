@@ -1,6 +1,8 @@
 import movie_service from "../../services/movie-service";
 import service from "../../services/user-service";
 import {useEffect, useState} from "react";
+import axios from "axios";
+import {Link} from "react-router-dom";
 
 const ReviewItem = ({
     item = {
@@ -12,20 +14,33 @@ const ReviewItem = ({
         "postedOn": "now"
     }
                              }) => {
-    const[name, setname] = useState();
+    const[postname, setname] = useState();
 
     useEffect(async () => {
         const user = await service.findUserById(item.from);
         setname(user.username);
     })
 
-    const[poster,setposter] = useState();
-    const[title,settitle] = useState();
-    useEffect(async () => {
-        const movie = await movie_service.findMovieById(item.to);
-        setposter(movie.poster);
-        settitle(movie.title);
-    })
+    // const[poster,setposter] = useState();
+    // const[title,settitle] = useState();
+    // useEffect(async () => {
+    //     const movie = await movie_service.findMovieById(item.to);
+    //     setposter(movie.poster);
+    //     settitle(movie.title);
+    // })
+
+    const [movies, setMovies] = useState([])
+    const searchUrl = 'https://www.omdbapi.com/?apikey=b2bd5979&i='+ item.to;
+
+    const search = async () => {
+        const response = await axios.get(`${searchUrl}`)
+        setMovies(response.data)
+    }
+
+    useEffect(() => {
+        search()
+    }, [])
+
 
     return (
         <>
@@ -34,8 +49,8 @@ const ReviewItem = ({
 
                 <div className="col-3 d-md-block d-sm-none d-none">
 
-                    <img className="wd-poster wd-section-left" src={poster} alt=""/>
-                    <p className="wd-movie wd-gold">{title}</p>
+                    <img className="wd-poster wd-section-left" src={movies.Poster} alt=""/>
+                    <p className="wd-movie wd-gold">{movies.Title}</p>
                 </div>
 
 
@@ -45,7 +60,7 @@ const ReviewItem = ({
                     <span className="fw-bold">{item.rating}/10</span>
                     <p className="mt-1">{item.postedOn}</p>
                     <p>{item.review}</p>
-                    <p className="wd-right fst-italic">by.{name}</p>
+                    <p className="wd-right fst-italic">by.{postname}</p>
                 </div>
 
             </div>

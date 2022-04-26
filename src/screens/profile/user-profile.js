@@ -1,13 +1,15 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import "./profile.css"
+import * as service from "../../services/auth-service"
 
-const UserProfile = ({profile}) => {
+const UserProfile = ({profile,cur}) => {
     return(
         <div className="mb-4 mt-2">
             <div className="mb-1">
-                <Link to="/home"><i className="far fa-arrow-alt-circle-left fa-lg wd-imbd-yellow"> </i></Link>
-                <span className="wd-profile-name ms-3">{profile.username}</span>
+
+                <Link to={`/home/${cur}`}><i className="far fa-arrow-alt-circle-left fa-lg wd-imbd-yellow"> </i></Link>
+                <span className="wd-profile-name ms-3">Home</span>
             </div>
 
             <div className="row">
@@ -29,7 +31,7 @@ const UserProfile = ({profile}) => {
 
                     <div className="wd-profile-date">
                         <i className="fas fa-birthday-cake me-1"> </i>
-                        <span className="me-3">Born {profile.dateOfBirth.substring(0, 10).toString()}</span>
+                        <span className="me-3">Born {profile.dateOfBirth === undefined ? "2000-01-01" :`${profile.dateOfBirth.substring(0, 10).toString()}`}</span>
                         <i className="fas fa-calendar-alt me-2"> </i>
                         IMBD member since {profile.joined.substring(0, 10).toString()}
                     </div>
