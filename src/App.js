@@ -9,8 +9,8 @@ import Profile from "./screens/profile";
 import EditProfile from "./screens/profile/edit-profile";
 import HomeScreen from "./home/HomeScreen/HomeScreen";
 import Search from "./home/Search/Search";
+import UserSearch from "./home/Search/index";
 import ResultScreen from "./home/Search/ResultScreen";
-import HomePersonal from "./home/HomeScreen/HomePersonal";
 import Home from "./home/HomeScreen";
 import {Provider} from "react-redux";
 
@@ -31,6 +31,7 @@ function App() {
                 <Route path="home/:username" element={<Home/>}/>
             </Route>
             <Route path="/search" element={<Search/>}/>
+            <Route path="/search/:username" element={<UserSearch/>}/>
             <Route path="/result/:movieSearch" element={<ResultScreen/>}/>
 
             <Route path="/login" element={<Login/>}/>
