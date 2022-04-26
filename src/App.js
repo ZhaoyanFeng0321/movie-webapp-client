@@ -11,6 +11,7 @@ import HomeScreen from "./home/HomeScreen/HomeScreen";
 import Search from "./home/Search/Search";
 import ResultScreen from "./home/Search/ResultScreen";
 import HomePersonal from "./home/HomeScreen/HomePersonal";
+import Home from "./home/HomeScreen";
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
             <Route path="/">
                 <Route index element={<HomeScreen/>} />
                 <Route path="home" exact={true} element={<HomeScreen/>}/>
-                <Route path="home/:username" element={<HomePersonal/>}/>
+                <Route path="home/:username" element={<Home/>}/>
             </Route>
             <Route path="/search" element={<Search/>}/>
             <Route path="/result/:movieSearch" element={<ResultScreen/>}/>
