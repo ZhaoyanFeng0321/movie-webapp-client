@@ -15,6 +15,8 @@ const ActorProfile = ({actor}) => {
                           <i className="fas fa-check fa-stack-1x fa-inverse"></i>
                         </span></div>
 
+                <Link to={`/home/${actor.username}`}><i className="far fa-arrow-alt-circle-left fa-lg wd-imbd-yellow"> </i></Link>
+                <span className="wd-profile-name ms-3">{actor.firstName} {actor.lastName}</span>
             </div>
 
             <div className="row">
@@ -31,6 +33,7 @@ const ActorProfile = ({actor}) => {
                         <span className="me-3">Born {actor.dateOfBirth === undefined ? "2000-01-01" :`${actor.dateOfBirth.substring(0, 10).toString()}`}</span>
 
                     </div>
+
 
                 </div>
             </div>

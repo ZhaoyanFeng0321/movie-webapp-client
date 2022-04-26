@@ -10,7 +10,7 @@ const ResultScreen = () =>{
     const {movieSearch} = useParams()
     const navigate = useNavigate()
     const [movies, setMovies] = useState([])
-    const searchUrl = 'https://www.omdbapi.com/?apikey=8f8e49c8'
+    const searchUrl = 'https://www.omdbapi.com/?apikey=b2bd5979'
     const searchByTitle = async () => {
         const searchStr = titleRef.current.value || movieSearch || null
         const response = await axios.get(`${searchUrl}&s=${searchStr}`)
