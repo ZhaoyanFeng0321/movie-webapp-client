@@ -10,6 +10,8 @@ import EditProfile from "./screens/profile/edit-profile";
 import HomeScreen from "./home/HomeScreen/HomeScreen";
 import Search from "./home/Search/Search";
 import ResultScreen from "./home/Search/ResultScreen";
+import HomePersonal from "./home/HomeScreen/HomePersonal";
+import Home from "./home/HomeScreen";
 import {Provider} from "react-redux";
 
 function App() {
@@ -26,6 +28,7 @@ function App() {
             <Route path="/">
                 <Route index element={<HomeScreen/>} />
                 <Route path="home" exact={true} element={<HomeScreen/>}/>
+                <Route path="home/:username" element={<Home/>}/>
             </Route>
             <Route path="/search" element={<Search/>}/>
             <Route path="/result/:movieSearch" element={<ResultScreen/>}/>

@@ -7,7 +7,7 @@ const ActorProfile = ({actor}) => {
     return(
         <div className="mb-4 mt-2">
             <div className="mb-1">
-                <Link to="/detail"><i className="far fa-arrow-alt-circle-left fa-lg wd-imbd-yellow"> </i></Link>
+                <Link to={`/home/${actor.username}`}><i className="far fa-arrow-alt-circle-left fa-lg wd-imbd-yellow"> </i></Link>
                 <span className="wd-profile-name ms-3">{actor.firstName} {actor.lastName}</span>
             </div>
 
