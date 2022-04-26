@@ -41,8 +41,7 @@ const Signup = () => {
                                     inline
                                     label="Personal"
                                     name="group1"
-                                    defaultChecked={type
-                                }
+                                    defaultChecked={type}
                                     type={type}
                                     id={`inline-${type}-1`}
                                     onChange={(e) =>

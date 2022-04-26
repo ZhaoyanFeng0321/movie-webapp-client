@@ -1,113 +1,160 @@
-import {Link} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
+import {Link, useNavigate, useParams} from "react-router-dom";
+import * as authService from "../../services/auth-service";
 
 const EditProfile = () => {
-    const profile = useSelector(state => state.profile);
-    let[firstName, setFirstName] = useState(profile.firstName)
-    let[lastName, setLastName] = useState(profile.lastName)
-    let[profilePicture, setProfilePicture] = useState(profile.profilePicture)
-    let[username, setUsername] = useState(profile.username)
-    let[viewerId, setViewerId] = useState(profile.viewerId)
-    let[password, setPassword] = useState(profile.password)
-    let[dateJoined, setDateJoined] = useState(profile.dateJoined)
+    const [profile, setProfile] = useState({});
+    const [updateUser, setUpdateUser] = useState({});
+    const navigate = useNavigate();
 
-    const dispatch = useDispatch();
 
-    const firstNameChangeHandler = (event) => {
-        const firstName = event.target.value;
-        // const newFirstName = {newFirstName: firstName};
-        setFirstName(firstName);
+    /**
+     * Handle the file and store it to server
+     * @param file
+     * @returns {Promise<unknown>} the store address of file of error information
+     */
+    const imageData = (file) => {
+        return new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file)
+            fileReader.onload = () => {
+                resolve(fileReader.result);
+            }
+            fileReader.onerror = (error) => {
+                reject(error);
+            }
+        })
     }
 
-    const lastNameChangeHandler = (event) => {
-        const lastName = event.target.value;
-        setLastName(lastName);
+    /**
+     * Update the user's profile photo from local image
+     * @param event
+     * @returns {Promise<void>}
+     */
+    const handleProfilePhoto = async (event) => {
+        const file = event.target.files[0]
+        const img = await imageData(file)
+        setUpdateUser({
+                          ...updateUser,
+                          profilePhoto: img
+                      })
     }
 
-    // const profilePictureChangeHandler = (event) => {
-    //     const profilePicture = event.target.value;
-    //     setProfilePicture(profilePicture);
-    // }
-
-    const usernameChangeHandler = (event) => {
-        const username = event.target.value;
-        setUsername(username);
-    }
-
-    const passwordChangeHandler = (event) => {
-        const password = event.target.value;
-        setPassword(password);
-    }
-
-    const saveClickHandler = () => {
-        const newProfile = {
-            ...profile,
-            firstName,
-            lastName,
-            profilePicture,
-            username,
-            viewerId,
-            password,
-            dateJoined,
+    useEffect(async () => {
+        try {
+            let user = await authService.profile();
+            // if (user.dateOfBirth !== undefined) {
+            //     user.dateOfBirth = user.dateOfBirth.substring(0, 10).toString();
+            // }
+            setProfile(user);
+            setUpdateUser(user);
+        } catch (e) {
         }
-        dispatch({type:'save', profile: newProfile})
+    }, []);
+
+    /**
+     * Update user information
+     */
+    const saveProfile = () => {
+        authService.update(updateUser)
+            .then(() => navigate(`/profile/${profile.username}`))
+            .catch(e => alert(e));
     }
 
-
-    return(
-        <div>
-            <div className="row mb-4 mt-2">
-                <div className="col-1">
-                    <Link to="/profile"><i className="far fa-times-circle fa-lg wd-imbd-yellow"></i></Link>
+    return (
+        <div className="ttr-edit-profile">
+            <div className="border border-bottom-0">
+                <Link to={`/profile/${profile.username}`}
+                      className="btn btn-light rounded-pill fa-pull-left fw-bolder mt-2 mb-2 ms-2">
+                    <i className="fa fa-close"></i>
+                </Link>
+                <button className="btn btn-dark rounded-pill fa-pull-right fw-bolder mt-2 mb-2 me-2"
+                        onClick={
+                            saveProfile}>
+                    Save
+                </button>
+                <h4 className="p-2 mb-0 pb-0 fw-bolder">Edit profile</h4>
+                <div className="mb-5 position-relative">
+                    <div className="bottom-0 left-0 position-relative">
+                        <img className="position-relative ttr-z-index-1 ttr-top-40px ttr-width-150px pf-profile-image"
+                            src={profile.profilePhoto === undefined
+                                 ? "https://www.smilisticdental.com/wp-content/uploads/2017/11/blank-profile-picture-973460_960_720.png"
+                                 : `${profile.profilePhoto}`}/>
+                    </div>
+                </div>
+                <div className="border border-secondary rounded-3 p-2 mb-3">
+                    <label htmlFor="username">Username</label>
+                    <input id="username" title="Username" readOnly
+                           className="p-0 form-control border-0"
+                           value={`${profile.username}`}/>
+                </div>
+                <div className="border border-secondary rounded-3 p-2 mb-3">
+                    <label htmlFor="first-name">First name</label>
+                    <input id="first-name"
+                           className="p-0 form-control border-0"
+                           defaultValue={profile.firstName === undefined ? ``
+                                                                         : `${updateUser.firstName}`}
+                           onChange={(e) =>
+                               setUpdateUser({...updateUser, firstName: e.target.value})}
+                    />
+                </div>
+                <div className="border border-secondary rounded-3 p-2 mb-3">
+                    <label htmlFor="last-name">Last name</label>
+                    <input id="last-name"
+                           className="p-0 form-control border-0"
+                           defaultValue={profile.lastName === undefined ? ``
+                                                                        : `${profile.lastName}`}
+                        //placeholder={`${profile.lastName}`}
+                           onChange={(e) =>
+                               setUpdateUser({...updateUser, lastName: e.target.value})}
+                    />
+                </div>
+                <div className="border border-secondary rounded-3 p-2 mb-3">
+                    <label htmlFor="bio">Bio</label>
+                    <textarea
+                        className="p-0 form-control border-0" id="bio"
+                        onChange={(e) =>
+                            setUpdateUser({...updateUser, biography: e.target.value})}
+                        defaultValue={profile.biography === undefined ? ``
+                                                                      : `${profile.biography}`}>
+              </textarea>
+                </div>
+                <div className="border border-secondary rounded-3 p-2 mb-3">
+                    <label htmlFor="date-of-birth">Date of birth</label>
+                    <input id="date-of-birth"
+                           className="p-0 form-control border-0"
+                           defaultValue={profile.dateOfBirth === undefined ? "1998-09-28" : `${profile.dateOfBirth.substring(0, 10)}`}
+                           onChange={(e) =>
+                               setUpdateUser({...updateUser, dateOfBirth: e.target.value})}
+                           type="date"
+                           required="required"/>
+                </div>
+                <div className="border border-secondary rounded-3 p-2 mb-3">
+                    <label htmlFor="email">Email</label>
+                    <input id="email" placeholder={`${profile.email}`}
+                           className="p-0 form-control border-0"
+                           type="email"/>
+                </div>
+                <div className="border border-secondary rounded-3 p-2 mb-3">
+                    <label htmlFor="password">Reset password</label>
+                    <input id="password"
+                           className="p-0 form-control border-0"
+                           type="password"
+                           onChange={(e) =>
+                               setUpdateUser({...updateUser,password: e.target.value})}/>
                 </div>
 
-                <div className="col-10">
-                    <span className="wd-profile-name">Edit Profile</span>
-                </div>
-
-                <div className="col-1">
-                    <Link to="/profile">
-                        <button className="btn btn-light rounded-pill bg-white me-2 float-end small"
-                                style={{fontSize:'12px'}} onClick={saveClickHandler}>
-                            <span className="fw-bold text-black">Save</span>
-                        </button>
-                    </Link>
+                <div className="border border-secondary rounded-3 p-2 mb-3">
+                    <label htmlFor="photo">Profile photo</label>
+                    <input id="photo"
+                           className="p-0 form-control border-0"
+                           onChange={e => handleProfilePhoto(e)}
+                           type="file" name="myImage" accept="image/png, image/jpg"
+                    />
                 </div>
             </div>
-
-            <div className="mb-2">
-                <img src={profile.profilePicture} alt="avatar" height="160px" className="rounded-circle"
-                     style={{border:'solid 5px #F5DE50'}}/>
-            </div>
-
-            <div className="form-floating mt-2">
-                <input type="text" className="form-control bg-black text-white border" id="firstName"
-                       value={firstName} name="firstName" onChange={firstNameChangeHandler}></input>
-                <label htmlFor="firstName">First Name</label>
-            </div>
-
-            <div className="form-floating mt-2">
-                <input type="text" className="form-control bg-black text-white border" id="lastName"
-                       value={lastName} name="lastName" onChange={lastNameChangeHandler}></input>
-                <label htmlFor="lastName">Last Name</label>
-            </div>
-
-            <div className="form-floating mt-2">
-                <input type="text" className="form-control bg-black text-white border" id="lastName"
-                       value={username} name="username" onChange={usernameChangeHandler}></input>
-                <label htmlFor="username">User Name</label>
-            </div>
-
-            <div className="form-floating mt-2">
-                <input type="text" className="form-control bg-black text-white border" id="lastName"
-                       value={password} name="password" onChange={passwordChangeHandler}></input>
-                <label htmlFor="password">Password</label>
-            </div>
-
         </div>
-
-    )
-}
+    );
+};
 
 export default EditProfile;
