@@ -120,7 +120,7 @@ const EditProfile = () => {
                     <label htmlFor="date-of-birth">Date of birth</label>
                     <input id="date-of-birth"
                            className="p-0 form-control border-0"
-                           defaultValue={profile.dateOfBirth === undefined ? "1998-09-28" : `${profile.dateOfBirth.substring(0, 10)}`}
+                           defaultValue={profile.dateOfBirth === undefined ? "2000-01-01" : `${profile.dateOfBirth.substring(0, 10)}`}
                            onChange={(e) =>
                                setUpdateUser({...updateUser, dateOfBirth: e.target.value})}
                            type="date"
