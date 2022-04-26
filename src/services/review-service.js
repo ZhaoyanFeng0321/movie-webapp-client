@@ -15,9 +15,9 @@ export const findAllReviews = async () => {
     return reviews;
 }
 
-export const deleteReview = async (review) => {
+export const deleteReview = async (rid) => {
     const response = await axios
-        .delete(`${REVIEWS_API}/${review._id}`);
+        .delete(`${REVIEWS_API}/${rid}`);
     return response.data;
 }
 

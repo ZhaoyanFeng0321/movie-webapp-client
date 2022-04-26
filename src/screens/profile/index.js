@@ -37,6 +37,10 @@ const Profile = () => {
         }
     }, [username]);
 
+    // console.log(profile)
+
+    // console.log(currentUser)
+
     /**
      * Current user logout
      */
@@ -62,8 +66,8 @@ const Profile = () => {
             }
             {
                 profile.accountType === "PERSONAL"  &&
-                <UserProfile profile={profile}/>
-                // <ReviewList/>
+                <UserProfile profile={profile}/> &&
+                <ReviewList/>
                 // <br/> &&
                 // <Watchlist/>
             }
