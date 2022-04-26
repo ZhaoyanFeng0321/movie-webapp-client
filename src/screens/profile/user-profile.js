@@ -1,13 +1,13 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import "./profile.css"
-import * as service from "../../services/auth-service"
 
-const UserProfile = ({profile}) => {
+const UserProfile = ({profile, currentUser}) => {
+
     return(
         <div className="mb-4 mt-2">
             <div className="mb-1">
-                <Link to={`/home/${profile.username}`}><i className="far fa-arrow-alt-circle-left fa-lg wd-imbd-yellow"> </i></Link>
+                <Link to={`/home/${currentUser.username}`}><i className="far fa-arrow-alt-circle-left fa-lg wd-imbd-yellow"> </i></Link>
                 <span className="wd-profile-name ms-3">Home</span>
             </div>
 

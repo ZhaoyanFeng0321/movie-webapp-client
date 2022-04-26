@@ -16,7 +16,6 @@ import ActorProfile from "./actor-profile";
 const Profile = () => {
     const {username} = useParams();
     const navigate = useNavigate();
-    const location = useLocation();
     const [profile, setProfile] = useState({});
     const [currentUser,setCurrentUser] = useState({});
 
@@ -61,14 +60,14 @@ const Profile = () => {
             }
             {
                 profile.accountType === "PERSONAL"  &&
-                <UserProfile profile={profile}/>
+                <UserProfile profile={profile} currentUser={currentUser}/>
                 // <ReviewList/> &&
                 // <br/> &&
                 // <Watchlist/>
             }
             {
                 profile.accountType === "ACTOR"  &&
-                <ActorProfile actor={profile}/>
+                <ActorProfile actor={profile} currentUser={currentUser}/>
             }
 
 

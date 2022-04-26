@@ -2,12 +2,12 @@ import React from "react";
 import {Link} from "react-router-dom";
 import "./profile.css"
 
-const ActorProfile = ({actor}) => {
+const ActorProfile = ({actor, currentUser}) => {
 
     return (
         <div className="mb-4 mt-2">
             <div className="mb-1">
-                <Link to={`/home/${actor.username}`}><i
+                <Link to={`/home/${currentUser.username}`}><i
                     className="far fa-arrow-alt-circle-left fa-lg wd-imbd-yellow"> </i></Link>
                 <span className="wd-profile-name ms-3">Home</span>
             </div>
