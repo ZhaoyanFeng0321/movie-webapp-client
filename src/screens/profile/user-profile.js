@@ -8,7 +8,7 @@ const UserProfile = ({profile}) => {
         <div className="mb-4 mt-2">
             <div className="mb-1">
                 <Link to={`/home/${profile.username}`}><i className="far fa-arrow-alt-circle-left fa-lg wd-imbd-yellow"> </i></Link>
-                <span className="wd-profile-name ms-3">{profile.username}</span>
+                <span className="wd-profile-name ms-3">Home</span>
             </div>
 
             <div className="row">
