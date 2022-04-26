@@ -10,6 +10,7 @@ import EditProfile from "./screens/profile/edit-profile";
 import HomeScreen from "./home/HomeScreen/HomeScreen";
 import Search from "./home/Search/Search";
 import ResultScreen from "./home/Search/ResultScreen";
+import HomePersonal from "./home/HomeScreen/HomePersonal";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/">
                 <Route index element={<HomeScreen/>} />
                 <Route path="home" exact={true} element={<HomeScreen/>}/>
+                <Route path="home/:username" element={<HomePersonal/>}/>
             </Route>
             <Route path="/search" element={<Search/>}/>
             <Route path="/result/:movieSearch" element={<ResultScreen/>}/>
