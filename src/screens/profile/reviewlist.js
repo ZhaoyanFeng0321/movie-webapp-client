@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import ReviewItem from "./reviewlist-item";
-
 import * as service from "../../services/review-service"
 import * as authService from "../../services/auth-service";
 import {useNavigate, useParams} from "react-router-dom";

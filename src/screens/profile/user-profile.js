@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import "./profile.css"
 import * as service from "../../services/auth-service"
+import ReviewList from "./reviewlist";
+import Watchlist from "./watchlist";
 
 const UserProfile = ({profile,cur}) => {
     return(
@@ -38,6 +40,8 @@ const UserProfile = ({profile,cur}) => {
 
                 </div>
             </div>
+            <ReviewList/>
+            <Watchlist wlist={profile.watchlist}/>
         </div>
     )
 }

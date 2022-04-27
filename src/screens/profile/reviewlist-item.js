@@ -9,7 +9,6 @@ const ReviewItem = ({review, deleteReview}) => {
     //     dispatch({type: 'delete-review', review: review})
     // }
 
-
     const [movies, setMovies] = useState([])
     const searchUrl = 'https://www.omdbapi.com/?apikey=b2bd5979&i='+ review.to;
     const search = async () => { const response = await axios.get(`${searchUrl}`)
@@ -44,8 +43,6 @@ const ReviewItem = ({review, deleteReview}) => {
                         {/*fa-pull-right"></i>*/}
                         <i className="fas fa-times-circle float-end"
                            onClick={() => deleteReview(review._id)}></i>
-
-
 
                     </div>
                 </div>
