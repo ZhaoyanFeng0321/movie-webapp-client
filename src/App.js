@@ -11,6 +11,7 @@ import HomeScreen from "./home/HomeScreen/HomeScreen";
 import Search from "./home/Search/Search";
 import UserSearch from "./home/Search/index";
 import ResultScreen from "./home/Search/ResultScreen";
+import Result from "./home/Search/Result";
 import Home from "./home/HomeScreen";
 import {Provider} from "react-redux";
 
@@ -32,6 +33,7 @@ function App() {
             </Route>
             <Route path="/search" element={<Search/>}/>
             <Route path="/search/:username" element={<UserSearch/>}/>
+            <Route path="/result/:username/:movieSearch" element={<Result/>}/>
             <Route path="/result/:movieSearch" element={<ResultScreen/>}/>
 
             <Route path="/login" element={<Login/>}/>

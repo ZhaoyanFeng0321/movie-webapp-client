@@ -1,15 +1,12 @@
-import {useNavigate, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {useEffect, useRef, useState} from "react";
 import * as authService from "../../services/auth-service";
-import HomePersonal from "../HomeScreen/HomePersonal";
-import HomeActor from "../HomeScreen/HomeActor";
-import Navigation from "../Navigation/Navigation";
 import NavigationPersonal from "../Navigation/NavigationPersonal";
 import axios from "axios";
 import NavigationActor from "../Navigation/NavigationActor";
 
 
-const Search = () => {
+const Result = () => {
     const {username} = useParams();
     const navigate = useNavigate();
     const [currentUser,setCurrentUser] = useState({});
@@ -30,6 +27,7 @@ const Search = () => {
         }
     }, [username]);
 
+
     const titleRef = useRef()
     const {movieSearch} = useParams()
     const [movies, setMovies] = useState([])
@@ -44,12 +42,14 @@ const Search = () => {
         }
         else if(response.data.Response ==='False'){
             alert(response.data.Error + " Please try again.")
+            navigate(`/search/`)
         }
     }
 
     useEffect(() => {
         searchByTitle()
     }, [])
+
 
 
     return(
@@ -66,10 +66,47 @@ const Search = () => {
 
             <div className="row ms-5 me-5">
 
-                <input ref={titleRef} className="form-control w-75" placeholder="Search movies.."/>
+                <input ref={titleRef}className="form-control w-75" placeholder="Seach movies.."/>
                 <button className="btn btn-primary float-end w-25" onClick={searchByTitle}>Search</button>
+
+
+                <p className="wd-title wd-gold mt-3">Search Results</p>
+                <ul className="list-group">
+                    {
+                        movies.map(movie =>
+                            <li className="list-group-item">
+                                <div className="row mt-2">
+                                    <div className="col-3">
+                                        <Link to={`/details/${movie.imdbID}`}>
+                                            <img src={movie.Poster} height={100} alt=""/>
+                                        </Link>
+
+                                    </div>
+                                    <div className="col-9 col-sm-8">
+                                        <Link to={`/details/${movie.imdbID}`} className="wd-link">
+                                            <span className="fw-bold wd-gold">{movie.Title}</span>
+                                        </Link>
+
+                                        <i className="fa fa-solid fa-plus-circle ms-3 wd-gold fs-5"/>
+
+                                        <p>Year: {movie.Year}</p>
+                                        <p>Type: {movie.Type}</p>
+                                    </div>
+
+
+                                </div>
+
+
+
+
+                            </li>)
+                    }
+                </ul>
+
             </div>
+
+
         </>
     )
 }
-export default Search;
+export default Result;
