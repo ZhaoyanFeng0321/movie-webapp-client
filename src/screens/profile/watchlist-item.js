@@ -4,20 +4,11 @@ import axios from "axios";
 
 const WatchlistItem = ({movie, deleteMovieForUser}) => {
 
-    // const deleteMovie = (movie) => {
-    //     dispatch({type: 'delete-movie', movie: movie})
-    // }
-
     const [movies, setMovies] = useState([])
     const searchUrl = 'https://www.omdbapi.com/?apikey=b2bd5979&i='+ movie;
     const search = async () => { const response = await axios.get(`${searchUrl}`)
         setMovies(response.data) }
     useEffect(() => { search() }, [])
-
-    // const deleteMovieForUser = (mid) => {
-    //     const newWatchlist = movies.filter(movie => movie !== mid);
-    //     setMovies(newWatchlist)
-    // }
 
     return (
         <>
@@ -30,21 +21,13 @@ const WatchlistItem = ({movie, deleteMovieForUser}) => {
                     <div className="col-10 col-sm-12 col-md-10">
                         <i className="fas fa-times-circle float-end"
                            style={{color:'#F5DE50'}}
-                           onClick={() => deleteMovieForUser(movie._id)}></i>
+                           onClick={() => deleteMovieForUser(movie)}> </i>
 
                         <div style={{fontWeight: 'bold', fontSize: '20px'}}>{movies.Title} ({movies.Year})</div>
                         <div>Genre: {movies.Genre}</div>
                         <div style={{fontSize: 'small', color: 'lightgray', marginBottom: '5px'}}>Released On: {movies.Released}</div>
 
                     </div>
-                    {/*<div className="col-10 ps-3">*/}
-                    {/*    /!*<i onClick={() =>                   // create new remove icon on top, right corner of*!/*/}
-                    {/*    /!*    deleteTuit(tweet)}              // each tuit. Bind click event with click handler*!/*/}
-                    {/*    /!*   className="fas fa-times-circle*!/*/}
-                    {/*    /!*fa-pull-right"></i>*!/*/}
-                    {/*    <i className="fas fa-times-circle float-end"*/}
-                    {/*       onClick={() => deleteMovie(movie._id)}></i>*/}
-                    {/*</div>*/}
                 </div>
             </div>
         </>
