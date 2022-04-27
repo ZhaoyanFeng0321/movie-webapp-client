@@ -39,7 +39,7 @@ const Navigation = () =>{
 
                 </div>
                 <div className="col-1 mt-2">
-                    <Link to="/search/"><i className="fa fa-search wd-search-icon mt-1"/></Link>
+                    <Link to={`/search/${currentUser.username}`}><i className="fa fa-search wd-search-icon mt-1"/></Link>
 
                 </div>
 

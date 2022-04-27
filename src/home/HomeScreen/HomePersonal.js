@@ -8,6 +8,7 @@ import {combineReducers, createStore} from "redux";
 import ReviewList from "../ReviewList/ReviewList";
 
 import NavigationPersonal from "../Navigation/NavigationPersonal";
+import WatchListPersonal from "../WatchList/WatchListPersonal";
 
 const reducer = combineReducers({
     reviews: reviewReducer
@@ -22,7 +23,7 @@ const HomeScreen= () => {
 
                 <NavigationPersonal/>
                 <ReviewList/>
-                {/*<WatchListLogged/>*/}
+                <WatchListPersonal/>
 
 
             </div>
