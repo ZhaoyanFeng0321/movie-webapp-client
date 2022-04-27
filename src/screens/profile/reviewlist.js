@@ -49,7 +49,7 @@ const ReviewList = () => {
 
     return(
         <>
-            <h3 style={{color:'#F5DE50'}}>Your Reviews</h3>
+            <h3 style={{marginTop:'10px', color:'#F5DE50'}}>Your Reviews</h3>
             <ul className="list-group">
                 {
                     reviews && reviews.map(review =>

@@ -5,36 +5,38 @@ import {useNavigate, useParams} from "react-router-dom";
 import * as service from "../../services/watchlist-service";
 import * as authService from "../../services/auth-service";
 
-const Watchlist = ({wlist=[], refreshWatchlist}) => {
-    // const {username} = useParams();
+const Watchlist = () => {
+    const {username} = useParams();
     //
-    // const [profile, setProfile] = useState(undefined);
-    // const [user, setUser] = useState(undefined);
+  //  const [profile, setProfile] = useState(undefined);
+    const [user, setUser] = useState(undefined);
     //
-    // const [movies, setMovies] = useState([]);
-    // const navigate = useNavigate();
+    const [wlist, setWlist] = useState([]);
+    const navigate = useNavigate();
     //
-    // const findWatchlistByUser = async (u) =>
-    //     await service.findAllMoviesByUser(u._id)
-    //         .then(movies => setMovies(movies));
-    //
-    // useEffect(async () => {
-    //     try {
-    //         const currentUser = await authService.findUser(username);
-    //         setUser(currentUser);
-    //         findWatchlistByUser(currentUser);
-    //
-    //         const currentProfile = await authService.profile();
-    //         if(currentProfile) {
-    //             setProfile(currentProfile);
-    //         }
-    //     }catch (e) {
-    //     }
-    // },[])
-    //
-    const deleteMovieForUser = async (mid) => {
-            await service.deleteMovie(mid)
-                .then(refreshWatchlist);
+    const findWatchlistByUser = async (user) =>
+        setWlist(user.watchlist);
+
+    useEffect(async () => {
+        try {
+            let currentUser = await authService.findUser(username);
+            findWatchlistByUser(currentUser);
+           // setWlist(currentUser.watchlist);
+            // const currentProfile = await authService.profile();
+            // if(currentProfile) {
+            //     setProfile(currentProfile);
+            // }
+        }catch (e) {
+        }
+    },[])
+
+
+    //const [newlist, setWlist] = useState([]);
+
+    const deleteMovieForUser = (mid) => {
+        const newWatchlist = wlist.filter(movie => movie !== mid);
+        setUser({...user, watchlist: newWatchlist});
+        authService.update(user).then(findWatchlistByUser(user));
     }
 
     // const movies = useSelector(state => state.movies);
@@ -45,13 +47,14 @@ const Watchlist = ({wlist=[], refreshWatchlist}) => {
 
     return (
         <>
-            <h3 style={{color:'#F5DE50'}}>Your Watchlist</h3>
+            <h3 style={{marginTop:'10px', color:'#F5DE50'}}>Your Watchlist</h3>
             <ul className="list-group">
                 {
                     wlist && wlist.map(movie =>
                                              <WatchlistItem key={movie}
                                                             movie={movie}
-                                                            deleteMovie={deleteMovieForUser}/>)
+                                                            deleteMovieForUser={deleteMovieForUser}
+                                                            />)
                 }
             </ul>
         </>
