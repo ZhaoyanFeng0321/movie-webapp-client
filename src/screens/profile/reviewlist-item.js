@@ -4,7 +4,7 @@ import service from "../../services/review-service";
 import axios from "axios";
 import {Link} from "react-router-dom";
 
-const ReviewItem = ({review, deleteReview}) => {
+const ReviewItem = ({review, deleteReview, profile, cur}) => {
     // const dispatch = useDispatch();
     // const deleteReview = (review) => {
     //     dispatch({type: 'delete-review', review: review})
@@ -26,9 +26,19 @@ const ReviewItem = ({review, deleteReview}) => {
                         <img src={movies.Poster} alt="poster" width="120px"/>
                     </div>
                     <div className="col-10 col-sm-12 col-md-10">
-                        <i className="fas fa-times-circle float-end"
-                           style={{color:'#F5DE50'}}
-                           onClick={() => deleteReview(review._id)}></i>
+                        {
+                            profile.username === cur.username &&
+                            <i className="fas fa-times-circle float-end"
+                            style={{color:'#F5DE50'}}
+                            onClick={() => deleteReview(review._id)}></i>
+                        }
+                        {
+                            cur.accountType === "ADMIN" &&
+                            <i className="fas fa-times-circle float-end"
+                               style={{color:'#F5DE50'}}
+                               onClick={() => deleteReview(review._id)}></i>
+
+                        }
 
                         <div style={{fontWeight: 'bold', fontSize: '20px'}}>
                             <Link to={`/details/${movies.imdbID}`}>

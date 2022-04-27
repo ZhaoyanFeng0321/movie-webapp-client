@@ -4,11 +4,11 @@ import * as service from "../../services/review-service"
 import * as authService from "../../services/auth-service";
 import {useNavigate, useParams} from "react-router-dom";
 
-const ReviewList = () => {
+const ReviewList = ({profile, cur}) => {
 
     const {username} = useParams();
 
-    const [profile, setProfile] = useState(undefined);
+    // const [profile, setProfile] = useState(undefined);
     const [user, setUser] = useState(undefined);
 
     const [reviews, setReviews] = useState([]);
@@ -25,10 +25,10 @@ const ReviewList = () => {
             setUser(u);
             findReviewsByUser(u);
 
-            const up = await authService.profile();
-            if (up) {
-                setProfile(up);
-            }
+            // const up = await authService.profile();
+            // if (up) {
+            //     setProfile(up);
+            // }
         }catch (e) {
         }
 
@@ -37,7 +37,7 @@ const ReviewList = () => {
     const deleteReview = async (rid) => {
         if(profile !== undefined){
             await service.deleteReview(rid)
-                .then(findReviewsByUser(user));
+            await findReviewsByUser(user);
         }else{
             alert("Please log in!");
             navigate('/login');
@@ -49,13 +49,15 @@ const ReviewList = () => {
 
     return(
         <>
-            <h3 style={{marginTop:'10px', color:'#F5DE50'}}>Your Reviews</h3>
+            <h3 style={{marginTop:'10px', color:'#F5DE50'}}>Reviews</h3>
             <ul className="list-group">
                 {
                     reviews && reviews.map(review =>
                                                <ReviewItem key={review._id}
                                                            review={review}
-                                               deleteReview={deleteReview}/>)
+                                               deleteReview={deleteReview}
+                                               profile={profile}
+                                               cur={cur}/>)
                 }
             </ul>
         </>

@@ -47,7 +47,7 @@ const Watchlist = () => {
 
     return (
         <>
-            <h3 style={{marginTop:'10px', color:'#F5DE50'}}>Your Watchlist</h3>
+            <h3 style={{marginTop:'10px', color:'#F5DE50'}}>Watchlist</h3>
             <ul className="list-group">
                 {
                     wlist && wlist.map(movie =>
