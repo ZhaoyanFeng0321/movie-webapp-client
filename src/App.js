@@ -1,42 +1,58 @@
+import logo from './logo.svg';
 import './App.css';
-import './vendors/bootstrap/bootstrap.min.css';
-import './vendors/fontawesome/css/all.min.css';
-import './utils/index.css';
-import {HashRouter, Link, Route, Routes} from "react-router-dom";
-import Signup from "./screens/signup";
-import Login from "./screens/login";
-import Profile from "./screens/profile";
-import EditProfile from "./screens/profile/edit-profile";
-import HomeScreen from "./home/HomeScreen/HomeScreen";
-import Search from "./home/Search/Search";
-import ResultScreen from "./home/Search/ResultScreen";
-import {Provider} from "react-redux";
+import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
+import Nav from "./components/navigation";
+import OmdbSearch from "./screens/omdb-search";
+import OmdbDetails from "./screens/omdb-details";
 
 function App() {
   return (
-    <HashRouter>
       <div className="container">
-        <Routes>
-          {/*<Route path="/">*/}
+        {/*<ProfileProvider>*/}
+          <BrowserRouter>
+              <div className="row">
+                  <div className="col-2">
+                     <Nav />
+                  </div>
 
-            <Route path="/profile" element={<Profile/>}/>
-            <Route path="/profile/:username/edit" element={<EditProfile/>}/>
-            <Route path="/profile/:username" element={<Profile/>}/>
-            <Route path="/profile/:username/*" element={<Profile />}/>
-            <Route path="/">
-                <Route index element={<HomeScreen/>} />
-                <Route path="home" exact={true} element={<HomeScreen/>}/>
-            </Route>
-            <Route path="/search" element={<Search/>}/>
-            <Route path="/result/:movieSearch" element={<ResultScreen/>}/>
+                  <div className="col-10">
+                      <Routes>
+                          <Route path="/search" element={<OmdbSearch/>} />
+                          <Route path="/search/:movieSearch" element={<OmdbSearch/>} />
+                          <Route path="/details/:imdbID" element={<OmdbDetails/>} />
+                      </Routes>
+                  </div>
+              </div>
 
-            <Route path="/login" element={<Login/>}/>
-            <Route path="/signup" element={<Signup/>}/>
-          {/*</Route>*/}
-        </Routes>
+
+
+
+
+
+          </BrowserRouter>
+        {/*</ProfileProvider>*/}
       </div>
-    </HashRouter>
   );
 }
 
+// function App() {
+//   return (
+//       <div className="App">
+//         <header className="App-header">
+//           <img src={logo} className="App-logo" alt="logo" />
+//           <p>
+//             Edit <code>src/App.js</code> and save to reload.
+//           </p>
+//           <a
+//               className="App-link"
+//               href="https://reactjs.org"
+//               target="_blank"
+//               rel="noopener noreferrer"
+//           >
+//             Learn React
+//           </a>
+//         </header>
+//       </div>
+//   );
+// }
 export default App;
