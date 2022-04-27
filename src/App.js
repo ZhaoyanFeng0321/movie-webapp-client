@@ -14,7 +14,7 @@ import ResultScreen from "./home/Search/ResultScreen";
 import Result from "./home/Search/Result";
 import Home from "./home/HomeScreen";
 import {Provider} from "react-redux";
-import OmdbDetails from "./screens/profile/details/details-page";
+import OmdbDetails from "./screens/details/details-page";
 
 function App() {
   return (

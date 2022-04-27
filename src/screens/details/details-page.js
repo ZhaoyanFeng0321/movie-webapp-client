@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 import axios from "axios";
 //import Preformatted from "../../../movie-detail/src/components/preformatted";
 // import SecureContent from "../components/secure-content";
-import Navigation from "../../../home/Navigation/Navigation";
+import Navigation from "../../home/Navigation/Navigation";
 
 const OmdbDetails = () => {
     const [movieDetails, setMovieDetails] = useState({})
