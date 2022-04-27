@@ -35,25 +35,26 @@ const OmdbDetails = () => {
     // }
 
     return (
-        <div className="bg-black text-warning">
+        <div className="text-warning">
 
             <div className="row mt-3 ms-5 me-5">
                 <Navigation/>
 
             </div>
 
-            <div className="row">
+            <div>
+            <div className="row ms-5 me-5">
 
                 <h1 className="fw-bold wd-gold">{movieDetails.Title}</h1>
             </div>
 
 
-            <div className="row">
+            <div className="row ms-5 me-5">
                 <div className="col-3">
                     <img src={movieDetails.Poster} height={300}/>
                     <p className="mt-3"><i className="fa-solid fa-star-sharp"></i> {movieDetails.imdbRating}</p>
-                    <button className="btn btn-warning">Like</button>
-                    <button className="btn btn-warning ms-3">Add to </button>
+                    <button className="btn btn-warning"><i className="fa-solid fa-thumbs-up"></i> </button>
+                    <button className="btn btn-warning ms-3"><i className="fa-solid fa-plus"></i> </button>
                 </div>
 
 
@@ -75,6 +76,7 @@ const OmdbDetails = () => {
 
                     {/*<Preformatted obj={movieDetails}/>*/}
                 </div>
+            </div>
             </div>
         </div>
 
