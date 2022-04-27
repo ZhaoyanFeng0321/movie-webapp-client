@@ -7,9 +7,10 @@ const ReviewList = () => {
     const reviews = useSelector(state => state.reviews);
 
     function comp(a,b) {
+
         return new Date(b.postedOn).getTime()-new Date(a.postedOn).getTime();
     }
-    reviews.sort(comp);
+     reviews.sort(comp);
     var latest = reviews.slice(0,3);
 
 

@@ -1,26 +1,36 @@
 import {Link, useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import * as authService from "../../services/auth-service";
+import service from "../../services/user-service";
 
 const WatchList = () => {
     const {username} = useParams();
     const navigate = useNavigate();
     const [currentUser,setCurrentUser] = useState({});
 
-    useEffect(async () => {
-        try {
-            let user = await authService.profile();
-            setCurrentUser(user);
-            if(username!==user.username){
-                user = await authService.findUser(username);
-            }else{
-                user = await authService.findUser(username);
-                setCurrentUser(user);
-            }
-        } catch (e) {
-            navigate('/login');
-        }
-    }, [username]);
+
+    // useEffect(async () => {
+    //     try {
+    //         let user = await authService.profile();
+    //         setCurrentUser(user);
+    //         if(username!==user.username){
+    //             user = await authService.findUser(username);
+    //         }else{
+    //             user = await authService.findUser(username);
+    //             setCurrentUser(user);
+    //         }
+    //     } catch (e) {
+    //         navigate('/login');
+    //     }
+    // }, [username]);
+
+    console.log(currentUser);
+
+    // const from = undefined;
+    // const arr = from || [];
+    // const result1 = arr?.length;
+    // console.log(result1);
+
 
     return (
         <>
@@ -42,5 +52,6 @@ const WatchList = () => {
             </div>
         </>
     );
+
 }
 export default WatchList;
