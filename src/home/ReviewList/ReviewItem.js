@@ -60,7 +60,7 @@ const ReviewItem = ({
                     <span className="fw-bold">{item.rating}/10</span>
                     <p className="mt-1">{item.postedOn}</p>
                     <p>{item.review}</p>
-                    <p className="wd-right fst-italic">by.{postname}</p>
+                    <p className="wd-right wd-white">by.<Link to={`/profile/${postname}`} className="wd-white" ><span className="fst-italic">{postname}</span></Link></p>
                 </div>
 
             </div>

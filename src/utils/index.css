@@ -48,6 +48,7 @@ a:hover{
 .wd-poster{
     width: 130px;
     height: 180px;
+    margin: 8px;
 }
 .wd-section-left{
     float: left;
@@ -66,4 +67,33 @@ a:hover{
 .btn{
     background-color: gold!important;
     color: black;
+}
+
+.wd-slide-container{
+
+
+    position: relative;
+
+    white-space: nowrap;
+    overflow: auto;
+}
+
+#slide-list
+{
+    margin-top: 5px;
+    width:1200px;
+}
+
+
+#slide-list li{
+    display: inline-block;
+}
+.wd-web-title{
+    text-align: -webkit-center;
+}
+.wd-signin{
+    text-align: -webkit-right;
+}
+.nav-link:hover{
+    color: white!important;
 }

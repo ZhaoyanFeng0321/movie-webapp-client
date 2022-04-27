@@ -9,10 +9,12 @@ import Profile from "./screens/profile";
 import EditProfile from "./screens/profile/edit-profile";
 import HomeScreen from "./home/HomeScreen/HomeScreen";
 import Search from "./home/Search/Search";
+import UserSearch from "./home/Search/index";
 import ResultScreen from "./home/Search/ResultScreen";
-import HomePersonal from "./home/HomeScreen/HomePersonal";
+import Result from "./home/Search/Result";
 import Home from "./home/HomeScreen";
 import {Provider} from "react-redux";
+import OmdbDetails from "./screens/details/details-page";
 
 function App() {
   return (
@@ -31,8 +33,10 @@ function App() {
                 <Route path="home/:username" element={<Home/>}/>
             </Route>
             <Route path="/search" element={<Search/>}/>
+            <Route path="/search/:username" element={<UserSearch/>}/>
+            <Route path="/result/:username/:movieSearch" element={<Result/>}/>
             <Route path="/result/:movieSearch" element={<ResultScreen/>}/>
-
+            <Route path="/details/:imdbID" element={<OmdbDetails/>}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="/signup" element={<Signup/>}/>
           {/*</Route>*/}
