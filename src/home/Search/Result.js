@@ -3,7 +3,6 @@ import {useEffect, useRef, useState} from "react";
 import * as authService from "../../services/auth-service";
 import NavigationPersonal from "../Navigation/NavigationPersonal";
 import axios from "axios";
-import NavigationActor from "../Navigation/NavigationActor";
 
 
 const Result = () => {
@@ -54,15 +53,12 @@ const Result = () => {
 
     return(
         <>
-            {profile.accountType === "PERSONAL" &&
+
                 <div className="row mt-3 ms-5 me-5">
                     <NavigationPersonal/>
-                </div>}
+                </div>
 
-            {profile.accountType === "ACTOR" &&
-                <div className="row mt-3 ms-5 me-5">
-                    <NavigationActor/>
-                </div>}
+
 
             <div className="row ms-5 me-5">
 

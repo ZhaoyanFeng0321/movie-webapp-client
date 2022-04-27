@@ -28,8 +28,8 @@ const Home = () => {
 
     return(
         <>
-            {profile.accountType === "PERSONAL" && <HomePersonal/>}
-            {profile.accountType === "ACTOR" && <HomeActor/>}
+            {profile.accountType === "PERSONAL" && <HomePersonal profile={profile} cur={currentUser.username}/>}
+            {profile.accountType === "ACTOR" && <HomeActor profile={profile} cur={currentUser.username}/>}
         </>
 
 
