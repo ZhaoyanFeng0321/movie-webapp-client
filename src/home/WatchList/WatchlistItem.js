@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 const WatchlistItem = ({movie}) => {
 
@@ -8,12 +8,19 @@ const WatchlistItem = ({movie}) => {
     const searchUrl = 'https://www.omdbapi.com/?apikey=b2bd5979&i='+ movie;
     const search = async () => { const response = await axios.get(`${searchUrl}`)
         setMovies(response.data) }
-    useEffect(() => { search() }, [])
+    useEffect(() => {
+        async function search() {
+            const response = await axios.get(`${searchUrl}`)
+            setMovies(response.data)
+        }search();
+
+    },);
+    // useEffect(() => { search() }, )
 
     return (
         <>
 
-                <img src={movies.Poster} alt="poster" className="wd-poster"/>
+            <Link to={`/details/${movies.imdbID}`}><img src={movies.Poster} alt="poster" className="wd-poster"/></Link>
 
         </>
     )

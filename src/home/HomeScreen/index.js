@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import * as authService from "../../services/auth-service";
 import HomePersonal from "./HomePersonal";
 import HomeActor from "./HomeActor";
+import HomeAdmin from "./HomeAdmin";
 
 const Home = () => {
     const {username} = useParams();
@@ -30,6 +31,7 @@ const Home = () => {
         <>
             {profile.accountType === "PERSONAL" && <HomePersonal profile={profile} cur={currentUser.username}/>}
             {profile.accountType === "ACTOR" && <HomeActor profile={profile} cur={currentUser.username}/>}
+            {profile.accountType === "ADMIN" && <HomeAdmin profile={profile} cur={currentUser.username}/>}
         </>
 
 

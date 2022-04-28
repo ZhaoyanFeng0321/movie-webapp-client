@@ -27,17 +27,29 @@ const AdminProfile = ({profile,cur}) => {
 
                 <div className="col-8 col-sm-0 col-md-8 d-sm-none d-md-block">
                     <span className="wd-profile-username">{profile.username}</span>
+                    <i className="fas fa-user-cog ms-2" style={{fontSize: '18px', color:'#F5DE50'}}></i>
 
                     <div className="wd-profile-name" style={{fontStyle:'italic'}}>
                         {profile.firstName} {profile.lastName}
                     </div>
 
-                    <div className="wd-profile-date">
-                        <i className="fas fa-birthday-cake me-1"> </i>
-                        <span className="me-3">Born {profile.dateOfBirth === undefined ? "2000-01-01" :`${profile.dateOfBirth.substring(0, 10).toString()}`}</span>
-                        <i className="fas fa-calendar-alt me-2"> </i>
-                        IMBD member since {profile.joined.substring(0, 10).toString()}
+                    <div className="wd-profile-date" style={{fontSize: '18px'}}>
+                        <i className="fas fa-birthday-cake me-2"> </i>
+                        <span>Born {profile.dateOfBirth === undefined ? "2000-01-01" :`${profile.dateOfBirth.substring(0, 10).toString()}`}</span>
+
+                        <div style={{fontSize: '18px'}}>
+                            <i className="fas fa-calendar-alt me-2"> </i>
+                            Work for IMBD since {profile.joined.substring(0, 10).toString()}
+                        </div>
+
                     </div>
+
+                    {/*<div className="wd-profile-date">*/}
+                    {/*    <i className="fas fa-birthday-cake me-1"> </i>*/}
+                    {/*    <span className="me-3">Born {profile.dateOfBirth === undefined ? "2000-01-01" :`${profile.dateOfBirth.substring(0, 10).toString()}`}</span>*/}
+                    {/*    <i className="fas fa-calendar-alt me-2"> </i>*/}
+                    {/*    IMBD member since {profile.joined.substring(0, 10).toString()}*/}
+                    {/*</div>*/}
 
                 </div>
             </div>
