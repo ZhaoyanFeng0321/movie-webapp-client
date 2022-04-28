@@ -7,10 +7,10 @@ import {Link} from "react-router-dom";
 const ReviewItem = ({item}) => {
     const[postname, setname] = useState();
 
-    useEffect(async () => {
-        const user = await service.findUserById(item.from);
-        setname(user.username);
-    })
+    // useEffect(async () => {
+    //     const user = await service.findUserById(item.from);
+    //     setname(user.username);
+    // })
 
     // const[poster,setposter] = useState();
     // const[title,settitle] = useState();
@@ -57,7 +57,7 @@ const ReviewItem = ({item}) => {
 
                     <p className="mt-1">{item.postedOn}</p>
                     <p>{item.review}</p>
-                    <p className="wd-right wd-white">by.<Link to={`/profile/${postname}`} className="wd-white" ><span className="fst-italic">{postname}</span></Link></p>
+                    <p className="wd-right wd-white">by.<Link to={`/profile/${item.from}`} className="wd-white" ><span className="fst-italic">{item.from}</span></Link></p>
                 </div>
 
             </div>

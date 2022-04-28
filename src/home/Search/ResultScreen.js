@@ -5,6 +5,7 @@ import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import * as authService from "../../services/auth-service";
 import NavigationPersonal from "../Navigation/NavigationPersonal";
+import {Button} from "react-bootstrap";
 
 
 const ResultScreen = () =>{
@@ -40,6 +41,10 @@ const ResultScreen = () =>{
         }catch(e){}
     },[])
 
+
+    const addMovieToList = async (uid, movieID) =>
+
+        await authService.addMovieToList(uid, movieID);
 
 return(
         <>
@@ -77,7 +82,7 @@ return(
                                         <span className="fw-bold wd-gold">{movie.Title}</span>
                                     </Link>
 
-                                    <i className="fa fa-solid fa-plus-circle ms-3 wd-gold fs-5"/>
+                                    <i className="fa fa-solid fa-plus-circle ms-3 wd-gold fs-5" onClick={()=>addMovieToList(currentUser._id, movie.imdbID)}/>
 
                                     <p>Year: {movie.Year}</p>
                                     <p>Type: {movie.Type}</p>

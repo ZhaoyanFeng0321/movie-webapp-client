@@ -45,13 +45,26 @@ const Navigation = () =>{
 
                 <div className="col-4 ">
                     <ul className="nav mb-2 nav-tabs wd-nav-tab-override">
-                        <li className="nav-item d-sm-none d-md-none d-lg-block d-none">
+                        {currentUser.accountType === "ACTOR" &&
+                            <li className="nav-item d-sm-none d-md-none d-lg-block d-none">
 
-                            <Link to="/list" className="wd-link">
-                                <div className="nav-link ">
-                                <i className="fa fa-list me-3 wd-grey"/>
-                                <span className="fw-bold">Watchlist</span></div></Link>
-                        </li>
+                                <Link to="/list" className="wd-link">
+                                    <div className="nav-link ">
+                                        <i className="fa fa-list me-3 wd-grey"/>
+                                        <span className="fw-bold">Filmography</span></div></Link>
+                            </li>
+
+                        }
+                        {currentUser.accountType === "PERSONAL" &&
+                            <li className="nav-item d-sm-none d-md-none d-lg-block d-none">
+
+                                <Link to="/list" className="wd-link">
+                                    <div className="nav-link ">
+                                        <i className="fa fa-list me-3 wd-grey"/>
+                                        <span className="fw-bold">Watchlist</span></div></Link>
+                            </li>
+
+                        }
 
 
                     <li className="nav-item">

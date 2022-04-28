@@ -75,9 +75,9 @@ const OmdbDetails = () => {
         <div className="text-warning">
 
 {/*<<<<<<< HEAD*/}
-            <div className="row mt-3 ms-5 me-5">
-                {/*<Navigation/>*/}
-            </div>
+{/*            <div className="row mt-3 ms-5 me-5">*/}
+{/*                /!*<Navigation/>*!/*/}
+{/*            </div>*/}
 {/*=======*/}
 {/*            {currentUser.accountType !== "PERSONAL"  && currentUser.accountType !== "ACTOR"  &&currentUser.accountType !== "ADMIN"  &&*/}
             {!login &&
