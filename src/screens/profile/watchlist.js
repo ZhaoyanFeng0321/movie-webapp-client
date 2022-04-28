@@ -26,8 +26,9 @@ const Watchlist = () => {
 
 
     const deleteMovieForUser = async (mid) => {
-        const updateUser = await authService.removeMovieFromList(user._id, mid)
-        await findMovies(updateUser);
+        await authService.removeMovieFromList(user._id, mid)
+        const newList = wlist.filter(m => m !== mid);
+        setMovies(newList);
     }
 
     return (
