@@ -8,27 +8,17 @@ const ReviewList = ({profile, cur}) => {
 
     const {username} = useParams();
 
-    // const [profile, setProfile] = useState(undefined);
-    const [user, setUser] = useState(undefined);
-
     const [reviews, setReviews] = useState([]);
 
     const navigate = useNavigate();
 
-    const findReviewsByUser = async (us) =>
-        await service.findAllReviewsByUser(us._id)
+    const findReviewsByUser = async () =>
+        await service.findAllReviewsByUsername(username)
             .then(reviews => setReviews(reviews));
 
     useEffect(async () => {
         try {
-            const u = await authService.findUser(username);
-            setUser(u);
-            findReviewsByUser(u);
-
-            // const up = await authService.profile();
-            // if (up) {
-            //     setProfile(up);
-            // }
+             await findReviewsByUser();
         }catch (e) {
         }
 
@@ -37,7 +27,7 @@ const ReviewList = ({profile, cur}) => {
     const deleteReview = async (rid) => {
         if(profile !== undefined){
             await service.deleteReview(rid)
-            await findReviewsByUser(user);
+            await findReviewsByUser();
         }else{
             alert("Please log in!");
             navigate('/login');
