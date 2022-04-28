@@ -11,6 +11,8 @@ import {
 import * as authService from "../../services/auth-service"
 import UserProfile from "./user-profile";
 import ActorProfile from "./actor-profile";
+import ReviewList from "./reviewlist";
+import AdminProfile from "./admin-profile";
 
 
 const Profile = () => {
@@ -61,14 +63,18 @@ const Profile = () => {
             }
             {
                 profile.accountType === "PERSONAL"  &&
-                <UserProfile profile={profile} cur={currentUser.username}/>
+                <UserProfile profile={profile} cur={currentUser}/>
                 // <ReviewList/> &&
                 // <br/> &&
                 // <Watchlist/>
             }
             {
                 profile.accountType === "ACTOR"  &&
-                <ActorProfile actor={profile} cur={currentUser.username}/>
+                <ActorProfile actor={profile} cur={currentUser}/>
+            }
+            {
+                profile.accountType === "ADMIN" &&
+                <AdminProfile profile={profile} cur={currentUser}/>
             }
 
 

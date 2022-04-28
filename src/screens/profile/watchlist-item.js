@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 const WatchlistItem = ({movie, deleteMovieForUser}) => {
 
@@ -23,7 +24,11 @@ const WatchlistItem = ({movie, deleteMovieForUser}) => {
                            style={{color:'#F5DE50'}}
                            onClick={() => deleteMovieForUser(movie)}> </i>
 
-                        <div style={{fontWeight: 'bold', fontSize: '20px'}}>{movies.Title} ({movies.Year})</div>
+                        <div style={{fontWeight: 'bold', fontSize: '20px'}}>
+                            <Link to={`/details/${movies.imdbID}`}>
+                                {movies.Title} ({movies.Year})
+                            </Link>
+                        </div>
                         <div>Genre: {movies.Genre}</div>
                         <div style={{fontSize: 'small', color: 'lightgray', marginBottom: '5px'}}>Released On: {movies.Released}</div>
 
