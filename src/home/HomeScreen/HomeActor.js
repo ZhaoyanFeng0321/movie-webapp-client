@@ -48,7 +48,7 @@ const HomeScreen= ({profile,cur}) => {
                     <div className="mt-5 mb-5">
 
                         <div className="row">
-                            <Link to="/watchlist" className="wd-title wd-gold">Your Filmography ></Link>
+                            <p className="wd-title wd-gold">Your Filmography ></p>
                         </div>
                         <div className="mt-5 text-center">
                             <i className="fa fa-list wd-grey mb-3 fa-2x"/>

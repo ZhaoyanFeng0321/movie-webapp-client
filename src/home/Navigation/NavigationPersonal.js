@@ -1,4 +1,4 @@
-import {Link, useLocation, useNavigate, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import * as authService from "../../services/auth-service";
 
@@ -55,7 +55,7 @@ const Navigation = () =>{
 
 
                     <div className="nav-item">
-                        <Link to={`/profile/${username}`} className="wd-link">
+                        <Link to={`/profile/${currentUser.username}`} className="wd-link">
                             <div className="nav-link wd-signin wd-white">
                                 <span className="fw-bold ">Profile</span>
                             </div></Link>

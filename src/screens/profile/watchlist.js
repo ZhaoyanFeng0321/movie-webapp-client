@@ -1,24 +1,45 @@
-import React from "react";
-import {useDispatch, useSelector} from "react-redux";
+import React, {useState} from "react";
 import {useEffect} from "react";
-import {findAllMovies} from "../actions/movies-actions";
 import WatchlistItem from "./watchlist-item";
+import {useParams} from "react-router-dom";
+import * as authService from "../../services/auth-service";
 
 const Watchlist = () => {
-    const movies = useSelector(state => state.movies);
+    const {username} = useParams();
+    const [user, setUser] = useState(undefined);
+    const [wlist, setMovies] = useState([]);
 
-    const dispatch = useDispatch();
+    const findMovies = (user) => {
+        const wlist = user.watchlist;
+        setMovies(wlist);
+    }
 
-    useEffect(() => findAllMovies(dispatch),[dispatch]);
+    //const [wlist, setWlist] = useState([]);
+    useEffect(async () => {
+        try {
+            const u = await authService.findUser(username)
+            setUser(u);
+            findMovies(u);
+        } catch (e) {
+        }
+    },[])
+
+
+    const deleteMovieForUser = async (mid) => {
+        const updateUser = await authService.removeMovieFromList(user._id, mid)
+        await findMovies(updateUser);
+    }
 
     return (
         <>
-            <h3 style={{color:'#F5DE50'}}>Your Watchlist</h3>
+            <h3 style={{marginTop:'10px', color:'#F5DE50'}}>Watchlist</h3>
             <ul className="list-group">
                 {
-                    movies && movies.map(movie =>
-                                             <WatchlistItem key={movie._id}
-                                                            movie={movie}/>)
+                    wlist && wlist.map(movie =>
+                                             <WatchlistItem key={movie}
+                                                            movie={movie}
+                                                            deleteMovieForUser={deleteMovieForUser}
+                                                            />)
                 }
             </ul>
         </>

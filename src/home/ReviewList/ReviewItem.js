@@ -32,13 +32,17 @@ const ReviewItem = ({
     const [movies, setMovies] = useState([])
     const searchUrl = 'https://www.omdbapi.com/?apikey=b2bd5979&i='+ item.to;
 
-    const search = async () => {
-        const response = await axios.get(`${searchUrl}`)
-        setMovies(response.data)
-    }
+    // const search = async () => {
+    //     const response = await axios.get(`${searchUrl}`)
+    //     setMovies(response.data)
+    // }
 
     useEffect(() => {
-        search()
+        async function search()  {
+            const response = await axios.get(`${searchUrl}`)
+            setMovies(response.data)
+        }
+         search();
     }, [])
 
 

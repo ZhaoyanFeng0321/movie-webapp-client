@@ -31,3 +31,11 @@ export const findUser = (username) =>
 export const update = (user) =>
     api.put(`${BASE_URL}/api/users/${user._id}`,user)
         .then(response=>response.data);
+
+export const removeMovieFromList = (uid, mid) =>
+    api.put(`${BASE_URL}/api/users/${uid}/watchlist/${mid}`)
+        .then(response=>response.data);
+
+export const addMovieToList = (uid, mid) =>
+    api.put(`${BASE_URL}/api/users/${uid}/likeMovie/${mid}`)
+        .then(response=>response.data);

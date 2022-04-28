@@ -1,13 +1,11 @@
-import React, {useEffect, useState} from "react";
-import {Link, useParams} from "react-router-dom";
+import React, {useState} from "react";
+import {Link} from "react-router-dom";
 import "./profile.css"
 import * as service from "../../services/auth-service"
-import * as reviewService from "../../services/review-service"
 import ReviewList from "./reviewlist";
 import Watchlist from "./watchlist";
-import * as authService from "../../services/auth-service";
 
-const UserProfile = ({profile,cur}) => {
+const AdminProfile = ({profile,cur}) => {
 
     return(
         <div className="mb-4 mt-2">
@@ -35,22 +33,16 @@ const UserProfile = ({profile,cur}) => {
                     </div>
 
                     <div className="wd-profile-date">
-                        <i className="fas fa-birthday-cake me-2"> </i>
-                        <span style={{fontSize: '18px'}}>Born {profile.dateOfBirth === undefined ? "2000-01-01" :`${profile.dateOfBirth.substring(0, 10).toString()}`}</span>
-
-                        <div style={{fontSize: '18px'}}>
-                            <i className="fas fa-calendar-alt me-1"> </i>
-                            IMBD member since {profile.joined.substring(0, 10).toString()}
-                        </div>
-
+                        <i className="fas fa-birthday-cake me-1"> </i>
+                        <span className="me-3">Born {profile.dateOfBirth === undefined ? "2000-01-01" :`${profile.dateOfBirth.substring(0, 10).toString()}`}</span>
+                        <i className="fas fa-calendar-alt me-2"> </i>
+                        IMBD member since {profile.joined.substring(0, 10).toString()}
                     </div>
 
+                </div>
             </div>
-            <ReviewList profile={profile} cur={cur}/>
-            <Watchlist/>
-        </div>
         </div>
     )
 }
 
-export default UserProfile;
+export default AdminProfile;

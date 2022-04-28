@@ -7,7 +7,7 @@ const ActorProfile = ({actor, cur}) => {
     return (
         <div className="mb-4 mt-2">
             <div className="mb-1">
-                <Link to={`/home/${cur}`}><i
+                <Link to={`/home/${cur.username}`}><i
                     className="far fa-arrow-alt-circle-left fa-lg wd-imbd-yellow"> </i></Link>
                 <span className="wd-profile-name ms-3">Home</span>
             </div>
@@ -34,7 +34,7 @@ const ActorProfile = ({actor, cur}) => {
                         <div className="wd-profile-date mt-2">
                             <i className="fas fa-birthday-cake me-1"> </i>
                             <span className="me-3">Born {actor.dateOfBirth === undefined
-                                                         ? "2000-01-01"
+                                                         ? "undefined"
                                                          : `${actor.dateOfBirth.substring(
                                     0, 10).toString()}`}</span>
 
