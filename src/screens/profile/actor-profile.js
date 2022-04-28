@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import "./profile.css"
 import Watchlist from "./watchlist";
+import Biography from "./biography";
 
 const ActorProfile = ({actor, cur}) => {
 
@@ -44,7 +45,7 @@ const ActorProfile = ({actor, cur}) => {
 
                 </div>
             </div>
-            <Watchlist profile={actor} cur={cur}/>
+            <Biography profile={actor} cur={cur}/>
         </div>
     )
 }

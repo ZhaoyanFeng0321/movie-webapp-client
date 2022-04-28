@@ -26,12 +26,12 @@ const WatchlistItem = ({movie, deleteMovieForUser, profile, cur}) => {
                                style={{color:'#F5DE50'}}
                                onClick={() => deleteMovieForUser(movie)}> </i>
                         }
-                        {
-                            cur.accountType === "ADMIN" &&
-                            <i className="fas fa-times-circle float-end"
-                               style={{color:'#F5DE50'}}
-                               onClick={() => deleteMovieForUser(movie)}> </i>
-                        }
+                        {/*{*/}
+                        {/*    cur.accountType === "ADMIN" &&*/}
+                        {/*    <i className="fas fa-times-circle float-end"*/}
+                        {/*       style={{color:'#F5DE50'}}*/}
+                        {/*       onClick={() => deleteMovieForUser(movie)}> </i>*/}
+                        {/*}*/}
 
                         <div style={{fontWeight: 'bold', fontSize: '20px'}}>
                             <Link to={`/details/${movies.imdbID}`}>
