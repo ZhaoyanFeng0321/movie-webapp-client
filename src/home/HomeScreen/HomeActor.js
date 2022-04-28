@@ -29,7 +29,7 @@ const HomeScreen= ({profile,cur}) => {
                     <div className="mt-5 mb-5">
 
                         <div className="row">
-                            <p className="wd-title wd-gold">From your Filmography ></p>
+                            <p className="wd-title wd-gold">Your Filmography ></p>
                         </div>
                         <section className="wd-slide-container">
 
