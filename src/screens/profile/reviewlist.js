@@ -6,24 +6,30 @@ import {useNavigate, useParams} from "react-router-dom";
 
 const ReviewList = ({profile, cur}) => {
 
-    const {username} = useParams();
+    //const {username} = useParams();
 
     // const [profile, setProfile] = useState(undefined);
-    const [user, setUser] = useState(undefined);
+    //const [user, setUser] = useState(undefined);
 
     const [reviews, setReviews] = useState([]);
 
     const navigate = useNavigate();
 
-    const findReviewsByUser = async (us) =>
-        await service.findAllReviewsByUser(us._id)
+    const findReviewsByUser = (us) =>
+        service.findAllReviewsByUser(us.username)
             .then(reviews => setReviews(reviews));
 
-    useEffect(async () => {
+    //console.log(profile)
+    //const reviewsU = findReviewsByUser(profile)
+    // console.log(reviewsU)
+
+
+    useEffect( () => {
         try {
-            const u = await authService.findUser(username);
-            setUser(u);
-            findReviewsByUser(u);
+            // const u = await authService.findUser(username);
+            // setUser(u);
+             findReviewsByUser(profile);
+
 
             // const up = await authService.profile();
             // if (up) {
@@ -37,7 +43,7 @@ const ReviewList = ({profile, cur}) => {
     const deleteReview = async (rid) => {
         if(profile !== undefined){
             await service.deleteReview(rid)
-            await findReviewsByUser(user);
+            await findReviewsByUser(profile);
         }else{
             alert("Please log in!");
             navigate('/login');
