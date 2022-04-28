@@ -44,8 +44,9 @@ const ReviewItem = ({item,deleteReview}) => {
 
                     <div className="col-3 d-md-block d-sm-none d-none">
 
+                        <Link to={`/details/${movies.imdbID}`} className="wd-gold">
                         <img className="wd-poster wd-section-left" src={movies.Poster} alt=""/>
-                        <p className="wd-movie wd-gold">{movies.Title}</p>
+                            <p className="wd-movie wd-gold">{movies.Title}</p></Link>
                     </div>
 
 
