@@ -1,49 +1,34 @@
 import React, {useState} from "react";
 import {useEffect} from "react";
 import WatchlistItem from "./watchlist-item";
-import {useNavigate, useParams} from "react-router-dom";
-import * as service from "../../services/watchlist-service";
+import {useParams} from "react-router-dom";
 import * as authService from "../../services/auth-service";
 
 const Watchlist = () => {
     const {username} = useParams();
-    //
-  //  const [profile, setProfile] = useState(undefined);
     const [user, setUser] = useState(undefined);
-    //
-    const [wlist, setWlist] = useState([]);
-    const navigate = useNavigate();
-    //
-    const findWatchlistByUser = async (user) =>
-        setWlist(user.watchlist);
+    const [wlist, setMovies] = useState([]);
 
+    const findMovies = (user) => {
+        const wlist = user.watchlist;
+        setMovies(wlist);
+    }
+
+    //const [wlist, setWlist] = useState([]);
     useEffect(async () => {
         try {
-            let currentUser = await authService.findUser(username);
-            findWatchlistByUser(currentUser);
-           // setWlist(currentUser.watchlist);
-            // const currentProfile = await authService.profile();
-            // if(currentProfile) {
-            //     setProfile(currentProfile);
-            // }
-        }catch (e) {
+            const u = await authService.findUser(username)
+            setUser(u);
+            findMovies(u);
+        } catch (e) {
         }
     },[])
 
 
-    //const [newlist, setWlist] = useState([]);
-
-    const deleteMovieForUser = (mid) => {
-        const newWatchlist = wlist.filter(movie => movie !== mid);
-        setUser({...user, watchlist: newWatchlist});
-        authService.update(user).then(findWatchlistByUser(user));
+    const deleteMovieForUser = async (mid) => {
+        const updateUser = await authService.removeMovieFromList(user._id, mid)
+        await findMovies(updateUser);
     }
-
-    // const movies = useSelector(state => state.movies);
-    //
-    // const dispatch = useDispatch();
-    //
-    // useEffect(() => findAllMovies(dispatch),[dispatch]);
 
     return (
         <>

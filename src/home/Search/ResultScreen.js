@@ -1,6 +1,6 @@
 
 import Navigation from "../Navigation/Navigation";
-import {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 
@@ -38,7 +38,7 @@ return(
 
         <div className="row ms-5 me-5">
 
-            <input ref={titleRef}className="form-control w-75" placeholder="Seach movies.."/>
+            <input ref={titleRef}className="form-control w-75" placeholder="Search movies.."/>
             <button className="btn btn-primary float-end w-25" onClick={searchByTitle}>Search</button>
 
 

@@ -42,6 +42,7 @@ const EditProfile = () => {
 
     useEffect(async () => {
         try {
+            //let user = await authService.findUser("dummy");
             let user = await authService.profile();
             setProfile(user);
             setUpdateUser(user);
