@@ -3,7 +3,7 @@ import {useDispatch} from "react-redux";
 import axios from "axios";
 import {Link} from "react-router-dom";
 
-const WatchlistItem = ({movie, deleteMovieForUser}) => {
+const WatchlistItem = ({movie, deleteMovieForUser, profile, cur}) => {
 
     const [movies, setMovies] = useState([])
     const searchUrl = 'https://www.omdbapi.com/?apikey=b2bd5979&i='+ movie;
@@ -15,14 +15,23 @@ const WatchlistItem = ({movie, deleteMovieForUser}) => {
         <>
             <div className="list-group-item pt-2 pb-2">
                 <div className="row">
-                    <div className="col-2 col-sm-0 col-md-2 d-sm-none d-md-block">
+                    <div className="col-2 col-sm-0 col-md-2 d-none d-md-block">
                         <img src={movies.Poster} alt="poster" width="120px"/>
                     </div>
 
                     <div className="col-10 col-sm-12 col-md-10">
-                        <i className="fas fa-times-circle float-end"
-                           style={{color:'#F5DE50'}}
-                           onClick={() => deleteMovieForUser(movie)}> </i>
+                        {
+                            profile.username === cur.username &&
+                            <i className="fas fa-times-circle float-end"
+                               style={{color:'#F5DE50'}}
+                               onClick={() => deleteMovieForUser(movie)}> </i>
+                        }
+                        {
+                            cur.accountType === "ADMIN" &&
+                            <i className="fas fa-times-circle float-end"
+                               style={{color:'#F5DE50'}}
+                               onClick={() => deleteMovieForUser(movie)}> </i>
+                        }
 
                         <div style={{fontWeight: 'bold', fontSize: '20px'}}>
                             <Link to={`/details/${movies.imdbID}`}>

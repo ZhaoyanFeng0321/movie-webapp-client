@@ -27,7 +27,7 @@ const UserProfile = ({profile, cur}) => {
                     {/*     style={{border:'solid 5px #F5DE50'}}/>*/}
                 </div>
 
-                <div className="col-8 col-sm-0 col-md-8 d-sm-none d-md-block">
+                <div className="col-8 col-sm-0 col-md-8 d-none d-md-block">
                     <span className="wd-profile-username">{profile.username}</span>
 
                     <div className="wd-profile-name" style={{fontStyle:'italic'}}>
@@ -48,7 +48,7 @@ const UserProfile = ({profile, cur}) => {
                 </div>
             </div>
             <ReviewList profile={profile} cur={cur}/>
-            <Watchlist/>
+            <Watchlist profile={profile} cur={cur}/>
         </div>
     )
 }
