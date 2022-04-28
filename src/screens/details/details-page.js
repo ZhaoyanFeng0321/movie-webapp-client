@@ -7,12 +7,17 @@ import {Link} from "react-router-dom";
 import Navigation from "../../home/Navigation/Navigation";
 import * as authService from "../../services/auth-service";
 import NavigationPersonal from "../../home/Navigation/NavigationPersonal";
+import {addMovieToList} from "../../services/auth-service";
+
 
 const OmdbDetails = () => {
-    const [movieDetails, setMovieDetails] = useState({})
+    const [movieDetails, setMovieDetails] = useState([])
     // const [ourMovieDetails, setOurMovieDetails] = useState({})
     const url = 'https://www.omdbapi.com/?apikey=b2bd5979'
     const {imdbID} = useParams()
+
+    const [login, setLogin] = useState(false);
+    const [currentUser,setCurrentUser] = useState({});
     // const searchMovieByImdbID = async () => {
     //     const response = await axios.get(`${url}&i=${imdbID}`)
     //     setMovieDetails(response.data)
@@ -21,13 +26,28 @@ const OmdbDetails = () => {
     //     const response = await axios.get(`http://localhost:4000/api/movies/${imdbID}`)
     //     setOurMovieDetails(response.data)
     // }
+    const searchMovieByImdbID = async (imdbID)=> {
+        const response = await axios.get(`${url}&i=${imdbID}`)
+        setMovieDetails(response.data)
+    }
+    useEffect(async ()=> {
+        await searchMovieByImdbID(imdbID);
+        try {
+            let user = await authService.profile();
+            setCurrentUser(user);
+            setLogin(true);
+        } catch (e) {
 
-    useEffect(()=> {
-        async function searchMovieByImdbID () {
-            const response = await axios.get(`${url}&i=${imdbID}`)
-            setMovieDetails(response.data)
         }
-        searchMovieByImdbID();
+        // if(username!==user.username){
+        //     user = await authService.findUser(username);
+        // }else{
+        //     user = await authService.findUser(username);
+        //     setCurrentUser(user);
+        // }
+        // setProfile(user);
+
+
     },[])
 
     // useEffect(() => {
@@ -44,25 +64,12 @@ const OmdbDetails = () => {
     //     const response = await axios.post("http://localhost:4000/api/likes", movie)
     //     setOurMovieDetails(response.data)
     // }
-    const {username} = useParams();
-    const [profile, setProfile] = useState({});
-    const [currentUser,setCurrentUser] = useState({});
 
-    useEffect(async () => {
-        try {
-            let user = await authService.profile();
-            setCurrentUser(user);
-            if(username!==user.username){
-                user = await authService.findUser(username);
-            }else{
-                user = await authService.findUser(username);
-                setCurrentUser(user);
-            }
-            setProfile(user);
-        } catch (e) {
+    const addMovieToList = async (uid, movieID) =>
 
-        }
-    }, [username]);
+            await authService.addMovieToList(uid, movieID);
+
+
 
     return (
         <div className="text-warning">
@@ -72,13 +79,15 @@ const OmdbDetails = () => {
                 {/*<Navigation/>*/}
             </div>
 {/*=======*/}
-            {currentUser.accountType !== "PERSONAL"  && currentUser.accountType !== "ACTOR"  &&currentUser.accountType !== "ADMIN"  &&
+{/*            {currentUser.accountType !== "PERSONAL"  && currentUser.accountType !== "ACTOR"  &&currentUser.accountType !== "ADMIN"  &&*/}
+            {!login &&
                 <div className="row mt-3 ms-5 me-5">
                     <Navigation/>
 
                 </div>}
 
-            {(currentUser.accountType === "PERSONAL"|| currentUser.accountType === "ACTOR" || currentUser.accountType === "ADMIN")  &&
+            {/*{(currentUser.accountType === "PERSONAL"|| currentUser.accountType === "ACTOR" || currentUser.accountType === "ADMIN")  &&*/}
+            {login &&
                 <div className="row mt-3 ms-5 me-5">
                     <NavigationPersonal/>
 
@@ -108,7 +117,7 @@ const OmdbDetails = () => {
                     <img src={movieDetails.Poster} height={300} alt=""/>
                     <p className="mt-3"><i className="fa-solid fa-star-sharp"></i> {movieDetails.imdbRating}</p>
                     {/*<button className="btn btn-warning"><i className="fa-solid fa-thumbs-up"></i> </button>*/}
-                    <button className="btn btn-block btn-warning" ><i className="fa-solid fa-plus"></i> Add to Watch</button>
+                    <button type="button" onClick={()=>addMovieToList(currentUser._id, imdbID)} className="btn btn-block btn-warning" ><i className="fa-solid fa-plus"></i> Add to Watch</button>
                 </div>
 
 
