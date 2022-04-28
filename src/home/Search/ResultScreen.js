@@ -3,9 +3,14 @@ import Navigation from "../Navigation/Navigation";
 import React, {useEffect, useRef, useState} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
+import * as authService from "../../services/auth-service";
+import NavigationPersonal from "../Navigation/NavigationPersonal";
 
 
 const ResultScreen = () =>{
+    const [login,setLogin] =useState(false);
+    const[currentUser, serCurrentUser] = useState({});
+
     const titleRef = useRef()
     const {movieSearch} = useParams()
     const navigate = useNavigate()
@@ -26,18 +31,30 @@ const ResultScreen = () =>{
         }
     }
 
-    useEffect(() => {
-        searchByTitle()
-    }, [])
+    useEffect(async () => {
+        searchByTitle();
+        try {
+            let user = await authService.profile();
+            serCurrentUser(user);
+            setLogin(true);
+        }catch(e){}
+    },[])
 
 
 return(
         <>
-        <div className="row mt-3 ms-5 me-5">
-        <Navigation/>
-        </div>
+            {!login &&
+                <div className="row mt-3 ms-5 me-5">
+                    <Navigation/>
+                </div>}
 
-        <div className="row ms-5 me-5">
+            {login&&
+                <div className="row mt-3 ms-5 me-5">
+                    <NavigationPersonal/>
+                </div>}
+
+
+            <div className="row ms-5 me-5">
 
             <input ref={titleRef}className="form-control w-75" placeholder="Search movies.."/>
             <button className="btn btn-primary float-end w-25" onClick={searchByTitle}>Search</button>
