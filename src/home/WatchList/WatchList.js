@@ -7,7 +7,7 @@ const WatchList = () => {
                     <p className="wd-title wd-gold">What to watch</p>
                 </div>
                 <div className="row">
-                    <a href="Watchlist.html" className="wd-title wd-white">From your watchlist ></a>
+                    <p className="wd-title wd-white">From your watchlist ></p>
                 </div>
                 <div className="mt-5 text-center">
                     <i className="fa fa-list wd-grey mb-3 fa-2x"/>

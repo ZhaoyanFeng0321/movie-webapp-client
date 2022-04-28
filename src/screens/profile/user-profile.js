@@ -7,7 +7,7 @@ import ReviewList from "./reviewlist";
 import Watchlist from "./watchlist";
 import * as authService from "../../services/auth-service";
 
-const UserProfile = ({profile, cur}) => {
+const UserProfile = ({profile,cur}) => {
 
     return(
         <div className="mb-4 mt-2">
@@ -45,10 +45,10 @@ const UserProfile = ({profile, cur}) => {
 
                     </div>
 
-                </div>
             </div>
             <ReviewList profile={profile} cur={cur}/>
             <Watchlist profile={profile} cur={cur}/>
+        </div>
         </div>
     )
 }

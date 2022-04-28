@@ -22,6 +22,7 @@ const ResultScreen = () =>{
         else if(response.data.Response ==='False'){
             alert(response.data.Error + " Please try again.")
             navigate(`/search/`)
+
         }
     }
 
