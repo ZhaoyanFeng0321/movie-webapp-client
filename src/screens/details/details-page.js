@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import axios from "axios";
+import {Link} from "react-router-dom";
 //import Preformatted from "../../../movie-detail/src/components/preformatted";
 // import SecureContent from "../components/secure-content";
 import Navigation from "../../home/Navigation/Navigation";
@@ -66,6 +67,11 @@ const OmdbDetails = () => {
     return (
         <div className="text-warning">
 
+{/*<<<<<<< HEAD*/}
+            <div className="row mt-3 ms-5 me-5">
+                {/*<Navigation/>*/}
+            </div>
+{/*=======*/}
             {currentUser.accountType !== "PERSONAL"  && currentUser.accountType !== "ACTOR"  &&currentUser.accountType !== "ADMIN"  &&
                 <div className="row mt-3 ms-5 me-5">
                     <Navigation/>
@@ -82,6 +88,13 @@ const OmdbDetails = () => {
             {/*    <Navigation/>*/}
 
             {/*</div>*/}
+{/*>>>>>>> 91772299754e40a9bd63a9680370a0868b5240f2*/}
+
+            {/*<div className="row ms-5 me-5">*/}
+            {/*    <Link to="/result/:movieSearch">*/}
+            {/*        <i className="fa-solid fa-circle-chevron-left"></i>*/}
+            {/*    </Link>*/}
+            {/*</div>*/}
 
             <div>
             <div className="row ms-5 me-5">
@@ -94,12 +107,12 @@ const OmdbDetails = () => {
                 <div className="col-3">
                     <img src={movieDetails.Poster} height={300} alt=""/>
                     <p className="mt-3"><i className="fa-solid fa-star-sharp"></i> {movieDetails.imdbRating}</p>
-                    <button className="btn btn-warning"><i className="fa-solid fa-thumbs-up"></i> </button>
-                    <button className="btn btn-warning ms-3"><i className="fa-solid fa-plus"></i> </button>
+                    {/*<button className="btn btn-warning"><i className="fa-solid fa-thumbs-up"></i> </button>*/}
+                    <button className="btn btn-block btn-warning" ><i className="fa-solid fa-plus"></i> Add to Watch</button>
                 </div>
 
 
-                <div className="col-9">
+                <div className="col-9 d-none d-md-block">
                     <p>{movieDetails.Plot}</p>
                     <p> Year Released: {movieDetails.Year}</p>
                     <p> Rated: {movieDetails.Rated}</p>
