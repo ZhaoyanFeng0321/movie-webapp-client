@@ -6,16 +6,6 @@ import Watchlist from "./watchlist";
 import * as authService from "../../services/auth-service";
 
 const UserProfile = ({profile,cur}) => {
-    // const [movies, setMovies] = useState([]);
-    //
-    // const findMovies = () => {
-    //     const wlist = profile.watchlist;
-    //     setMovies(wlist);
-    // }
-    //
-    // useEffect(() => {
-    //     findMovies()
-    // }, []);
 
     return(
         <div className="mb-4 mt-2">
