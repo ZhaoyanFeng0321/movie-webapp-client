@@ -6,7 +6,7 @@ import {useNavigate, useParams} from "react-router-dom";
 
 const ReviewList = ({profile, cur}) => {
 
-    //const {username} = useParams();
+
 
     // const [profile, setProfile] = useState(undefined);
     //const [user, setUser] = useState(undefined);
@@ -19,12 +19,7 @@ const ReviewList = ({profile, cur}) => {
         service.findAllReviewsByUser(us.username)
             .then(reviews => setReviews(reviews));
 
-    //console.log(profile)
-    //const reviewsU = findReviewsByUser(profile)
-    // console.log(reviewsU)
-
-
-    useEffect( () => {
+    useEffect(async () => {
         try {
             // const u = await authService.findUser(username);
             // setUser(u);

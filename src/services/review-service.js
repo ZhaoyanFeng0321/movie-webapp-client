@@ -33,3 +33,9 @@ export const findAllReviewsByUser = async (uid) => {
     const reviews = response.data; // The data in the response is the tuits array sent back from findAllTuits in tuits-controller.js and it's embedded in the response's data property.
     return reviews;
 }
+
+export const findAllReviewsByUsername = async (name) => {
+    const response = await axios
+        .get(`${REVIEWS_API}/${name}`);
+    return response.data;;
+}

@@ -2,9 +2,14 @@ import {Link, useNavigate, useParams} from "react-router-dom";
 import {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import Navigation from "../Navigation/Navigation";
+import * as authService from "../../services/auth-service";
+import NavigationPersonal from "../Navigation/NavigationPersonal";
 
 
 const Search = () =>{
+
+    const [login,setLogin] =useState(false);
+    const[currentUser, serCurrentUser] = useState({});
 
     const titleRef = useRef()
     const {movieSearch} = useParams()
@@ -24,15 +29,33 @@ const Search = () =>{
         }
     }
 
-    useEffect(() => {
-        searchByTitle()
-    }, [])
+    useEffect(async () => {
+        searchByTitle();
+        try {
+            let user = await authService.profile();
+            serCurrentUser(user);
+            setLogin(true);
+        }catch(e){}
+    },[])
+
+
+    // useEffect(() => {
+    //     searchByTitle();
+    // }, [])
 
     return (
         <>
+            {!login &&
             <div className="row mt-3 ms-5 me-5">
                 <Navigation/>
-            </div>
+            </div>}
+
+            {login&&
+                <div className="row mt-3 ms-5 me-5">
+                    <NavigationPersonal/>
+                </div>}
+
+
 
 
             <div className="row ms-5 me-5">

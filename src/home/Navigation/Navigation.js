@@ -22,23 +22,25 @@ const Navigation = () =>{
                 </div>
 
                 <div className="col-4 ">
-                    {/*<ul className="nav mb-2 nav-tabs wd-nav-tab-override">*/}
-                        {/*<li className="nav-item d-sm-none d-md-none d-lg-block d-none">*/}
+                    <ul className="nav mb-2 nav-tabs wd-nav-tab-override">
+                        <li className="nav-item d-sm-none d-md-none d-lg-block d-none">
 
-                        {/*    <Link to="/login" className="wd-link">*/}
-                        {/*        <div className="nav-link ">*/}
-                        {/*        <i className="fa fa-list me-3 wd-grey"/>*/}
-                        {/*        <span className="fw-bold">Watchlist</span></div></Link>*/}
-                        {/*</li>*/}
-                        <div className="nav-item">
+                            <Link to="/login" className="wd-link">
+                                <div className="nav-link ">
+                                <i className="fa fa-list me-3 wd-grey"/>
+                                <span className="fw-bold">Watchlist</span></div></Link>
+                        </li>
+
+
+                        <li className="nav-item">
                             <Link to="/login" className="wd-link">
                             <div className="nav-link wd-signin wd-white">
                                 <span className="fw-bold ">Sign in</span>
                             </div></Link>
-                        </div>
+                        </li>
 
 
-                    {/*</ul>*/}
+                    </ul>
                 </div>
 
 

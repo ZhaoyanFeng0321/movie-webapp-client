@@ -88,7 +88,6 @@ const Profile = () => {
                 <AdminProfile profile={profile} cur={currentUser}/>
             }
 
-
         </div>
         // </Provider>
     )
