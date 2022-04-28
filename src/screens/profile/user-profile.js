@@ -34,9 +34,9 @@ const UserProfile = ({profile, cur}) => {
                         {profile.firstName} {profile.lastName}
                     </div>
 
-                    <div className="wd-profile-date">
-                        <i className="fas fa-birthday-cake me-2"> </i>
-                        <span style={{fontSize: '18px'}}>Born {profile.dateOfBirth === undefined ? "2000-01-01" :`${profile.dateOfBirth.substring(0, 10).toString()}`}</span>
+                    <div className="wd-profile-date" style={{fontSize: '18px'}}>
+                        <i className="fas fa-birthday-cake me-2" > </i>
+                        <span>Born {profile.dateOfBirth === undefined ? "2000-01-01" :`${profile.dateOfBirth.substring(0, 10).toString()}`}</span>
 
                         <div style={{fontSize: '18px'}}>
                             <i className="fas fa-calendar-alt me-1"> </i>

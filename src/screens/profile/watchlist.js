@@ -33,11 +33,11 @@ const Watchlist = ({profile, cur}) => {
     return (
         <>
             {
-                cur.accountType === "ACTOR" &&
+                profile.accountType === "ACTOR" &&
                 <h3 style={{marginTop:'10px', color:'#F5DE50'}}>Biography</h3>
             }
             {
-                cur.accountType !== "ACTOR" &&
+                profile.accountType !== "ACTOR" &&
                 <h3 style={{marginTop:'10px', color:'#F5DE50'}}>Watchlist</h3>
 
             }
