@@ -49,6 +49,7 @@ const UserProfile = ({profile,cur}) => {
             <ReviewList profile={profile} cur={cur}/>
             <Watchlist/>
         </div>
+        </div>
     )
 }
 
