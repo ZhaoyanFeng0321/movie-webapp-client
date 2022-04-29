@@ -135,7 +135,8 @@ const OmdbDetails = () => {
                     <img src={movieDetails.Poster} height={300} alt=""/>
                     <p className="mt-3"><i className="fa-solid fa-star-sharp"></i> {movieDetails.imdbRating}</p>
                     {/*<button className="btn btn-warning"><i className="fa-solid fa-thumbs-up"></i> </button>*/}
-                    <button onClick={()=>addMovieToList(currentUser._id, imdbID)} className="btn btn-block btn-warning" ><i className="fa-solid fa-plus"></i> Add to List</button>
+                    {login&&<button onClick={()=>addMovieToList(currentUser._id, imdbID)} className="btn btn-block btn-warning" ><i className="fa-solid fa-plus"></i> Add to List</button>}
+                    {!login&&<Link to="/login"><button className="btn btn-block btn-warning" ><i className="fa-solid fa-plus"></i> Add to List</button></Link>}
                 </div>
 
 
