@@ -13,34 +13,47 @@ import ResultScreen from "./home/Search/ResultScreen";
 import Home from "./home/HomeScreen";
 import {Provider} from "react-redux";
 import OmdbDetails from "./screens/details/details-page";
+import MovieApp from "./movieApp";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <div className="container">
-        <Routes>
-          {/*<Route path="/">*/}
+    return (
+        <BrowserRouter>
+            <div className="container">
+                <Routes>
+                    {/*<Route path="/">*/}
 
-            <Route path="/profile" element={<Profile/>}/>
-            <Route path="/profile/:username/edit" element={<EditProfile/>}/>
-            <Route path="/profile/:username" element={<Profile/>}/>
-            <Route path="/profile/:username/*" element={<Profile />}/>
-            <Route path="/">
-                <Route index element={<HomeScreen/>} />
-                <Route path="home" exact={true} element={<HomeScreen/>}/>
-                <Route path="home/:username" element={<Home/>}/>
-            </Route>
-            <Route path="/search" element={<Search/>}/>
-            {/*<Route path="/result/:username/:movieSearch" element={<Result/>}/>*/}
-            <Route path="/result/:movieSearch" element={<ResultScreen/>}/>
-            <Route path="/details/:imdbID" element={<OmdbDetails/>}/>
-            <Route path="/login" element={<Login/>}/>
-            <Route path="/signup" element={<Signup/>}/>
-          {/*</Route>*/}
-        </Routes>
-      </div>
-    </BrowserRouter>
-  );
+
+                    {/*<Route path="/">*/}
+                        <Route element={<MovieApp/>}>
+                            <Route index element={<HomeScreen/>} />
+                            <Route path="home" exact={true} element={<HomeScreen/>}>
+                                <Route path=":username" element={<Home/>}/>
+                            </Route>
+                            <Route path="profile" element={<Profile/>}>
+                                <Route path=":username" element={<Profile/>}>
+                                    <Route path="edit" element={<EditProfile/>}/>
+                                </Route>
+                                {/*<Route path="profile/:username/*" element={<Profile/>}/>*/}
+                            </Route>
+                            <Route path="search" element={<Search/>}/>
+                            {/*<Route path="/result/:username/:movieSearch" element={<Result/>}/>*/}
+                            <Route path="result">
+                                <Route path=":movieSearch" element={<ResultScreen/>}/>
+                            </Route>
+                            <Route path="details">
+                                <Route path=":imdbID" element={<OmdbDetails/>}/>
+                            </Route>
+                            <Route path="login" element={<Login/>}/>
+                            <Route path="signup" element={<Signup/>}/>
+                        </Route>
+
+                    {/*</Route>*/}
+
+                    {/*</Route>*/}
+                </Routes>
+            </div>
+        </BrowserRouter>
+    );
 }
 
 export default App;

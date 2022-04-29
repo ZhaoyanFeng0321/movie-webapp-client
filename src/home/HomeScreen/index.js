@@ -22,7 +22,7 @@ const Home = () => {
             }
             setProfile(user);
         } catch (e) {
-            navigate('/login');
+            //navigate('/login');
         }
     }, [username]);
 
