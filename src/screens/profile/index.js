@@ -11,7 +11,6 @@ import {
 import * as authService from "../../services/auth-service"
 import UserProfile from "./user-profile";
 import ActorProfile from "./actor-profile";
-import ReviewList from "./reviewlist";
 import AdminProfile from "./admin-profile";
 
 
@@ -21,22 +20,29 @@ const Profile = () => {
     const location = useLocation();
     const [profile, setProfile] = useState({});
     const [currentUser,setCurrentUser] = useState({});
+    const [login, setLogin] = useState(false);
 
     useEffect(async () => {
         try {
             let user = await authService.profile();
             setCurrentUser(user);
-            if(username!==user.username){
-                user = await authService.findUser(username);
-            }else{
-                user = await authService.findUser(username);
-                setCurrentUser(user);
-            }
+            setLogin(true);
+           if(username!==undefined){
+               if (username!==user.username){
+                   user = await authService.findUser(username);
+               }else{
+                   user = await authService.findUser(username);
+                   setCurrentUser(user);
+               }
+           }
             setProfile(user);
         } catch (e) {
-            navigate('/login');
+            //navigate('/login');
+            let user = await authService.findUser(username);
+            setProfile(user);
+
         }
-    }, [username]);
+    }, []);
 
     /**
      * Current user logout
@@ -49,8 +55,8 @@ const Profile = () => {
     return(
         <div>
             {
-                profile.username === currentUser.username
-                &&<div>
+                currentUser && profile.username === currentUser.username &&
+                <div>
                     <Link to={`/profile/${profile.username}/edit`}
                           className="mt-2 me-2 btn btn-large btn-light border border-secondary fw-bolder rounded-pill fa-pull-right">
                         Edit profile
@@ -61,6 +67,10 @@ const Profile = () => {
                 </div>
 
             }
+            {/*{*/}
+            {/*    !login &&*/}
+            {/*    <UserProfile profile={profile} cur={currentUser}/>*/}
+            {/*}*/}
             {
                 profile.accountType === "PERSONAL"  &&
                 <UserProfile profile={profile} cur={currentUser}/>

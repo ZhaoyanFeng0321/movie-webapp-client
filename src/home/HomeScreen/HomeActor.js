@@ -22,7 +22,7 @@ const HomeScreen= ({profile,cur}) => {
         <Provider store={store}>
             <div className="row mt-3 ms-5 me-5">
 
-                <NavigationPersonal/>
+                {/*<NavigationPersonal/>*/}
                 <ReviewList/>
                 {/*<Filmography/>*/}
                 {profile.watchlist.length !== 0 &&

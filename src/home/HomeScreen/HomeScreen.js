@@ -20,7 +20,7 @@ const HomeScreen= () => {
         <Provider store={store}>
             <div className="row mt-3 ms-5 me-5">
 
-                    <Navigation/>
+                    {/*<Navigation/>*/}
                     <ReviewList/>
                     <WatchList/>
 

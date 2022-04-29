@@ -63,12 +63,11 @@ const Navigation = () =>{
                                         <i className="fa fa-list me-3 wd-grey"/>
                                         <span className="fw-bold">Watchlist</span></div></Link>
                             </li>
-
                         }
 
 
                     <li className="nav-item">
-                        <Link to={`/profile/${currentUser.username}`} className="wd-link">
+                        <Link to={`/profile`} className="wd-link">
                             <div className="nav-link wd-signin wd-white">
                                 <span className="fw-bold ">Profile</span>
                             </div></Link>

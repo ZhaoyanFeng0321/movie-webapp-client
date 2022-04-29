@@ -6,19 +6,30 @@ import {useNavigate, useParams} from "react-router-dom";
 
 const ReviewList = ({profile, cur}) => {
 
-    const {username} = useParams();
+
+
+    // const [profile, setProfile] = useState(undefined);
+    //const [user, setUser] = useState(undefined);
 
     const [reviews, setReviews] = useState([]);
 
     const navigate = useNavigate();
 
-    const findReviewsByUser = async () =>
-        await service.findAllReviewsByUsername(username)
+    const findReviewsByUser = (us) =>
+        service.findAllReviewsByUser(us.username)
             .then(reviews => setReviews(reviews));
 
     useEffect(async () => {
         try {
-             await findReviewsByUser();
+            // const u = await authService.findUser(username);
+            // setUser(u);
+             findReviewsByUser(profile);
+
+
+            // const up = await authService.profile();
+            // if (up) {
+            //     setProfile(up);
+            // }
         }catch (e) {
         }
 
@@ -27,7 +38,7 @@ const ReviewList = ({profile, cur}) => {
     const deleteReview = async (rid) => {
         if(profile !== undefined){
             await service.deleteReview(rid)
-            await findReviewsByUser();
+            await findReviewsByUser(profile);
         }else{
             alert("Please log in!");
             navigate('/login');
