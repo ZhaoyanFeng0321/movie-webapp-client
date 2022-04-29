@@ -30,13 +30,13 @@ const ReviewItem = ({review, deleteReview, profile, cur}) => {
                             profile.username === cur.username &&
                             <i className="fas fa-times-circle float-end"
                             style={{color:'#F5DE50'}}
-                            onClick={() => deleteReview(review._id)}></i>
+                            onClick={() => deleteReview(review._id)}> </i>
                         }
                         {
                             cur.accountType === "ADMIN" &&
                             <i className="fas fa-times-circle float-end"
                                style={{color:'#F5DE50'}}
-                               onClick={() => deleteReview(review._id)}></i>
+                               onClick={() => deleteReview(review._id)}> </i>
 
                         }
 

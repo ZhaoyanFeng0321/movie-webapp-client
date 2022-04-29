@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import "./profile.css"
-import * as service from "../../services/auth-service"
-import * as reviewService from "../../services/review-service"
+
 import ReviewList from "./reviewlist";
 import Watchlist from "./watchlist";
-import * as authService from "../../services/auth-service";
+
 
 const UserProfile = ({profile,cur}) => {
 

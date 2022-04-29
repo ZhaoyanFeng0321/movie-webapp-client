@@ -11,7 +11,6 @@ import {
 import * as authService from "../../services/auth-service"
 import UserProfile from "./user-profile";
 import ActorProfile from "./actor-profile";
-import ReviewList from "./reviewlist";
 import AdminProfile from "./admin-profile";
 
 
