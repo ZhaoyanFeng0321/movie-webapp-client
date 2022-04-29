@@ -13,7 +13,7 @@ const ReviewList = ({profile, cur}) => {
     const navigate = useNavigate();
 
     const findReviewsByUser = async () =>
-        await service.findAllReviewsByUsername(username)
+        await service.findAllReviewsByUser(username)
             .then(reviews => setReviews(reviews));
 
     useEffect(async () => {

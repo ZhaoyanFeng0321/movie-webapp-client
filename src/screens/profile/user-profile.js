@@ -39,16 +39,36 @@ const UserProfile = ({profile,cur}) => {
                         <span>Born {profile.dateOfBirth === undefined ? "2000-01-01" :`${profile.dateOfBirth.substring(0, 10).toString()}`}</span>
 
                         <div style={{fontSize: '18px'}}>
-                            <i className="fas fa-calendar-alt me-1"> </i>
+                            <i className="fas fa-calendar-alt me-2"> </i>
                             IMBD member since {profile.joined.substring(0, 10).toString()}
                         </div>
+
+                        {
+                            cur && profile.username === cur.username &&
+                            <div style={{fontSize: '18px'}}>
+                                <i className="fas fa-envelope me-2"></i>
+                                Email: {profile.email}
+                            </div>
+                        }
+                        {
+                            profile.biography !== undefined &&
+                            <div style={{fontSize: '18px'}}>
+                                <i className="fas fa-blog me-2"></i>
+                                Biography: "{profile.biography}"
+                            </div>
+                        }
 
                     </div>
 
 
             </div>
             <ReviewList profile={profile} cur={cur}/>
-            <Watchlist profile={profile} cur={cur}/>
+
+                {
+                    cur && profile.username === cur.username &&
+                    <Watchlist profile={profile} cur={cur}/>
+                }
+
         </div>
         </div>
     )

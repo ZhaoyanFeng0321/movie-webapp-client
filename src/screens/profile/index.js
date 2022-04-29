@@ -22,6 +22,12 @@ const Profile = () => {
     const [profile, setProfile] = useState({});
     const [currentUser,setCurrentUser] = useState({});
 
+    const deleteMovieForUser = async (mid) => {
+        const newUser =  authService.removeMovieFromList(profile._id, mid)
+        await setProfile(newUser);
+        return newUser;
+    }
+
     useEffect(async () => {
         try {
             let user = await authService.profile();
@@ -63,7 +69,7 @@ const Profile = () => {
             }
             {
                 profile.accountType === "PERSONAL"  &&
-                <UserProfile profile={profile} cur={currentUser}/>
+                <UserProfile profile={profile} cur={currentUser} deleteMovieForUser={deleteMovieForUser}/>
                 // <ReviewList/> &&
                 // <br/> &&
                 // <Watchlist/>
