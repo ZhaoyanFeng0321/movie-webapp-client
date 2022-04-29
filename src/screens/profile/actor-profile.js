@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import "./profile.css"
 import Watchlist from "./watchlist";
+import WatchlistItem from "../../home/WatchList/WatchlistItem";
 
 const ActorProfile = ({actor, cur}) => {
 
@@ -44,7 +45,26 @@ const ActorProfile = ({actor, cur}) => {
 
                 </div>
             </div>
-            <Watchlist profile={actor} cur={cur}/>
+            {/*<Watchlist profile={actor} cur={cur}/>*/}
+
+            {actor.watchlist.length !== 0 &&
+                <div className="mt-5 mb-5">
+
+                    <div className="row">
+                        <p className="wd-title wd-gold">Filmography ></p>
+                    </div>
+                    <section className="wd-slide-container">
+
+                        <ul id="slide-list">
+                            {
+                                actor.watchlist && actor.watchlist.map(movie => <WatchlistItem key={movie} movie={movie}/>)
+                            }
+                        </ul>
+
+                    </section>
+
+                </div>
+            }
         </div>
     )
 }

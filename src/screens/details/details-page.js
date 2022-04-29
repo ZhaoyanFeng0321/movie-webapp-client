@@ -9,6 +9,8 @@ import Navigation from "../../home/Navigation/Navigation";
 import * as authService from "../../services/auth-service";
 import NavigationPersonal from "../../home/Navigation/NavigationPersonal";
 import {addMovieToList} from "../../services/auth-service";
+import * as service from "../../services/review-service";
+import ReviewItem from "./reviewItem";
 
 
 const OmdbDetails = () => {
@@ -48,6 +50,21 @@ const OmdbDetails = () => {
         // }
         // setProfile(user);
 
+
+    },[])
+
+
+
+    const [reviews, setReviews] = useState([]);
+    const findReviewsByOMDB = async () =>
+        await service.findAllReviewByOMDB(imdbID)
+            .then(reviews => setReviews(reviews));
+
+    useEffect(async () => {
+        try {
+            await findReviewsByOMDB();
+        }catch (e) {
+        }
 
     },[])
 
@@ -118,7 +135,7 @@ const OmdbDetails = () => {
                     <img src={movieDetails.Poster} height={300} alt=""/>
                     <p className="mt-3"><i className="fa-solid fa-star-sharp"></i> {movieDetails.imdbRating}</p>
                     {/*<button className="btn btn-warning"><i className="fa-solid fa-thumbs-up"></i> </button>*/}
-                    <button onClick={()=>addMovieToList(currentUser._id, imdbID)} className="btn btn-block btn-warning" ><i className="fa-solid fa-plus"></i> Add to Watch</button>
+                    <button onClick={()=>addMovieToList(currentUser._id, imdbID)} className="btn btn-block btn-warning" ><i className="fa-solid fa-plus"></i> Add to List</button>
                 </div>
 
 
@@ -141,6 +158,19 @@ const OmdbDetails = () => {
                     {/*<Preformatted obj={movieDetails}/>*/}
                 </div>
             </div>
+
+
+                <div className="row ms-5 me-5 mt-5">
+                    <h3 className="fw-bold wd-gold">User reviews</h3>
+                <ul className="list-group">
+                    {
+                        reviews && reviews.map(review =>
+                            <ReviewItem key={review._id}
+                                        item={review}/>)
+                    }
+                </ul>
+                </div>
+
             </div>
         </div>
 

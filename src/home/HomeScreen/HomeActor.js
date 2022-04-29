@@ -54,7 +54,7 @@ const HomeScreen= ({profile,cur}) => {
                             <i className="fa fa-list wd-grey mb-3 fa-2x"/>
                             <p className="wd-white fw-bold">Your filmography is empty</p>
                             <p className="wd-white">Save movies to keep track of what you have acted.</p>
-                            <Link to={`/search/${cur}`}>
+                            <Link to={`/search`}>
                                 <button className="wd-browse-button">Search and add movies</button>
                             </Link>
                         </div>

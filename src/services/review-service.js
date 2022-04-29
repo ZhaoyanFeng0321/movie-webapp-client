@@ -39,3 +39,9 @@ export const findAllReviewsByUsername = async (name) => {
         .get(`${REVIEWS_API}/${name}`);
     return response.data;;
 }
+
+export const findAllReviewByOMDB = async(mid) => {
+    const response = await axios.get(`${API_BASE}/movies/${mid}/reviews`);
+    return response.data;
+
+}
