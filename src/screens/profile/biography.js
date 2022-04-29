@@ -5,8 +5,8 @@ import {useParams} from "react-router-dom";
 import * as authService from "../../services/auth-service";
 
 const Biography = ({profile, cur}) => {
-    const {username} = useParams();
-    const [user, setUser] = useState(undefined);
+   // const {username} = useParams();
+   // const [user, setUser] = useState(undefined);
     const [wlist, setMovies] = useState([]);
 
     const findMovies = (user) => {
@@ -17,16 +17,16 @@ const Biography = ({profile, cur}) => {
     //const [wlist, setWlist] = useState([]);
     useEffect(async () => {
         try {
-            const u = await authService.findUser(username)
-            setUser(u);
-            findMovies(u);
+            //const u = await authService.findUser(username)
+            //setUser(u);
+            findMovies(profile);
         } catch (e) {
         }
     },[])
 
 
     const deleteMovieForUser = async (mid) => {
-        await authService.removeMovieFromList(user._id, mid)
+        await authService.removeMovieFromList(profile._id, mid)
         // await findMovies(updateUser);
         const newList = wlist.filter(m => m !== mid);
         setMovies(newList);

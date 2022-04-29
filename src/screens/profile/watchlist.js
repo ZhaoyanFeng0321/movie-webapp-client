@@ -6,7 +6,7 @@ import * as authService from "../../services/auth-service";
 
 const Watchlist = ({profile, cur}) => {
     //const {username} = useParams();
-    const [user, setUser] = useState(undefined);
+    //const [user, setUser] = useState(undefined);
     const [wlist, setMovies] = useState([]);
 
     const findMovies = (user) => {
@@ -26,7 +26,7 @@ const Watchlist = ({profile, cur}) => {
 
 
     const deleteMovieForUser = async (mid) => {
-        await authService.removeMovieFromList(user._id, mid)
+        await authService.removeMovieFromList(profile._id, mid)
         // await findMovies(updateUser);
         const newList = wlist.filter(m => m !== mid);
         setMovies(newList);

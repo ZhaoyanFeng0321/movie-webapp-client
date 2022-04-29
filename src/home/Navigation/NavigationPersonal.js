@@ -63,9 +63,6 @@ const Navigation = () =>{
                                         <i className="fa fa-list me-3 wd-grey"/>
                                         <span className="fw-bold">Watchlist</span></div></Link>
                             </li>
-
-                    <div className="nav-item">
-                        <Link to={`/profile`} className="wd-link">
                         }
 
 
