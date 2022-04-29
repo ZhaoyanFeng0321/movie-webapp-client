@@ -4,9 +4,9 @@ import * as authService from "../../services/auth-service";
 import service from "../../services/user-service";
 
 const WatchList = () => {
-    const {username} = useParams();
-    const navigate = useNavigate();
-    const [currentUser,setCurrentUser] = useState({});
+    // const {username} = useParams();
+    // const navigate = useNavigate();
+    // const [currentUser,setCurrentUser] = useState({});
 
 
     // useEffect(async () => {
@@ -24,7 +24,7 @@ const WatchList = () => {
     //     }
     // }, [username]);
 
-    console.log(currentUser);
+
 
     // const from = undefined;
     // const arr = from || [];
@@ -39,13 +39,14 @@ const WatchList = () => {
                     <p className="wd-title wd-gold">What to watch</p>
                 </div>
                 <div className="row">
-                    <a href="Watchlist.html" className="wd-title wd-white">From your watchlist ></a>
+                    <p className="wd-title wd-white">From your watchlist ></p>
                 </div>
                 <div className="mt-5 text-center">
                     <i className="fa fa-list wd-grey mb-3 fa-2x"/>
                     <p className="wd-white fw-bold">Your watchlist is empty</p>
                     <p className="wd-white">Save movies to keep track of what you want to watch.</p>
-                    <Link to={`/search/${currentUser.username}`}>
+                    {/*<Link to={`/search/${currentUser.username}`}>*/}
+                    <Link to={`/search/`}>
                         <button className="wd-browse-button">Search and add movies</button>
                     </Link>
                 </div>
