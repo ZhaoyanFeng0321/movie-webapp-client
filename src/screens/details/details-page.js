@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import axios from "axios";
+import "../log.css";
 import {Link} from "react-router-dom";
 //import Preformatted from "../../../movie-detail/src/components/preformatted";
 // import SecureContent from "../components/secure-content";

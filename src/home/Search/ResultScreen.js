@@ -5,7 +5,6 @@ import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import * as authService from "../../services/auth-service";
 import NavigationPersonal from "../Navigation/NavigationPersonal";
-import {Button} from "react-bootstrap";
 
 
 const ResultScreen = () =>{

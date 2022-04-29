@@ -26,3 +26,8 @@
 .a-spacing-extra-large {
     margin-bottom: 26px !important;
 }
+button:focus{
+
+    color: black!important;
+    box-shadow: none!important;
+}
