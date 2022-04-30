@@ -37,14 +37,14 @@ const ReviewItem = ({item}) => {
 
                     <div >
 
-                        <i className="fa fa-solid fa-star wd-gold"/>
-                        <span className="fw-bold">{item.rating}/10</span>
+                        {/*<i className="fa fa-solid fa-star wd-gold"/>*/}
+                        {/*<span className="fw-bold">{item.rating}/10</span>*/}
                         {/*<span className=" wd-white ms-5">by.<Link to={`/profile/${item.from}`} className="wd-white" ><span className="fst-italic">{item.from}</span></Link></span>*/}
 
 
 
                         {/*<p className="mt-1">{item.postedOn}</p>*/}
-                        <p className="ms-1 mt-1">{item.review}</p>
+                        <p className="ms-1 mt-1">"{item.review}"</p>
                         {/*<p className="wd-right">{item.postedOn}</p>*/}
                         <p className="wd-right wd-white">by.<Link to={`/profile/${item.from}`} className="wd-white" ><span className="fst-italic">{item.from}</span></Link></p>
 

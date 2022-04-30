@@ -38,6 +38,9 @@ const Profile = () => {
         }
     }, [username]);
 
+    // console.log(profile);
+    // console.log("分界线");
+    // console.log(currentUser);
     /**
      * Current user logout
      */

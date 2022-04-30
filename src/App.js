@@ -13,6 +13,7 @@ import ResultScreen from "./home/Search/ResultScreen";
 import Home from "./home/HomeScreen";
 import {Provider} from "react-redux";
 import OmdbDetails from "./screens/details/details-page";
+import WatchListPage from "./home/WatchList/Watchlistpage";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
                 <Route path="home/:username" element={<Home/>}/>
             </Route>
             <Route path="/search" element={<Search/>}/>
+            <Route path="/list" element={<WatchListPage/>}/>
             {/*<Route path="/result/:username/:movieSearch" element={<Result/>}/>*/}
             <Route path="/result/:movieSearch" element={<ResultScreen/>}/>
             <Route path="/details/:imdbID" element={<OmdbDetails/>}/>

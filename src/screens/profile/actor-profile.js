@@ -32,16 +32,18 @@ const ActorProfile = ({actor, cur}) => {
                             <span style={{marginLeft: '30px', fontSize: '20px'}}> @{actor.username}</span>
                         </div>
                     </div>
-                    <div>
-                        <div className="wd-profile-date mt-2">
-                            <i className="fas fa-birthday-cake me-2" style={{fontSize: '20px'}}> </i>
-                            <span style={{fontSize: '20px'}}>Born {actor.dateOfBirth === undefined
-                                                         ? "undefined"
-                                                         : `${actor.dateOfBirth.substring(
-                                    0, 10).toString()}`}</span>
 
-                        </div>
-                    </div>
+
+                    {/*<div>*/}
+                    {/*    <div className="wd-profile-date mt-2">*/}
+                    {/*        <i className="fas fa-birthday-cake me-2" style={{fontSize: '20px'}}> </i>*/}
+                    {/*        <span style={{fontSize: '20px'}}>Born {actor.dateOfBirth === undefined*/}
+                    {/*                                     ? "undefined"*/}
+                    {/*                                     : `${actor.dateOfBirth.substring(*/}
+                    {/*                0, 10).toString()}`}</span>*/}
+
+                    {/*    </div>*/}
+                    {/*</div>*/}
 
                 </div>
             </div>
@@ -54,7 +56,6 @@ const ActorProfile = ({actor, cur}) => {
                         <p className="wd-title wd-gold">Filmography ></p>
                     </div>
                     <section className="wd-slide-container">
-
                         <ul id="slide-list">
                             {
                                 actor.watchlist && actor.watchlist.map(movie => <WatchlistItem key={movie} movie={movie}/>)
@@ -65,6 +66,42 @@ const ActorProfile = ({actor, cur}) => {
 
                 </div>
             }
+
+            {actor.watchlist.length === 0 && actor.username === cur.username &&
+                <div className="mt-5 mb-5">
+
+                    <div className="row">
+                        <p className="wd-title wd-gold">Filmography ></p>
+                    </div>
+                    <div className="mt-5 text-center">
+                        <i className="fa fa-list wd-grey mb-3 fa-2x"/>
+                        <p className="wd-white fw-bold">Your filmography is empty</p>
+                        <p className="wd-white">Save movies to keep track of what you have acted.</p>
+                        <Link to={`/search`}>
+                            <button className="wd-browse-button">Search and add movies</button>
+                        </Link>
+                    </div>
+                </div>
+            }
+
+            {actor.watchlist.length === 0 && actor.username !== cur.username &&
+                <div className="mt-5 mb-5">
+
+                    <div className="row">
+                        <p className="wd-title wd-gold">Filmography ></p>
+                    </div>
+                    <h5>This actor hasn't added any movies to his filmography.</h5>
+                    {/*<div className="mt-5 text-center">*/}
+                    {/*    <i className="fa fa-list wd-grey mb-3 fa-2x"/>*/}
+                    {/*    <p className="wd-white fw-bold">Your filmography is empty</p>*/}
+                    {/*    <p className="wd-white">Save movies to keep track of what you have acted.</p>*/}
+                    {/*    <Link to={`/search`}>*/}
+                    {/*        <button className="wd-browse-button">Search and add movies</button>*/}
+                    {/*    </Link>*/}
+                    {/*</div>*/}
+                </div>
+            }
+
         </div>
     )
 }

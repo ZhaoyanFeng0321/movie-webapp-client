@@ -4,8 +4,10 @@ import "./profile.css"
 import * as service from "../../services/auth-service"
 import * as reviewService from "../../services/review-service"
 import ReviewList from "./reviewlist";
-import Watchlist from "./watchlist";
+import Watchlist from "../../home/WatchList/WatchList";
 import * as authService from "../../services/auth-service";
+import WatchlistItem from "../../home/WatchList/WatchlistItem";
+import WatchListPersonal from "../../home/WatchList/WatchListPersonal";
 
 const UserProfile = ({profile,cur}) => {
 
@@ -48,7 +50,33 @@ const UserProfile = ({profile,cur}) => {
 
             </div>
             <ReviewList profile={profile} cur={cur}/>
-            <Watchlist profile={profile} cur={cur}/>
+            {/*<Watchlist profile={profile} cur={cur}/>*/}
+
+                {profile.watchlist.length !== 0 && cur.username === profile.username &&
+                    <div className="mt-5 mb-5">
+
+                        <div className="row ">
+                            <p className="wd-title wd-gold">What to watch</p>
+                        </div>
+                        <div className="row">
+                            <Link to={'/list'} className="wd-title wd-white">From your watchlist ></Link>
+                        </div>
+                        <section className="wd-slide-container">
+                            <ul id="slide-list">
+                                {
+                                    profile.watchlist && profile.watchlist.map(movie => <WatchlistItem key={movie} movie={movie}/>)
+                                }
+                            </ul>
+
+                        </section>
+
+                    </div>
+                }
+
+
+                {profile.watchlist.length === 0 && cur.username === profile.username &&
+                    <WatchListPersonal/>
+                }
         </div>
         </div>
     )
