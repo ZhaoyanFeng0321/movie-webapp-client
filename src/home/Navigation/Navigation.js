@@ -31,9 +31,8 @@ const Navigation = () =>{
                                 <span className="fw-bold">Watchlist</span></div></Link>
                         </li>
 
-
                         <li className="nav-item">
-                            <Link to="/login" className="wd-link">
+                            <Link to="/login" className="wd-link" >
                             <div className="nav-link wd-signin wd-white">
                                 <span className="fw-bold ">Sign in</span>
                             </div></Link>

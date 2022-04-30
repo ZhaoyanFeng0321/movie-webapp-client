@@ -6,7 +6,7 @@ import {useNavigate, useParams} from "react-router-dom";
 
 const ReviewList = ({profile, cur}) => {
 
-    // const {username} = useParams();
+    //const {username} = useParams();
 
     const [reviews, setReviews] = useState([]);
 
@@ -39,7 +39,18 @@ const ReviewList = ({profile, cur}) => {
 
     return(
         <>
-            <h3 style={{marginTop:'10px', color:'#F5DE50'}}>Reviews</h3>
+
+            <div className="row mt-5">
+                <p className="wd-title wd-gold">Reviews</p>
+            </div>
+
+
+            {/*<h3 style={{marginTop:'10px', color:'#F5DE50'}}>Reviews</h3>*/}
+            {profile.watchlist.length === 0 && profile.username === cur.username &&
+                <h5>No reviews history.</h5>}
+            {profile.watchlist.length === 0 && profile.username !== cur.username &&
+                <h5>This user hasn't write a review.</h5>}
+            {profile.watchlist.length !== 0 &&
             <ul className="list-group">
                 {
                     reviews && reviews.map(review =>
@@ -49,7 +60,7 @@ const ReviewList = ({profile, cur}) => {
                                                profile={profile}
                                                cur={cur}/>)
                 }
-            </ul>
+            </ul>}
         </>
     )
 }

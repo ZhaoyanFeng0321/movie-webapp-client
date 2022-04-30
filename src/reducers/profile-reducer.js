@@ -1,12 +1,13 @@
-// import profileData from "../data/profiles.json";
+import React from "react";
+//import profile from '../data/profile.json';
 
-const profileReducer = (state= [], action) => {
-    switch(action.type) {
-        case 'save':
-            return action.profile;
+const profileReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'update-profile':
+            return { ...profile, ...action.profile };
         default:
-            return state;
+            return profile;
     }
-}
+};
 
 export default profileReducer;

@@ -41,21 +41,21 @@ const ResultScreen = () =>{
     },[])
 
 
-    const addMovieToList = async (uid, movieID) =>
+    const addMovieToList = async (name, movieID) =>
 
-        await authService.addMovieToList(uid, movieID);
+        await authService.addMovieToList(name, movieID);
 
 return(
         <>
-            {!login &&
-                <div className="row mt-3 ms-5 me-5">
-                    <Navigation/>
-                </div>}
+            {/*{!login &&*/}
+            {/*    <div className="row mt-3 ms-5 me-5">*/}
+            {/*        <Navigation/>*/}
+            {/*    </div>}*/}
 
-            {login&&
-                <div className="row mt-3 ms-5 me-5">
-                    <NavigationPersonal/>
-                </div>}
+            {/*{login&&*/}
+            {/*    <div className="row mt-3 ms-5 me-5">*/}
+            {/*        <NavigationPersonal/>*/}
+            {/*    </div>}*/}
 
 
             <div className="row ms-5 me-5">
@@ -81,7 +81,7 @@ return(
                                         <span className="fw-bold wd-gold">{movie.Title}</span>
                                     </Link>
 
-                                    <i className="fa fa-solid fa-plus-circle ms-3 wd-gold fs-5" onClick={()=>addMovieToList(currentUser._id, movie.imdbID)}/>
+                                    <i className="fa fa-solid fa-plus-circle ms-3 wd-gold fs-5" onClick={()=>addMovieToList(currentUser.username, movie.imdbID)}/>
 
                                     <p>Year: {movie.Year}</p>
                                     <p>Type: {movie.Type}</p>

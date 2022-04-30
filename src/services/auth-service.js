@@ -32,10 +32,19 @@ export const update = (user) =>
     api.put(`${BASE_URL}/api/users/${user._id}`,user)
         .then(response=>response.data);
 
-export const removeMovieFromList = (uid, mid) =>
-    api.put(`${BASE_URL}/api/users/${uid}/watchlist/${mid}`)
+export const removeMovieFromList = (username, mid) =>
+    api.put(`${BASE_URL}/api/users/${username}/watchlist/${mid}`)
         .then(response=>response.data);
 
-export const addMovieToList = (uid, mid) =>
-    api.put(`${BASE_URL}/api/users/${uid}/likeMovie/${mid}`)
+export const addMovieToList = (username, mid) =>
+    api.put(`${BASE_URL}/api/users/${username}/likeMovie/${mid}`)
+        .then(response=>response.data);
+
+export const findWatchListByUser = (username) =>
+    api.get(`${BASE_URL}/api/watchlist/${username}`)
+        .then(response => response.data);
+
+
+export const createWatchListByUser = (list) =>
+    api.post(`${BASE_URL}/api/watchlist`, list)
         .then(response=>response.data);

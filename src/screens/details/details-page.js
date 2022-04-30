@@ -9,6 +9,9 @@ import Navigation from "../../home/Navigation/Navigation";
 import * as authService from "../../services/auth-service";
 import NavigationPersonal from "../../home/Navigation/NavigationPersonal";
 import {addMovieToList} from "../../services/auth-service";
+import * as service from "../../services/review-service";
+import ReviewItem from "./reviewItem";
+import PostReview from "./post-review-component";
 
 
 const OmdbDetails = () => {
@@ -51,6 +54,23 @@ const OmdbDetails = () => {
 
     },[])
 
+
+
+    const [reviews, setReviews] = useState([]);
+    const findReviewsByOMDB = async () =>
+        await service.findAllReviewByOMDB(imdbID)
+            .then(reviews => setReviews(reviews));
+
+    useEffect(async () => {
+        try {
+            await findReviewsByOMDB();
+        }catch (e) {
+        }
+
+    },[])
+
+
+
     // useEffect(() => {
     //     searchMovieByImdbID()
     //     // searchOurMovieByImdbID()
@@ -81,18 +101,18 @@ const OmdbDetails = () => {
 {/*            </div>*/}
 {/*=======*/}
 {/*            {currentUser.accountType !== "PERSONAL"  && currentUser.accountType !== "ACTOR"  &&currentUser.accountType !== "ADMIN"  &&*/}
-            {!login &&
-                <div className="row mt-3 ms-5 me-5">
-                    <Navigation/>
+{/*            {!login &&*/}
+{/*                <div className="row mt-3 ms-5 me-5">*/}
+{/*                    <Navigation/>*/}
 
-                </div>}
+{/*                </div>}*/}
 
-            {/*{(currentUser.accountType === "PERSONAL"|| currentUser.accountType === "ACTOR" || currentUser.accountType === "ADMIN")  &&*/}
-            {login &&
-                <div className="row mt-3 ms-5 me-5">
-                    <NavigationPersonal/>
+{/*            /!*{(currentUser.accountType === "PERSONAL"|| currentUser.accountType === "ACTOR" || currentUser.accountType === "ADMIN")  &&*!/*/}
+{/*            {login &&*/}
+{/*                <div className="row mt-3 ms-5 me-5">*/}
+{/*                    <NavigationPersonal/>*/}
 
-                </div>}
+{/*                </div>}*/}
 
             {/*<div className="row mt-3 ms-5 me-5">*/}
             {/*    <Navigation/>*/}
@@ -118,7 +138,7 @@ const OmdbDetails = () => {
                     <img src={movieDetails.Poster} height={300} alt=""/>
                     <p className="mt-3"><i className="fa-solid fa-star-sharp"></i> {movieDetails.imdbRating}</p>
                     {/*<button className="btn btn-warning"><i className="fa-solid fa-thumbs-up"></i> </button>*/}
-                    <button onClick={()=>addMovieToList(currentUser._id, imdbID)} className="btn btn-block btn-warning" ><i className="fa-solid fa-plus"></i> Add to Watch</button>
+                    <button onClick={()=>addMovieToList(currentUser._id, imdbID)} className="btn btn-block btn-warning" ><i className="fa-solid fa-plus"></i> Add to List</button>
                 </div>
 
 
@@ -134,6 +154,13 @@ const OmdbDetails = () => {
                     <p> Country: {movieDetails.Country}</p>
                     <p> Award: {movieDetails.Awards}</p>
                     <p> Box Office :{movieDetails.BoxOffice}</p>
+                    <h2>Post your review</h2>
+                    <PostReview mid={imdbID} findReviewsByOMDB={findReviewsByOMDB}/>
+
+
+
+
+
                     {/*<SecureContent>*/}
                     {/*    <button onClick={handleLike}>Like ({ourMovieDetails && ourMovieDetails.likes})</button>*/}
                     {/*</SecureContent>*/}
@@ -141,6 +168,22 @@ const OmdbDetails = () => {
                     {/*<Preformatted obj={movieDetails}/>*/}
                 </div>
             </div>
+
+
+                <div className="row ms-5 me-5 mt-5">
+                    <h3 className="fw-bold wd-gold">User reviews</h3>
+                    {reviews.length === 0 &&
+                        <h5 className="wd-white">No reviews for this movie. Be the first!</h5>
+                    }
+                <ul className="list-group">
+                    {
+                        reviews && reviews.map(review =>
+                            <ReviewItem key={review._id}
+                                        item={review}/>)
+                    }
+                </ul>
+                </div>
+
             </div>
         </div>
 

@@ -1,57 +1,63 @@
 import React, {useState} from "react";
 import {useEffect} from "react";
 import WatchlistItem from "./watchlist-item";
-import {useParams} from "react-router-dom";
-import * as authService from "../../services/auth-service";
+import * as service from "../../services/auth-service";
+import {createWatchListByUser} from "../../services/auth-service";
+import Profile from "./index";
+import EditProfile from "./edit-profile";
 
 const Watchlist = ({profile, cur}) => {
-    // const {username} = useParams();
-    const [user, setUser] = useState(undefined);
+    //const {username} = useParams();
     const [wlist, setMovies] = useState([]);
+    const [user, setUser] = useState([]);
 
-    const findMovies = (user) => {
-        const wlist = user.watchlist;
-        setMovies(wlist);
+    const findMovies =  async (name) => {
+            const list = await service.findWatchListByUser(name);
+            setMovies(list.movie);
     }
 
-    //const [wlist, setWlist] = useState([]);
     useEffect(async () => {
         try {
-            const u = await authService.findUser(profile.username)
-            setUser(u);
-            findMovies(u);
+            const list = await service.findWatchListByUser(profile.username)
+            setMovies(list.movie);
         } catch (e) {
+            await createWatchListByUser({user:profile.username, movie:[]})
+                .then(list=>setMovies(list.movie));
         }
-    },[])
+    },[wlist])
 
 
-    const deleteMovieForUser = async (mid) => {
-        await authService.removeMovieFromList(user._id, mid)
-        const newList = wlist.filter(m => m !== mid);
-        setMovies(newList);
+    const deleteMovieForUser = async (username, mid) => {
+        await service.removeMovieFromList(username, mid).catch(e => alert(e));
+        await findMovies(username);
+
     }
 
     return (
         <>
             {
                 profile.accountType === "ACTOR" &&
-                <h3 style={{marginTop:'10px', color:'#F5DE50'}}>Biography</h3>
+                <h3 className="wd-gold">Filmography</h3>
             }
             {
                 profile.accountType !== "ACTOR" &&
-                <h3 style={{marginTop:'10px', color:'#F5DE50'}}>Watchlist</h3>
+                <h3 className="wd-gold">Watchlist</h3>
 
             }
 
             <ul className="list-group">
-                {
-                    wlist && wlist.map(movie =>
+
+                {wlist.length >0 && wlist.map(movie =>
                                              <WatchlistItem key={movie}
                                                             movie={movie}
                                                             deleteMovieForUser={deleteMovieForUser}
                                                             profile={profile}
-                                                            cur={cur}/>)
-                }
+                                                            cur={cur}/>)}
+
+                {wlist.length ===0 && profile.accountType === "PERSONAL"&&
+                 <h3 className="wd-white">Your watchlist is empty!</h3>}
+                {wlist.length ===0 && profile.accountType === "ACTOR"&&
+                 <h3 className="wd-white">Your filmography is empty!</h3>}
             </ul>
         </>
     );

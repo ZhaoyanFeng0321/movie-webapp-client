@@ -1,21 +1,39 @@
 import React, {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import "./profile.css"
-import * as service from "../../services/auth-service"
-import * as reviewService from "../../services/review-service"
 import ReviewList from "./reviewlist";
-import Watchlist from "./watchlist";
+// import Watchlist from "./watchlist";
+import * as service from "../../services/auth-service";
+import {createWatchListByUser} from "../../services/auth-service";
+import Watchlist from "../../home/WatchList/WatchList";
 import * as authService from "../../services/auth-service";
+import WatchlistItem from "../../home/WatchList/WatchlistItem";
+import WatchListPersonal from "../../home/WatchList/WatchListPersonal";
 import FollowList from "../follow/follow-list";
 import FollowedList from "../follow/followed-list";
 
 const UserProfile = ({profile,cur}) => {
 
+    const [wlist, setMovies] = useState([]);
+
+    const findMovies =  async (name) => {
+        await service.findWatchListByUser(name).then(list =>setMovies(list.movie));
+    }
+
+    useEffect(async () => {
+        try {
+            await findMovies(profile.username);
+        } catch (e) {
+            await createWatchListByUser({user:profile.username, movie:[]})
+                .then(list=>setMovies(list.movie));
+        }
+    },[profile])
+
     return(
         <div className="mb-4 mt-2">
             <div className="mb-1">
 
-                <Link to={`/home/${cur.username}`}><i className="far fa-arrow-alt-circle-left fa-lg wd-imbd-yellow"> </i></Link>
+                <Link to={`/home`}><i className="far fa-arrow-alt-circle-left fa-lg wd-imbd-yellow"> </i></Link>
                 <span className="wd-profile-name ms-3">Home</span>
             </div>
 
@@ -61,10 +79,36 @@ const UserProfile = ({profile,cur}) => {
                         }
 
                     </div>
-
-            </div>
-
+                </div>
                 <ReviewList profile={profile} cur={cur}/>
+                {/*<Watchlist profile={profile} cur={cur}/>*/}
+
+                {wlist.length !== 0 && cur.username === profile.username &&
+                    <div className="mt-5 mb-5">
+
+                        <div className="row ">
+                            <p className="wd-title wd-gold">What to watch</p>
+                        </div>
+                        <div className="row">
+                            <Link to={'/list'} className="wd-title wd-white">From your watchlist ></Link>
+                        </div>
+                        <section className="wd-slide-container">
+                            <ul id="slide-list">
+                                {
+                                    wlist && wlist.map(movie => <WatchlistItem key={movie} movie={movie}/>)
+                                }
+                            </ul>
+
+                        </section>
+
+                    </div>
+                }
+
+
+                {wlist.length === 0 && cur.username === profile.username &&
+                    <WatchListPersonal/>
+                }
+
                 {
                     cur && profile.username === cur.username &&
                     <FollowList profile={profile} cur={cur}/>
@@ -73,12 +117,8 @@ const UserProfile = ({profile,cur}) => {
                     cur && profile.username === cur.username &&
                     <FollowedList profile={profile} cur={cur}/>
                 }
-                {
-                    cur && profile.username === cur.username &&
-                    <Watchlist profile={profile} cur={cur}/>
-                }
 
-        </div>
+            </div>
         </div>
     )
 }
