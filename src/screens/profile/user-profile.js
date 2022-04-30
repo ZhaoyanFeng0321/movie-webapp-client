@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import "./profile.css"
-import * as service from "../../services/auth-service"
-import * as reviewService from "../../services/review-service"
 import ReviewList from "./reviewlist";
+// import Watchlist from "./watchlist";
+import * as service from "../../services/auth-service";
+import {createWatchListByUser} from "../../services/auth-service";
 import Watchlist from "../../home/WatchList/WatchList";
 import * as authService from "../../services/auth-service";
 import WatchlistItem from "../../home/WatchList/WatchlistItem";
@@ -11,11 +12,26 @@ import WatchListPersonal from "../../home/WatchList/WatchListPersonal";
 
 const UserProfile = ({profile,cur}) => {
 
+    const [wlist, setMovies] = useState([]);
+
+    const findMovies =  async (name) => {
+        await service.findWatchListByUser(name).then(list =>setMovies(list.movie));
+    }
+
+    useEffect(async () => {
+        try {
+            await findMovies(profile.username);
+        } catch (e) {
+            await createWatchListByUser({user:profile.username, movie:[]})
+                .then(list=>setMovies(list.movie));
+        }
+    },[profile])
+
     return(
         <div className="mb-4 mt-2">
             <div className="mb-1">
 
-                <Link to={`/home/${cur.username}`}><i className="far fa-arrow-alt-circle-left fa-lg wd-imbd-yellow"> </i></Link>
+                <Link to={`/home`}><i className="far fa-arrow-alt-circle-left fa-lg wd-imbd-yellow"> </i></Link>
                 <span className="wd-profile-name ms-3">Home</span>
             </div>
 
@@ -52,7 +68,7 @@ const UserProfile = ({profile,cur}) => {
             <ReviewList profile={profile} cur={cur}/>
             {/*<Watchlist profile={profile} cur={cur}/>*/}
 
-                {profile.watchlist.length !== 0 && cur.username === profile.username &&
+                {wlist.length !== 0 && cur.username === profile.username &&
                     <div className="mt-5 mb-5">
 
                         <div className="row ">
@@ -64,7 +80,7 @@ const UserProfile = ({profile,cur}) => {
                         <section className="wd-slide-container">
                             <ul id="slide-list">
                                 {
-                                    profile.watchlist && profile.watchlist.map(movie => <WatchlistItem key={movie} movie={movie}/>)
+                                    wlist && wlist.map(movie => <WatchlistItem key={movie} movie={movie}/>)
                                 }
                             </ul>
 
@@ -74,7 +90,7 @@ const UserProfile = ({profile,cur}) => {
                 }
 
 
-                {profile.watchlist.length === 0 && cur.username === profile.username &&
+                {wlist.length === 0 && cur.username === profile.username &&
                     <WatchListPersonal/>
                 }
         </div>

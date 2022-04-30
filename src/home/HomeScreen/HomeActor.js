@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import reviewReducer from "../reducers/reviews-reducer";
 import {Provider} from "react-redux";
 
@@ -10,6 +10,8 @@ import ReviewList from "../ReviewList/ReviewList";
 import {Link} from "react-router-dom";
 import WatchlistItem from "../WatchList/WatchlistItem";
 import NavigationPersonal from "../Navigation/NavigationPersonal";
+import * as service from "../../services/auth-service";
+import {createWatchListByUser} from "../../services/auth-service";
 
 const reducer = combineReducers({
     reviews: reviewReducer
@@ -17,15 +19,31 @@ const reducer = combineReducers({
 const store = createStore(reducer);
 
 
+
+
 const HomeScreen= ({profile,cur}) => {
+    const [wlist, setMovies] = useState([]);
+
+    const findMovies =  async (name) => {
+        await service.findWatchListByUser(name).then(list =>setMovies(list.movie));
+    }
+
+    useEffect(async () => {
+        try {
+            await findMovies(profile.username);
+        } catch (e) {
+            await createWatchListByUser({user:profile.username, movie:[]})
+                .then(list=>setMovies(list.movie));
+        }
+    },[profile])
     return (
         <Provider store={store}>
             <div className="row mt-3 ms-5 me-5">
 
-                <NavigationPersonal/>
+                {/*<NavigationPersonal/>*/}
                 <ReviewList/>
                 {/*<Filmography/>*/}
-                {profile.watchlist.length !== 0 &&
+                {wlist.length !== 0 &&
                     <div className="mt-5 mb-5">
 
                         <div className="row">
@@ -35,7 +53,7 @@ const HomeScreen= ({profile,cur}) => {
 
                             <ul id="slide-list">
                                 {
-                                    profile.watchlist && profile.watchlist.map(movie => <WatchlistItem key={movie} movie={movie}/>)
+                                    wlist && wlist.map(movie => <WatchlistItem key={movie} movie={movie}/>)
                                 }
                             </ul>
 
@@ -44,7 +62,7 @@ const HomeScreen= ({profile,cur}) => {
                     </div>
                 }
 
-                {profile.watchlist.length === 0 &&
+                {wlist.length === 0 &&
                     <div className="mt-5 mb-5">
 
                         <div className="row">

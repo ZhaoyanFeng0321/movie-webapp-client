@@ -5,42 +5,15 @@ import {
     Route,
     Routes,
     useNavigate,
-    useLocation,
     useParams
 } from "react-router-dom";
 import * as authService from "../../services/auth-service"
 import UserProfile from "./user-profile";
 import ActorProfile from "./actor-profile";
-import ReviewList from "./reviewlist";
 import AdminProfile from "./admin-profile";
 
-
-const Profile = () => {
-    const {username} = useParams();
-    const navigate = useNavigate();
-    const location = useLocation();
-    const [profile, setProfile] = useState({});
-    const [currentUser,setCurrentUser] = useState({});
-
-    useEffect(async () => {
-        try {
-            let user = await authService.profile();
-            setCurrentUser(user);
-            if(username!==user.username){
-                user = await authService.findUser(username);
-            }else{
-                user = await authService.findUser(username);
-                setCurrentUser(user);
-            }
-            setProfile(user);
-        } catch (e) {
-            navigate('/login');
-        }
-    }, [username]);
-
-    // console.log(profile);
-    // console.log("分界线");
-    // console.log(currentUser);
+const Profile = ({profile, currentUser, onEdit}) => {
+    const navigate = useNavigate;
     /**
      * Current user logout
      */
@@ -49,30 +22,25 @@ const Profile = () => {
             .then(() => navigate('/login'));
     }
 
-    return(
+    return (
         <div>
             {
-                profile.username === currentUser.username
-                &&<div>
-                    <Link to={`/profile/${profile.username}/edit`}
-                          className="mt-2 me-2 btn btn-large btn-light border border-secondary fw-bolder rounded-pill fa-pull-right">
-                        Edit profile
-                    </Link>
-                    <button type="button" onClick={logout} className="mt-2 float-end btn btn-warning rounded-pill">
-                        Logout
+                currentUser && profile.username === currentUser.username
+                && <div>
+                    <button type='submit' className="mt-2 me-2 btn btn-large btn-light border border-secondary fw-bolder rounded-pill fa-pull-right"
+                            onClick={onEdit}>
+                        Edit Profile
                     </button>
+
                 </div>
 
             }
             {
-                profile.accountType === "PERSONAL"  &&
+                profile.accountType === "PERSONAL" &&
                 <UserProfile profile={profile} cur={currentUser}/>
-                // <ReviewList/> &&
-                // <br/> &&
-                // <Watchlist/>
             }
             {
-                profile.accountType === "ACTOR"  &&
+                profile.accountType === "ACTOR" &&
                 <ActorProfile actor={profile} cur={currentUser}/>
             }
             {
@@ -81,7 +49,6 @@ const Profile = () => {
             }
 
         </div>
-        // </Provider>
     )
 }
 export default Profile;

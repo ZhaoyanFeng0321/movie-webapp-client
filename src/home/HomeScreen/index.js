@@ -4,36 +4,35 @@ import * as authService from "../../services/auth-service";
 import HomePersonal from "./HomePersonal";
 import HomeActor from "./HomeActor";
 import HomeAdmin from "./HomeAdmin";
+import HomeScreen from "./HomeScreen";
 
 const Home = () => {
-    const {username} = useParams();
+    //const {username} = useParams();
     const navigate = useNavigate();
-    const [currentUser,setCurrentUser] = useState({});
+    const [currentUser, setCurrentUser] = useState({});
     const [profile, setProfile] = useState({});
     useEffect(async () => {
         try {
             let user = await authService.profile();
-            setCurrentUser(user.user);
-            if(username!==user.username){
-                user = await authService.findUser(username);
-            }else{
-                user = await authService.findUser(username);
-                setCurrentUser(user);
-            }
+            setCurrentUser(user);
             setProfile(user);
         } catch (e) {
-            navigate('/login');
+            setCurrentUser(undefined);
+            setProfile(undefined);
+            //navigate('/login');
         }
-    }, [username]);
+    }, []);
 
-
-    return(
+    return (
         <>
-            {profile.accountType === "PERSONAL" && <HomePersonal profile={profile} cur={currentUser.username}/>}
-            {profile.accountType === "ACTOR" && <HomeActor profile={profile} cur={currentUser.username}/>}
-            {profile.accountType === "ADMIN" && <HomeAdmin profile={profile} cur={currentUser.username}/>}
+            {!profile && <HomeScreen/>}
+            {profile&& profile.accountType === "PERSONAL" && <HomePersonal profile={profile}
+                                                                 cur={currentUser.username}/>}
+            {profile&&profile.accountType === "ACTOR" && <HomeActor profile={profile}
+                                                           cur={currentUser.username}/>}
+            {profile&&profile.accountType === "ADMIN" && <HomeAdmin profile={profile}
+                                                           cur={currentUser.username}/>}
         </>
-
 
     )
 }

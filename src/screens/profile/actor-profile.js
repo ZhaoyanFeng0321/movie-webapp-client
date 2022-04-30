@@ -1,26 +1,41 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import "./profile.css"
 import Watchlist from "./watchlist";
 import WatchlistItem from "../../home/WatchList/WatchlistItem";
+import * as service from "../../services/auth-service";
+import {createWatchListByUser} from "../../services/auth-service";
 
 const ActorProfile = ({actor, cur}) => {
+    const [wlist, setMovies] = useState([]);
+
+    const findMovies =  async (name) => {
+        await service.findWatchListByUser(name).then(list =>setMovies(list.movie));
+    }
+
+    useEffect(async () => {
+        try {
+            await findMovies(actor.username);
+        } catch (e) {
+            await createWatchListByUser({user:actor.username, movie:[]})
+                .then(list=>setMovies(list.movie));
+        }
+    },[actor])
 
     return (
         <div className="mb-4 mt-2">
             <div className="mb-1">
-                <Link to={`/home/${cur.username}`}><i
+                <Link to={`/home`}><i
                     className="far fa-arrow-alt-circle-left fa-lg wd-imbd-yellow"> </i></Link>
                 <span className="wd-profile-name ms-3">Home</span>
             </div>
 
             <div className="row">
                 <div className="col-4 col-sm-12 col-md-4">
-                    <img src={actor.profilePhoto === undefined
+                    <img className="position-relative ttr-z-index-1 ttr-top-40px ttr-width-150px pf-profile-image"
+                         src={actor.profilePhoto === undefined
                               ? "https://www.smilisticdental.com/wp-content/uploads/2017/11/blank-profile-picture-973460_960_720.png"
-                              : `${actor.profilePhoto}`} alt="avatar" height="160px"
-                         className="rounded-circle"
-                         style={{border: 'solid 5px #F5DE50'}}/>
+                              : `${actor.profilePhoto}`}/>
                 </div>
 
                 <div className="col-8 col-sm-0 col-md-8 d-none d-md-block">
@@ -49,7 +64,7 @@ const ActorProfile = ({actor, cur}) => {
             </div>
             {/*<Watchlist profile={actor} cur={cur}/>*/}
 
-            {actor.watchlist.length !== 0 &&
+            {wlist.length !== 0 &&
                 <div className="mt-5 mb-5">
 
                     <div className="row">
@@ -58,7 +73,7 @@ const ActorProfile = ({actor, cur}) => {
                     <section className="wd-slide-container">
                         <ul id="slide-list">
                             {
-                                actor.watchlist && actor.watchlist.map(movie => <WatchlistItem key={movie} movie={movie}/>)
+                                wlist && wlist.map(movie => <WatchlistItem key={movie} movie={movie}/>)
                             }
                         </ul>
 
@@ -67,7 +82,7 @@ const ActorProfile = ({actor, cur}) => {
                 </div>
             }
 
-            {actor.watchlist.length === 0 && actor.username === cur.username &&
+            {wlist.length === 0 && actor.username === cur.username &&
                 <div className="mt-5 mb-5">
 
                     <div className="row">
@@ -84,11 +99,11 @@ const ActorProfile = ({actor, cur}) => {
                 </div>
             }
 
-            {actor.watchlist.length === 0 && actor.username !== cur.username &&
+            {wlist.length === 0 && actor.username !== cur.username &&
                 <div className="mt-5 mb-5">
 
                     <div className="row">
-                        <p className="wd-title wd-gold">Filmography ></p>
+                        <p className="wd-title wd-gold">Filmography</p>
                     </div>
                     <h5>This actor hasn't added any movies to his filmography.</h5>
                     {/*<div className="mt-5 text-center">*/}

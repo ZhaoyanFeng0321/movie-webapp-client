@@ -5,11 +5,6 @@ import axios from "axios";
 import {Link} from "react-router-dom";
 
 const ReviewItem = ({review, deleteReview, profile, cur}) => {
-    // const dispatch = useDispatch();
-    // const deleteReview = (review) => {
-    //     dispatch({type: 'delete-review', review: review})
-    // }
-
 
     const [movies, setMovies] = useState([])
     const searchUrl = 'https://www.omdbapi.com/?apikey=b2bd5979&i='+ review.to;
@@ -27,16 +22,16 @@ const ReviewItem = ({review, deleteReview, profile, cur}) => {
                     </div>
                     <div className="col-10 col-sm-12 col-md-10">
                         {
-                            profile.username === cur.username &&
+                            cur && profile.username === cur.username &&
                             <i className="fas fa-times-circle float-end"
                             style={{color:'#F5DE50'}}
-                            onClick={() => deleteReview(review._id)}></i>
+                            onClick={() => deleteReview(review._id)}> </i>
                         }
                         {
-                            cur.accountType === "ADMIN" &&
+                            cur && cur.accountType === "ADMIN" &&
                             <i className="fas fa-times-circle float-end"
                                style={{color:'#F5DE50'}}
-                               onClick={() => deleteReview(review._id)}></i>
+                               onClick={() => deleteReview(review._id)}> </i>
 
                         }
 
@@ -51,15 +46,7 @@ const ReviewItem = ({review, deleteReview, profile, cur}) => {
 
                         <div style={{fontStyle: 'italic'}}>"{review.review}"</div>
                     </div>
-                    {/*<div className="col-1 float-end">*/}
-                    {/*    /!*<i onClick={() =>                   // create new remove icon on top, right corner of*!/*/}
-                    {/*    /!*    deleteTuit(tweet)}              // each tuit. Bind click event with click handler*!/*/}
-                    {/*    /!*   className="fas fa-times-circle*!/*/}
-                    {/*    /!*fa-pull-right"></i>*!/*/}
-                    {/*    <i className="fas fa-times-circle"*/}
-                    {/*       onClick={() => deleteReview(review._id)}></i>*/}
 
-                    {/*</div>*/}
                 </div>
             </div>
         </>
