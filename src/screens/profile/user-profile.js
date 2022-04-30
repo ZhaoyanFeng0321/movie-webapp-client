@@ -6,6 +6,7 @@ import * as reviewService from "../../services/review-service"
 import ReviewList from "./reviewlist";
 import Watchlist from "./watchlist";
 import * as authService from "../../services/auth-service";
+import FollowList from "../follow/follow-list";
 
 const UserProfile = ({profile,cur}) => {
 
@@ -60,9 +61,13 @@ const UserProfile = ({profile,cur}) => {
 
                     </div>
 
-
             </div>
-            <ReviewList profile={profile} cur={cur}/>
+
+                <ReviewList profile={profile} cur={cur}/>
+                {
+                    cur && profile.username === cur.username &&
+                    <FollowList profile={profile} cur={cur}/>
+                }
 
                 {
                     cur && profile.username === cur.username &&

@@ -37,5 +37,5 @@ export const findAllReviewsByUser = async (uid) => {
 export const findAllReviewsByUsername = async (name) => {
     const response = await axios
         .get(`${REVIEWS_API}/${name}`);
-    return response.data;;
+    return response.data;
 }

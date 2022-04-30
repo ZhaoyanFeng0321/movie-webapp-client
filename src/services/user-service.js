@@ -16,6 +16,10 @@ export const findUserById = (uid) =>
     axios.get(`${USERS_API}/${uid}`)
         .then(response => response.data);
 
+export const findUserByUsername = (username) =>
+    axios.get(`${USERS_API}/username/${username}`)
+        .then(response => response.data)
+
 export const deleteUser = (uid) =>
     axios.delete(`${USERS_API}/${uid}`)
         .then(response => response.data);
@@ -33,7 +37,7 @@ export const findWhoToFollow = (uid) =>
         .then(response=>response.data);
 
 const service = {
-    findAllUsers,createUser,findWhoToFollow,findUserByCredentials,deleteUsersByUsername,findUserById
+    findAllUsers,createUser,findWhoToFollow,findUserByCredentials,deleteUsersByUsername,findUserById, findUserByUsername
 }
 
 export default service;

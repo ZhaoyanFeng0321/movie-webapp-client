@@ -48,7 +48,7 @@ const Navigation = () =>{
                         {currentUser.accountType === "ACTOR" &&
                             <li className="nav-item d-sm-none d-md-none d-lg-block d-none">
 
-                                <Link to="/list" className="wd-link">
+                                <Link to={`/watchlist/${currentUser.username}`} className="wd-link">
                                     <div className="nav-link ">
                                         <i className="fa fa-list me-3 wd-grey"/>
                                         <span className="fw-bold">Filmography</span></div></Link>
@@ -58,7 +58,7 @@ const Navigation = () =>{
                         {currentUser.accountType === "PERSONAL" &&
                             <li className="nav-item d-sm-none d-md-none d-lg-block d-none">
 
-                                <Link to="/list" className="wd-link">
+                                <Link to={`/watchlist/${currentUser.username}`} className="wd-link">
                                     <div className="nav-link ">
                                         <i className="fa fa-list me-3 wd-grey"/>
                                         <span className="fw-bold">Watchlist</span></div></Link>

@@ -13,7 +13,8 @@ import UserProfile from "./user-profile";
 import ActorProfile from "./actor-profile";
 import ReviewList from "./reviewlist";
 import AdminProfile from "./admin-profile";
-
+import * as followService from "../../services/follow-service"
+import {followUser} from "../../services/follow-service";
 
 const Profile = () => {
     const {username} = useParams();
@@ -52,6 +53,10 @@ const Profile = () => {
             .then(() => navigate('/login'));
     }
 
+    const FollowUser = async (username, followname) => {
+        await followService.followUser(username, followname)
+    }
+
     return(
         <div>
             {
@@ -64,8 +69,15 @@ const Profile = () => {
                     <button type="button" onClick={logout} className="mt-2 float-end btn btn-warning rounded-pill">
                         Logout
                     </button>
+
                 </div>
 
+            }
+            {
+                profile.username !== currentUser.username &&
+                <button type="button" onClick={() => followUser(currentUser.username, profile.username)} className="mt-2 float-end btn btn-warning rounded-pill">
+                    Follow
+                </button>
             }
             {
                 profile.accountType === "PERSONAL"  &&

@@ -13,6 +13,7 @@ import ResultScreen from "./home/Search/ResultScreen";
 import Home from "./home/HomeScreen";
 import {Provider} from "react-redux";
 import OmdbDetails from "./screens/details/details-page";
+import Watchlist from "./screens/profile/watchlist";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/profile/:username/edit" element={<EditProfile/>}/>
             <Route path="/profile/:username" element={<Profile/>}/>
             <Route path="/profile/:username/*" element={<Profile />}/>
+            <Route path="/watchlist/:username" element={<Watchlist/>}/>
             <Route path="/">
                 <Route index element={<HomeScreen/>} />
                 <Route path="home" exact={true} element={<HomeScreen/>}/>

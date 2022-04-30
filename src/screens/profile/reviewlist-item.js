@@ -37,7 +37,6 @@ const ReviewItem = ({review, deleteReview, profile, cur}) => {
                             <i className="fas fa-times-circle float-end"
                                style={{color:'#F5DE50'}}
                                onClick={() => deleteReview(review._id)}></i>
-
                         }
 
                         <div style={{fontWeight: 'bold', fontSize: '20px'}}>
