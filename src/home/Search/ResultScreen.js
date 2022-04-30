@@ -41,9 +41,9 @@ const ResultScreen = () =>{
     },[])
 
 
-    const addMovieToList = async (uid, movieID) =>
+    const addMovieToList = async (name, movieID) =>
 
-        await authService.addMovieToList(uid, movieID);
+        await authService.addMovieToList(name, movieID);
 
 return(
         <>
@@ -81,7 +81,7 @@ return(
                                         <span className="fw-bold wd-gold">{movie.Title}</span>
                                     </Link>
 
-                                    <i className="fa fa-solid fa-plus-circle ms-3 wd-gold fs-5" onClick={()=>addMovieToList(currentUser._id, movie.imdbID)}/>
+                                    <i className="fa fa-solid fa-plus-circle ms-3 wd-gold fs-5" onClick={()=>addMovieToList(currentUser.username, movie.imdbID)}/>
 
                                     <p>Year: {movie.Year}</p>
                                     <p>Type: {movie.Type}</p>

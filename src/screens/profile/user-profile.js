@@ -2,9 +2,30 @@ import React, {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import "./profile.css"
 import ReviewList from "./reviewlist";
-import Watchlist from "./watchlist";
+// import Watchlist from "./watchlist";
+import * as service from "../../services/auth-service";
+import {createWatchListByUser} from "../../services/auth-service";
+import Watchlist from "../../home/WatchList/WatchList";
+import * as authService from "../../services/auth-service";
+import WatchlistItem from "../../home/WatchList/WatchlistItem";
+import WatchListPersonal from "../../home/WatchList/WatchListPersonal";
 
 const UserProfile = ({profile,cur}) => {
+
+    const [wlist, setMovies] = useState([]);
+
+    const findMovies =  async (name) => {
+        await service.findWatchListByUser(name).then(list =>setMovies(list.movie));
+    }
+
+    useEffect(async () => {
+        try {
+            await findMovies(profile.username);
+        } catch (e) {
+            await createWatchListByUser({user:profile.username, movie:[]})
+                .then(list=>setMovies(list.movie));
+        }
+    },[profile])
 
     return(
         <div className="mb-4 mt-2">
@@ -45,7 +66,33 @@ const UserProfile = ({profile,cur}) => {
 
             </div>
             <ReviewList profile={profile} cur={cur}/>
-            <Watchlist profile={profile} cur={cur}/>
+            {/*<Watchlist profile={profile} cur={cur}/>*/}
+
+                {wlist.length !== 0 && cur.username === profile.username &&
+                    <div className="mt-5 mb-5">
+
+                        <div className="row ">
+                            <p className="wd-title wd-gold">What to watch</p>
+                        </div>
+                        <div className="row">
+                            <Link to={'/list'} className="wd-title wd-white">From your watchlist ></Link>
+                        </div>
+                        <section className="wd-slide-container">
+                            <ul id="slide-list">
+                                {
+                                    wlist && wlist.map(movie => <WatchlistItem key={movie} movie={movie}/>)
+                                }
+                            </ul>
+
+                        </section>
+
+                    </div>
+                }
+
+
+                {wlist.length === 0 && cur.username === profile.username &&
+                    <WatchListPersonal/>
+                }
         </div>
         </div>
     )

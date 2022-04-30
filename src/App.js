@@ -14,6 +14,10 @@ import OmdbDetails from "./screens/details/details-page";
 import MovieApp from "./movieApp";
 import ProfileScreen from "./screens/profile/profileScreen";
 import {ProfileProvider} from "./profileProvider";
+import WatchListPage from "./home/WatchList/Watchlistpage";
+import MovieApp from "./movieApp";
+import ProfileScreen from "./screens/profile/profileScreen";
+import {ProfileProvider} from "./profileProvider";
 
 function App() {
     return (
@@ -30,14 +34,16 @@ function App() {
                             <Route path=":username" element={<ProfileScreen/>}/>
                         </Route>
                         <Route path="search" element={<Search/>}/>
-¸                        <Route path="result">
+                        <Route path="result">
                             <Route path=":movieSearch" element={<ResultScreen/>}/>
                         </Route>
                         <Route path="details">
                             <Route path=":imdbID" element={<OmdbDetails/>}/>
                         </Route>
 
+                        <Route path="list" element={<WatchListPage/>}/>
                     </Route>
+
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/signup" element={<Signup/>}/>
 
