@@ -172,6 +172,9 @@ const OmdbDetails = () => {
 
                 <div className="row ms-5 me-5 mt-5">
                     <h3 className="fw-bold wd-gold">User reviews</h3>
+                    {reviews.length === 0 &&
+                        <h5 className="wd-white">No reviews for this movie. Be the first!</h5>
+                    }
                 <ul className="list-group">
                     {
                         reviews && reviews.map(review =>
