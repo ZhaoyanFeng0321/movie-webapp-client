@@ -5,19 +5,14 @@ import './utils/index.css';
 import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import Signup from "./screens/signup";
 import Login from "./screens/login";
-import Profile from "./screens/profile";
-import EditProfile from "./screens/profile/edit-profile";
 import Home from "./home/HomeScreen/index";
 import Search from "./home/Search/Search";
 import ResultScreen from "./home/Search/ResultScreen";
 import OmdbDetails from "./screens/details/details-page";
 import MovieApp from "./movieApp";
 import ProfileScreen from "./screens/profile/profileScreen";
-import {ProfileProvider} from "./profileProvider";
 import WatchListPage from "./home/WatchList/Watchlistpage";
-import MovieApp from "./movieApp";
-import ProfileScreen from "./screens/profile/profileScreen";
-import {ProfileProvider} from "./profileProvider";
+
 
 function App() {
     return (

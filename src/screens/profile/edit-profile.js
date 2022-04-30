@@ -2,11 +2,10 @@ import React, {useEffect, useState} from "react";
 import * as authService from "../../services/auth-service";
 import {Link, useNavigate} from "react-router-dom";
 
-const EditProfile = ({toUpdate, leaveEdit}) => {
-    const [profile, setProfile] = useState({});
+const EditProfile = ({profile, newUser, leaveEdit}) => {
+    //const [profile, setProfile] = useState({});
     const [updateUser, setUpdateUser] = useState({});
     const navigate = useNavigate();
-
 
     /**
      * Handle the file and store it to server
@@ -43,8 +42,8 @@ const EditProfile = ({toUpdate, leaveEdit}) => {
     useEffect(async () => {
         try {
             //let user = await authService.findUser("dummy");
-            setProfile(toUpdate);
-            setUpdateUser(toUpdate);
+            //setProfile(toUpdate);
+            setUpdateUser(profile);
         } catch (e) {
         }
     }, []);
@@ -52,28 +51,31 @@ const EditProfile = ({toUpdate, leaveEdit}) => {
     /**
      * Update user information
      */
-    const saveProfile = async() => {
-         await authService.update(updateUser)
-            .then(leaveEdit())
-            .catch(e => alert(e));
+    const saveProfile = async (updateUser) => {
+        try {
+            await authService.update(updateUser).then(leaveEdit());
+        } catch (e) {
+            alert(e);
+        }
     }
 
     return (
         <div className="ttr-edit-profile">
             <div className="border border-bottom-0">
                 <button onClick={leaveEdit}
-                      className="btn btn-light rounded-pill fa-pull-left fw-bolder mt-2 mb-2 ms-2">
+                        className="btn btn-light rounded-pill fa-pull-left fw-bolder mt-2 mb-2 ms-2">
                     <i className="fa fa-close"> </i>
                 </button>
                 <button className="btn btn-dark rounded-pill fa-pull-right fw-bolder mt-2 mb-2 me-2"
-                        onClick={
-                            saveProfile}>
+                        onClick={()=>
+                            saveProfile(updateUser)}>
                     Save
                 </button>
                 <h4 className="p-2 mb-0 pb-0 fw-bolder">Edit profile</h4>
                 <div className="mb-5 position-relative">
                     <div className="bottom-0 left-0 position-relative">
-                        <img className="position-relative ttr-z-index-1 ttr-top-40px ttr-width-150px pf-profile-image"
+                        <img
+                            className="position-relative ttr-z-index-1 ttr-top-40px ttr-width-150px pf-profile-image"
                             src={profile.profilePhoto === undefined
                                  ? "https://www.smilisticdental.com/wp-content/uploads/2017/11/blank-profile-picture-973460_960_720.png"
                                  : `${profile.profilePhoto}`}/>
@@ -120,7 +122,9 @@ const EditProfile = ({toUpdate, leaveEdit}) => {
                     <label htmlFor="date-of-birth">Date of birth</label>
                     <input id="date-of-birth"
                            className="p-0 form-control border-0"
-                           defaultValue={profile.dateOfBirth === undefined ? "2000-01-01" : `${profile.dateOfBirth.substring(0, 10)}`}
+                           defaultValue={profile.dateOfBirth === undefined ? "2000-01-01"
+                                                                           : `${profile.dateOfBirth.substring(
+                                   0, 10)}`}
                            onChange={(e) =>
                                setUpdateUser({...updateUser, dateOfBirth: e.target.value})}
                            type="date"
@@ -138,7 +142,7 @@ const EditProfile = ({toUpdate, leaveEdit}) => {
                            className="p-0 form-control border-0"
                            type="password"
                            onChange={(e) =>
-                               setUpdateUser({...updateUser,password: e.target.value})}/>
+                               setUpdateUser({...updateUser, password: e.target.value})}/>
                 </div>
 
                 <div className="border border-secondary rounded-3 p-2 mb-3">

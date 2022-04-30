@@ -12,6 +12,12 @@ const ProfileScreen = () => {
     const {username} = useParams();
     const [currentUser, setCurrentUser] = useState(undefined);
 
+    // const updateUser = (user)=> {
+    //     setEditing(false);
+    //     setProfile(user);
+    //     // setCurrentUser(user);
+    //
+    // }
 
     useEffect(async () => {
         try {
@@ -33,14 +39,15 @@ const ProfileScreen = () => {
             setProfile(user);
             //navigate(`/profile/${username}`);
         }
-    }, [profile]);
+    }, [username]);
 
     return (
         <>
             {
                 !editing ?
                 (<Profile profile={profile} currentUser={currentUser} onEdit={() => setEditing(true)} />) :
-                (<EditProfile toUpdate={profile} leaveEdit={() => setEditing(false)} />)
+                (<EditProfile profile={profile} newUser={(user)=>setProfile(user)}
+                              leaveEdit={() => setEditing(false)} />)
             }
         </>
     );
