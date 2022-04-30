@@ -6,6 +6,8 @@ import Navigation from "./home/Navigation/Navigation";
 import NavigationPersonal from "./home/Navigation/NavigationPersonal";
 import {Provider} from 'react-redux';
 import {createStore} from 'redux'
+import Profile from "./screens/profile";
+import EditProfile from "./screens/profile/edit-profile";
 
 // const store = createStore();
 
@@ -30,12 +32,12 @@ const MovieApp = () => {
         } catch (e) {
             //navigate('/');
         }
-    }, [username]);
+    }, [log]);
 
     return (
         <>
-                {!log && <Navigation />}
-                {log && <NavigationPersonal logout={() => setLog(false)}/>}
+                {!log? (<Navigation signin={() => setLog(true)}/>):
+                 (<NavigationPersonal logout={() => setLog(false)}/>)}
                 <Outlet/>
         </>
 

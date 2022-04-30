@@ -2,8 +2,8 @@ import React, {useEffect, useState} from "react";
 import * as authService from "../../services/auth-service";
 import {Link, useNavigate} from "react-router-dom";
 
-const EditProfile = ({profile, leaveEdit}) => {
-    //const [profile, setProfile] = useState({});
+const EditProfile = ({toUpdate, leaveEdit}) => {
+    const [profile, setProfile] = useState({});
     const [updateUser, setUpdateUser] = useState({});
     const navigate = useNavigate();
 
@@ -40,21 +40,20 @@ const EditProfile = ({profile, leaveEdit}) => {
                       })
     }
 
-    // useEffect(async () => {
-    //     try {
-    //         //let user = await authService.findUser("dummy");
-    //         //let user = await authService.profile();
-    //         //setProfile(profile);
-    //         setUpdateUser(user);
-    //     } catch (e) {
-    //     }
-    // }, []);
+    useEffect(async () => {
+        try {
+            //let user = await authService.findUser("dummy");
+            setProfile(toUpdate);
+            setUpdateUser(toUpdate);
+        } catch (e) {
+        }
+    }, []);
 
     /**
      * Update user information
      */
-    const saveProfile = () => {
-        authService.update(updateUser)
+    const saveProfile = async() => {
+         await authService.update(updateUser)
             .then(leaveEdit())
             .catch(e => alert(e));
     }

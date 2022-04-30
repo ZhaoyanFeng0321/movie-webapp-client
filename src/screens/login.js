@@ -7,7 +7,9 @@ const Login = () => {
     const [loginUser, setLoginUser] = useState({});
     const navigate = useNavigate();
     const login = () => {
+        //todo
         service.login(loginUser)
+            // .then(() => navigate(`/home`))
             .then((user) => navigate(`/home`))
             .catch(e => alert(e));
     }

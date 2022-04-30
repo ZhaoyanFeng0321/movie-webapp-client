@@ -30,16 +30,16 @@ function App() {
                             <Route path=":username" element={<ProfileScreen/>}/>
                         </Route>
                         <Route path="search" element={<Search/>}/>
-                        {/*<Route path="/result/:username/:movieSearch" element={<Result/>}/>*/}
-                        <Route path="result">
+¸                        <Route path="result">
                             <Route path=":movieSearch" element={<ResultScreen/>}/>
                         </Route>
                         <Route path="details">
                             <Route path=":imdbID" element={<OmdbDetails/>}/>
                         </Route>
-                        <Route path="login" element={<Login/>}/>
-                        <Route path="signup" element={<Signup/>}/>
+
                     </Route>
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/signup" element={<Signup/>}/>
 
                     {/*</Route>*/}
 

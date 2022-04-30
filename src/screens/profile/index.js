@@ -13,15 +13,6 @@ import ActorProfile from "./actor-profile";
 import AdminProfile from "./admin-profile";
 
 const Profile = ({profile, currentUser, onEdit}) => {
-    const navigate = useNavigate;
-    /**
-     * Current user logout
-     */
-    const logout = () => {
-        authService.logout()
-            .then(() => navigate('/login'));
-    }
-
     return (
         <div>
             {

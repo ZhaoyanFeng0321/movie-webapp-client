@@ -13,7 +13,7 @@ const Signup = () => {
     const createList = (name) => {
         const list = {user: name, movie:[]};
         service.createWatchListByUser(list)
-            .then(() => navigate(`/profile/${newUser.username}/edit`))
+            .then(() => navigate(`/home`))
 
     }
     const signup = () =>

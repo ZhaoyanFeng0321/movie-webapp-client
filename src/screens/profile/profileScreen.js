@@ -12,6 +12,7 @@ const ProfileScreen = () => {
     const {username} = useParams();
     const [currentUser, setCurrentUser] = useState(undefined);
 
+
     useEffect(async () => {
         try {
             let curUser = await authService.profile();
@@ -32,14 +33,14 @@ const ProfileScreen = () => {
             setProfile(user);
             //navigate(`/profile/${username}`);
         }
-    }, []);
+    }, [profile]);
 
     return (
         <>
             {
                 !editing ?
                 (<Profile profile={profile} currentUser={currentUser} onEdit={() => setEditing(true)} />) :
-                (<EditProfile profile={profile} leaveEdit={() => setEditing(false)} />)
+                (<EditProfile toUpdate={profile} leaveEdit={() => setEditing(false)} />)
             }
         </>
     );
