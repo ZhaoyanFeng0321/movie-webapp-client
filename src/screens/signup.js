@@ -8,10 +8,17 @@ import Login from "./login";
 
 const Signup = () => {
     const [newUser, setNewUser] = useState({});
+
     const navigate = useNavigate();
+    const createList = (name) => {
+        const list = {user: name, movie:[]};
+        service.createWatchListByUser(list)
+            .then(() => navigate(`/profile/${newUser.username}/edit`))
+
+    }
     const signup = () =>
         service.signup(newUser)
-            .then(() => navigate(`/profile/${newUser.username}/edit`))
+            .then(()=>createList(newUser.username))
             .catch(e => alert(e));
     return (
         <>

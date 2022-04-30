@@ -45,15 +45,15 @@ const Search = () =>{
 
     return (
         <>
-            {!login &&
-            <div className="row mt-3 ms-5 me-5">
-                <Navigation/>
-            </div>}
+            {/*{!login &&*/}
+            {/*<div className="row mt-3 ms-5 me-5">*/}
+            {/*    <Navigation/>*/}
+            {/*</div>}*/}
 
-            {login&&
-                <div className="row mt-3 ms-5 me-5">
-                    <NavigationPersonal/>
-                </div>}
+            {/*{login&&*/}
+            {/*    <div className="row mt-3 ms-5 me-5">*/}
+            {/*        <NavigationPersonal/>*/}
+            {/*    </div>}*/}
 
 
 

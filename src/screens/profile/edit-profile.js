@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
-import {Link, useNavigate, useParams} from "react-router-dom";
 import * as authService from "../../services/auth-service";
+import {Link, useNavigate} from "react-router-dom";
 
-const EditProfile = () => {
-    const [profile, setProfile] = useState({});
+const EditProfile = ({profile, leaveEdit}) => {
+    //const [profile, setProfile] = useState({});
     const [updateUser, setUpdateUser] = useState({});
     const navigate = useNavigate();
 
@@ -40,32 +40,32 @@ const EditProfile = () => {
                       })
     }
 
-    useEffect(async () => {
-        try {
-            //let user = await authService.findUser("dummy");
-            let user = await authService.profile();
-            setProfile(user);
-            setUpdateUser(user);
-        } catch (e) {
-        }
-    }, []);
+    // useEffect(async () => {
+    //     try {
+    //         //let user = await authService.findUser("dummy");
+    //         //let user = await authService.profile();
+    //         //setProfile(profile);
+    //         setUpdateUser(user);
+    //     } catch (e) {
+    //     }
+    // }, []);
 
     /**
      * Update user information
      */
     const saveProfile = () => {
         authService.update(updateUser)
-            .then(() => navigate(`/profile/${profile.username}`))
+            .then(leaveEdit())
             .catch(e => alert(e));
     }
 
     return (
         <div className="ttr-edit-profile">
             <div className="border border-bottom-0">
-                <Link to={`/profile/${profile.username}`}
+                <button onClick={leaveEdit}
                       className="btn btn-light rounded-pill fa-pull-left fw-bolder mt-2 mb-2 ms-2">
-                    <i className="fa fa-close"></i>
-                </Link>
+                    <i className="fa fa-close"> </i>
+                </button>
                 <button className="btn btn-dark rounded-pill fa-pull-right fw-bolder mt-2 mb-2 me-2"
                         onClick={
                             saveProfile}>
