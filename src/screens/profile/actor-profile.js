@@ -68,7 +68,7 @@ const ActorProfile = ({actor, cur}) => {
                 <div className="mt-5 mb-5">
 
                     <div className="row">
-                        <p className="wd-title wd-gold">Filmography ></p>
+                        <Link to={'/list'} className="wd-title wd-gold">Filmography</Link>
                     </div>
                     <section className="wd-slide-container">
                         <ul id="slide-list">
@@ -86,7 +86,7 @@ const ActorProfile = ({actor, cur}) => {
                 <div className="mt-5 mb-5">
 
                     <div className="row">
-                        <p className="wd-title wd-gold">Filmography ></p>
+                        <Link to={'/list'} className="wd-title wd-gold">Filmography</Link>
                     </div>
                     <div className="mt-5 text-center">
                         <i className="fa fa-list wd-grey mb-3 fa-2x"/>

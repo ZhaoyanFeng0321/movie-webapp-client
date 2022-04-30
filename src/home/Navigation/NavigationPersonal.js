@@ -33,7 +33,7 @@ const Navigation = ({logout}) => {
             <div className="row mb-5">
 
                 <div className="col-2 mt-2">
-                    <Link to={`/home/${currentUser.username}`}><i
+                    <Link to={`/home/`}><i
                         className="fa fa-solid fa-film wd-film-icon"/></Link>
                 </div>
 

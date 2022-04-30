@@ -42,8 +42,10 @@ const Watchlist = ({profile, cur}) => {
             }
 
             <ul className="list-group">
-                {wlist.length === 0 &&
-                <h3 className="wd-white">Your watchlist is empty!</h3>}
+                {wlist.length === 0 && profile.accountType === "PERSONAL"&&
+                    <h3 className="wd-white">Your watchlist is empty!</h3>}
+                {wlist.length === 0 && profile.accountType === "ACTOR"&&
+                <h3 className="wd-white">Your filmography is empty!</h3>}
                 {wlist.length!==0 &&
                     wlist && wlist.map(movie =>
                                              <WatchlistItem key={movie}

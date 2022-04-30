@@ -1,5 +1,5 @@
 import {Link, useNavigate, useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import * as authService from "../../services/auth-service";
 import service from "../../services/user-service";
 
@@ -39,7 +39,7 @@ const WatchList = () => {
                     <p className="wd-title wd-gold">What to watch</p>
                 </div>
                 <div className="row">
-                    <p className="wd-title wd-white">From your watchlist ></p>
+                    <Link to={'/list'} className="wd-title wd-white">From your watchlist ></Link>
                 </div>
                 <div className="mt-5 text-center">
                     <i className="fa fa-list wd-grey mb-3 fa-2x"/>
