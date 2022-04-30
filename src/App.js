@@ -38,11 +38,11 @@ function App() {
                         <Route path="details">
                             <Route path=":imdbID" element={<OmdbDetails/>}/>
                         </Route>
-                        <Route path="login" element={<Login/>}/>
-                        <Route path="signup" element={<Signup/>}/>
+
                         <Route path="list" element={<WatchListPage/>}/>
                     </Route>
-
+                    <Route path="login" element={<Login/>}/>
+                    <Route path="signup" element={<Signup/>}/>
                     {/*</Route>*/}
 
                     {/*</Route>*/}
