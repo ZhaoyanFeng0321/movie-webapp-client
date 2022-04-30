@@ -1,6 +1,4 @@
 import React, {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
-import service from "../../services/review-service";
 import axios from "axios";
 import {Link} from "react-router-dom";
 
@@ -40,8 +38,8 @@ const ReviewItem = ({review, deleteReview, profile, cur}) => {
                                 {movies.Title}
                             </Link>
                         </div>
-                        <i className="fas fa-star" style={{color:'#F5DE50'}}> </i> {review.rating}/10
-                        <br/>
+                        {/*<i className="fas fa-star" style={{color:'#F5DE50'}}> </i> {review.rating}/10*/}
+                        {/*<br/>*/}
                         <div style={{fontSize: 'small', color: 'lightgray', marginBottom: '5px'}}>Posted On: {review.postedOn}</div>
 
                         <div style={{fontStyle: 'italic'}}>"{review.review}"</div>
