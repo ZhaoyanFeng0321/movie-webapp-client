@@ -17,6 +17,7 @@ const Profile = ({onEdit}) => {
     const [profile, setProfile] = useState({});
     const {username} = useParams();
     const [currentUser, setCurrentUser] = useState(undefined);
+    const [follow, setFollow] = useState(false);
 
     useEffect(async () => {
         try {
@@ -25,7 +26,11 @@ const Profile = ({onEdit}) => {
             if(username) {
                 let user = await authService.findUser(username);
                 if (username !== curUser.username) {
+                    if (await followService.findUserFollowUser(curUser.username, username)){
+                        setFollow(true);
+                    }
                     curUser = user;
+
                 }
             }
             setProfile(curUser);
@@ -38,9 +43,20 @@ const Profile = ({onEdit}) => {
         }
     }, [username]);
 
-    const FollowUser = async (username, followname) => {
-        await followService.followUser(username, followname)
+    const changeFollow = async (cur, pro)=> {
+        let fl = await followService.findUserFollowUser(cur, pro);
+        if (fl) {
+            setFollow(false);
+            await followService.deleteFollowing(cur,pro);
+        } else {
+            setFollow(true);
+            await followService.followUser(cur,pro);
+        }
     }
+
+    //const FollowUser = async (username, followname) => {
+    //     await followService.followUser(username, followname)
+    // }
 
     return (
         <div>
@@ -58,8 +74,8 @@ const Profile = ({onEdit}) => {
             {
                 currentUser && profile.username !== currentUser.username
                 && <div>
-                    <button type="button" onClick={() => FollowUser(currentUser.username, profile.username)} className="mt-2 float-end btn btn-warning rounded-pill">
-                        Follow
+                    <button type="button" onClick={() => changeFollow(currentUser.username, profile.username)} className="mt-2 float-end btn btn-warning rounded-pill">
+                        {follow? `Unfollow`:`Follow`}
                     </button>
 
                 </div>
