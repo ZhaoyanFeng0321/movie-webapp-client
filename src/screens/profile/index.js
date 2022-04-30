@@ -59,26 +59,34 @@ const Profile = () => {
 
     return(
         <div>
-            {
-                profile.username === currentUser.username
-                &&<div>
-                    <Link to={`/profile/${profile.username}/edit`}
-                          className="mt-2 me-2 btn btn-large btn-light border border-secondary fw-bolder rounded-pill fa-pull-right">
-                        Edit profile
-                    </Link>
-                    <button type="button" onClick={logout} className="mt-2 float-end btn btn-warning rounded-pill">
-                        Logout
-                    </button>
+            <div className='position-relative pe-15'>
+                {
+                    profile.username === currentUser.username
+                    &&<div className='d-flex flex-row-reverse'>
+                        <div className='p-2'>
+                            <Link to={`/profile/${profile.username}/edit`}
+                                  className="mt-2 me-2 btn btn-large btn-light border border-secondary fw-bolder rounded-pill fa-pull-right">
+                                Edit profile
+                            </Link>
+                        </div>
+                        <div className='p-2'>
+                            <button type="button" onClick={logout} className="mt-2 float-end btn btn-warning rounded-pill">
+                                Logout
+                            </button>
+                        </div>
+                    </div>
 
-                </div>
+                }
+                {
+                    profile.username !== currentUser.username &&
+                    <div className='d-flex flex-row-reverse'>
+                        <button type="button" onClick={() => FollowUser(currentUser.username, profile.username)} className="mt-2 float-end btn btn-warning rounded-pill">
+                            Follow
+                        </button>
+                    </div>
+                }
+            </div>
 
-            }
-            {
-                profile.username !== currentUser.username &&
-                <button type="button" onClick={() => followUser(currentUser.username, profile.username)} className="mt-2 float-end btn btn-warning rounded-pill">
-                    Follow
-                </button>
-            }
             {
                 profile.accountType === "PERSONAL"  &&
                 <UserProfile profile={profile} cur={currentUser} deleteMovieForUser={deleteMovieForUser}/>

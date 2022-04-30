@@ -20,7 +20,7 @@ const UserProfile = ({profile,cur}) => {
             </div>
 
             <div className="row">
-                <div className="col-4 col-sm-12 col-md-4">
+                <div className="col-4 col-sm-12 col-lg-4">
                     <img className="position-relative ttr-z-index-1 ttr-top-40px ttr-width-150px pf-profile-image"
                          src={profile.profilePhoto === undefined
                               ? "https://www.smilisticdental.com/wp-content/uploads/2017/11/blank-profile-picture-973460_960_720.png"
@@ -29,7 +29,7 @@ const UserProfile = ({profile,cur}) => {
                     {/*     style={{border:'solid 5px #F5DE50'}}/>*/}
                 </div>
 
-                <div className="col-8 col-sm-0 col-md-8 d-none d-md-block">
+                <div className="col-8 col-sm-0 col-lg-8 d-none d-lg-block">
                     <span className="wd-profile-username">{profile.username}</span>
 
                     <div className="wd-profile-name" style={{fontStyle:'italic'}}>
