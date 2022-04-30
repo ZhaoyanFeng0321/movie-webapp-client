@@ -10,6 +10,13 @@ export const findAllFollowingsOfUser = async (username) => {
     return follows;
 }
 
+export const findAllFollowedUser = async (username) => {
+    const response = await axios
+        .get(`${USER_API}/${username}/followers`);
+    const follows = response.data; // The data in the response is the tuits array sent back from findAllTuits in tuits-controller.js and it's embedded in the response's data property.
+    return follows;
+}
+
 export const deleteFollowing = async (username, followingname) => {
     const response = await axios
         .delete(`${USER_API}/${username}/unfollows/${followingname}`);

@@ -7,6 +7,7 @@ import ReviewList from "./reviewlist";
 import Watchlist from "./watchlist";
 import * as authService from "../../services/auth-service";
 import FollowList from "../follow/follow-list";
+import FollowedList from "../follow/followed-list";
 
 const UserProfile = ({profile,cur}) => {
 
@@ -68,7 +69,10 @@ const UserProfile = ({profile,cur}) => {
                     cur && profile.username === cur.username &&
                     <FollowList profile={profile} cur={cur}/>
                 }
-
+                {
+                    cur && profile.username === cur.username &&
+                    <FollowedList profile={profile} cur={cur}/>
+                }
                 {
                     cur && profile.username === cur.username &&
                     <Watchlist profile={profile} cur={cur}/>

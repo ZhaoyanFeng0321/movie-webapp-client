@@ -11,7 +11,7 @@ const FollowList = ({profile, cur}) => {
 
     const navigate = useNavigate();
 
-    const findFollowingsToUser = async () =>
+    const findFollowingsOfUser = async () =>
         // const currentUser = profile._id
         await service.findAllFollowingsOfUser(username)
             .then(followings => setFollows(followings));
@@ -19,7 +19,7 @@ const FollowList = ({profile, cur}) => {
 
     useEffect(async () => {
         try {
-            await findFollowingsToUser();
+            await findFollowingsOfUser();
         }catch (e) {
         }
 
@@ -28,7 +28,7 @@ const FollowList = ({profile, cur}) => {
     const deleteFollowing = async (followingname) => {
         if(profile !== undefined){
             await service.deleteFollowing(username, followingname)
-            await findFollowingsToUser();
+            await findFollowingsOfUser();
         }else{
             alert("Please log in!");
             navigate('/login');
