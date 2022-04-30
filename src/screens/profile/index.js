@@ -12,7 +12,31 @@ import UserProfile from "./user-profile";
 import ActorProfile from "./actor-profile";
 import AdminProfile from "./admin-profile";
 
-const Profile = ({profile, currentUser, onEdit}) => {
+const Profile = ({onEdit}) => {
+    const [profile, setProfile] = useState({});
+    const {username} = useParams();
+    const [currentUser, setCurrentUser] = useState(undefined);
+
+    useEffect(async () => {
+        try {
+            let curUser = await authService.profile();
+            setCurrentUser(curUser);
+            if(username) {
+                let user = await authService.findUser(username);
+                if (username !== curUser.username) {
+                    curUser = user;
+                }
+            }
+            setProfile(curUser);
+
+        } catch (e) {
+            setCurrentUser(undefined);
+            let user = await authService.findUser(username);
+            setProfile(user);
+            //navigate(`/profile/${username}`);
+        }
+    }, [username]);
+
     return (
         <div>
             {

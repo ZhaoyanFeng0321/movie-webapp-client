@@ -46,11 +46,11 @@ const ReviewList = ({profile, cur}) => {
 
 
             {/*<h3 style={{marginTop:'10px', color:'#F5DE50'}}>Reviews</h3>*/}
-            {profile.watchlist.length === 0 && profile.username === cur.username &&
+            {cur&&profile.watchlist.length === 0 && profile.username === cur.username &&
                 <h5>No reviews history.</h5>}
-            {profile.watchlist.length === 0 && profile.username !== cur.username &&
+            {cur&&profile.watchlist.length === 0 && profile.username !== cur.username &&
                 <h5>This user hasn't write a review.</h5>}
-            {profile.watchlist.length !== 0 &&
+            {cur&&profile.watchlist.length !== 0 &&
             <ul className="list-group">
                 {
                     reviews && reviews.map(review =>

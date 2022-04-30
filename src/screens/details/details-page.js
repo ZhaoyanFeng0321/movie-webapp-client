@@ -95,37 +95,6 @@ const OmdbDetails = () => {
     return (
         <div className="text-warning">
 
-{/*<<<<<<< HEAD*/}
-{/*            <div className="row mt-3 ms-5 me-5">*/}
-{/*                /!*<Navigation/>*!/*/}
-{/*            </div>*/}
-{/*=======*/}
-{/*            {currentUser.accountType !== "PERSONAL"  && currentUser.accountType !== "ACTOR"  &&currentUser.accountType !== "ADMIN"  &&*/}
-{/*            {!login &&*/}
-{/*                <div className="row mt-3 ms-5 me-5">*/}
-{/*                    <Navigation/>*/}
-
-{/*                </div>}*/}
-
-{/*            /!*{(currentUser.accountType === "PERSONAL"|| currentUser.accountType === "ACTOR" || currentUser.accountType === "ADMIN")  &&*!/*/}
-{/*            {login &&*/}
-{/*                <div className="row mt-3 ms-5 me-5">*/}
-{/*                    <NavigationPersonal/>*/}
-
-{/*                </div>}*/}
-
-            {/*<div className="row mt-3 ms-5 me-5">*/}
-            {/*    <Navigation/>*/}
-
-            {/*</div>*/}
-{/*>>>>>>> 91772299754e40a9bd63a9680370a0868b5240f2*/}
-
-            {/*<div className="row ms-5 me-5">*/}
-            {/*    <Link to="/result/:movieSearch">*/}
-            {/*        <i className="fa-solid fa-circle-chevron-left"></i>*/}
-            {/*    </Link>*/}
-            {/*</div>*/}
-
             <div>
             <div className="row ms-5 me-5">
 
@@ -138,7 +107,7 @@ const OmdbDetails = () => {
                     <img src={movieDetails.Poster} height={300} alt=""/>
                     <p className="mt-3"><i className="fa-solid fa-star-sharp"></i> {movieDetails.imdbRating}</p>
                     {/*<button className="btn btn-warning"><i className="fa-solid fa-thumbs-up"></i> </button>*/}
-                    <button onClick={()=>addMovieToList(currentUser._id, imdbID)} className="btn btn-block btn-warning" ><i className="fa-solid fa-plus"></i> Add to List</button>
+                    <button onClick={()=>addMovieToList(currentUser.username, imdbID)} className="btn btn-block btn-warning" ><i className="fa-solid fa-plus"></i> Add to List</button>
                 </div>
 
 

@@ -11,7 +11,6 @@ import WatchlistItem from "../../home/WatchList/WatchlistItem";
 import WatchListPersonal from "../../home/WatchList/WatchListPersonal";
 
 const UserProfile = ({profile,cur}) => {
-
     const [wlist, setMovies] = useState([]);
 
     const findMovies =  async (name) => {

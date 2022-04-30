@@ -12,23 +12,23 @@ import EditProfile from "./screens/profile/edit-profile";
 // const store = createStore();
 
 const MovieApp = () => {
-    const {username} = useParams();
+    // const {username} = useParams();
     const navigate = useNavigate();
     const [log, setLog] = useState(false);
-    const [currentUser, setCurrentUser] = useState({});
-    const [profile, setProfile] = useState({});
+    // const [currentUser, setCurrentUser] = useState({});
+    // const [profile, setProfile] = useState({});
     useEffect(async () => {
         try {
             let user = await authService.profile();
-            setCurrentUser(user);
+            // setCurrentUser(user);
             setLog(true);
-            if (username !== user.username) {
-                user = await authService.findUser(username);
-            } else {
-                user = await authService.findUser(username);
-                setCurrentUser(user);
-            }
-            setProfile(user);
+            // if (username !== user.username) {
+            //     user = await authService.findUser(username);
+            // } else {
+            //     user = await authService.findUser(username);
+            //     setCurrentUser(user);
+            // }
+            // setProfile(user);
         } catch (e) {
             //navigate('/');
         }
