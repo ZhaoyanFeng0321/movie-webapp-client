@@ -5,7 +5,7 @@ import FollowItem from "./follow-item";
 
 const FollowList = ({profile, cur}) => {
 
-    const {username} = useParams();
+    // const {username} = useParams();
 
     const [follows, setFollows] = useState([]);
 
@@ -13,7 +13,7 @@ const FollowList = ({profile, cur}) => {
 
     const findFollowingsOfUser = async () =>
         // const currentUser = profile._id
-        await service.findAllFollowingsOfUser(username)
+        await service.findAllFollowingsOfUser(profile.username)
             .then(followings => setFollows(followings));
 
 
@@ -27,7 +27,7 @@ const FollowList = ({profile, cur}) => {
 
     const deleteFollowing = async (followingname) => {
         if(profile !== undefined){
-            await service.deleteFollowing(username, followingname)
+            await service.deleteFollowing(profile.username, followingname)
             await findFollowingsOfUser();
         }else{
             alert("Please log in!");
