@@ -101,18 +101,18 @@ const OmdbDetails = () => {
 {/*            </div>*/}
 {/*=======*/}
 {/*            {currentUser.accountType !== "PERSONAL"  && currentUser.accountType !== "ACTOR"  &&currentUser.accountType !== "ADMIN"  &&*/}
-            {!login &&
-                <div className="row mt-3 ms-5 me-5">
-                    <Navigation/>
+{/*            {!login &&*/}
+{/*                <div className="row mt-3 ms-5 me-5">*/}
+{/*                    <Navigation/>*/}
 
-                </div>}
+{/*                </div>}*/}
 
-            {/*{(currentUser.accountType === "PERSONAL"|| currentUser.accountType === "ACTOR" || currentUser.accountType === "ADMIN")  &&*/}
-            {login &&
-                <div className="row mt-3 ms-5 me-5">
-                    <NavigationPersonal/>
+{/*            /!*{(currentUser.accountType === "PERSONAL"|| currentUser.accountType === "ACTOR" || currentUser.accountType === "ADMIN")  &&*!/*/}
+{/*            {login &&*/}
+{/*                <div className="row mt-3 ms-5 me-5">*/}
+{/*                    <NavigationPersonal/>*/}
 
-                </div>}
+{/*                </div>}*/}
 
             {/*<div className="row mt-3 ms-5 me-5">*/}
             {/*    <Navigation/>*/}
