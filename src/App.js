@@ -35,6 +35,7 @@ function App() {
                         <Route path="details">
                             <Route path=":imdbID" element={<OmdbDetails/>}/>
                         </Route>
+
                         <Route path="list" element={<WatchListPage/>}/>
                     </Route>
                     <Route path="login" element={<Login/>}/>
