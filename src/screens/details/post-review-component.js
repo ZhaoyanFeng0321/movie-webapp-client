@@ -38,11 +38,11 @@ const PostReview = ({mid, findReviewsByOMDB}) => {
     }
 
     return ( <>
-        <h2>Post your review</h2>
+        <label for="rtext"> <h2>Post your review</h2> </label>
 
         <div className="d-flex">
 
-            <textarea className="form-control form-group w-100 h-100" placeholder="write a review!"
+            <textarea id="rtext" className="form-control form-group w-100 h-100" placeholder="write a review!"
                       onChange={(event) => setNewReview({...newReview,
                                                            review: event.target.value})}>
             </textarea>
@@ -64,8 +64,8 @@ const PostReview = ({mid, findReviewsByOMDB}) => {
             </div>
         </div>
 
+</>
 
-
-    </> );
+    );
 }
 export default PostReview;

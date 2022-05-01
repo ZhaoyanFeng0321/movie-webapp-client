@@ -8,18 +8,6 @@ import userService from "../../services/user-service";
 
 const FollowItem = ({following, deleteFollowing, profile, cur}) => {
 
-    // const [user, setUser] = useState([])
-    // const findUserByUsername = async (username) => {
-    //
-    //     await userService.findUserByUsername(username);
-    //
-    //
-    // }
-    // //
-    // useEffect = async ()=>{
-    //     await findUserByUsername(following.userFollowed).then(us=>setUser(us));
-    //     // console.log(following)
-    // }
 
     return (
         <>
@@ -33,9 +21,9 @@ const FollowItem = ({following, deleteFollowing, profile, cur}) => {
 
                         {
                             profile.username === cur.username &&
-                            <i className="fas fa-times-circle float-end"
+                            <i className="fas fa-times-circle float-end fa-2x"
                                style={{color:'#F5DE50'}}
-                               onClick={() => deleteFollowing(following.userFollowed)}></i>
+                               onClick={() => deleteFollowing(following.userFollowed)}> </i>
                         }
 
                         <div style={{fontWeight: 'bold', fontSize: '20px'}}>

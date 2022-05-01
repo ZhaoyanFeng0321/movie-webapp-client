@@ -56,7 +56,7 @@ const ReviewItem = ({item,deleteReview}) => {
                         {/*    <span className="fw-bold wd-white"> {item.rating}/10</span></i>*/}
                         <i className="fas fa-star" style={{color:'#F5DE50'}}> </i> {item.rating}/10
 
-                        <i className="fas fa-times-circle float-end wd-gold" onClick={() => deleteReview(item._id)}/>
+                        <i className="fas fa-times-circle float-end wd-gold fa-2x" onClick={() => deleteReview(item._id)}/>
 
 
                         <p className="mt-3">"{item.review}"</p>
