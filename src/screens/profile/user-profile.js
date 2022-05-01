@@ -29,7 +29,7 @@ const UserProfile = ({profile,cur}) => {
     },[profile])
 
     return(
-        <div className="mb-4 mt-2">
+        <div>
             <div className="mb-1">
 
                 <Link to={`/home`}><i className="far fa-arrow-alt-circle-left fa-lg wd-imbd-yellow"> </i></Link>
@@ -61,6 +61,21 @@ const UserProfile = ({profile,cur}) => {
                             <i className="fas fa-calendar-alt me-1"> </i>
                             IMBD member since {profile.joined.substring(0, 10).toString()}
                         </div>
+
+                        {
+                            cur && profile.username === cur.username &&
+                            <div style={{fontSize: '18px'}}>
+                                <i className="fas fa-envelope me-2"></i>
+                                Email: {profile.email}
+                            </div>
+                        }
+                        {
+                            profile.biography !== undefined &&
+                            <div style={{fontSize: '18px'}}>
+                                <i className="fas fa-blog me-2"></i>
+                                Biography: "{profile.biography}"
+                            </div>
+                        }
 
                     </div>
 

@@ -25,15 +25,14 @@ const ReviewItem = ({item}) => {
         <li className="list-group-item">
             <div className="row">
 
-                <div className="col-3 d-md-block d-sm-none d-none">
+                <div className="col-2 col-sm-0 col-md-2 col-lg-2 d-none d-lg-block">
 
                     <Link to={`/details/${movies.imdbID}`} className="wd-gold">
                     <img className="wd-poster wd-section-left" src={movies.Poster} alt=""/>
                         <p className="wd-movie ">{movies.Title}</p></Link>
                 </div>
 
-
-                <div className="col-9 col-sm-8">
+                <div className="col-10 col-sm-12 col-md-10 col-lg-10 ">
 
                     <i className="fas fa-star" style={{color:'#F5DE50'}}> </i> {item.rating}/10
 

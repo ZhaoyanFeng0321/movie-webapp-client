@@ -15,7 +15,7 @@ const ReviewItem = ({review, deleteReview, profile, cur}) => {
             <div className="list-group-item pt-2 pb-2">
                 <div className="row">
 
-                    <div className="col-2 col-sm-0 col-md-2 d-none d-md-block">
+                    <div className="col-2 col-sm-0 col-md-2 d-none d-xl-block">
                         <img src={movies.Poster} alt="poster" width="120px"/>
                     </div>
                     <div className="col-10 col-sm-12 col-md-10">
