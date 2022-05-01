@@ -38,6 +38,8 @@ const PostReview = ({mid, findReviewsByOMDB}) => {
 
 
     return ( <>
+        <h2>Post your review</h2>
+
         <div className="d-flex">
 
             <textarea className="form-control form-group w-100 h-100"

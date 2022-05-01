@@ -12,6 +12,7 @@ import {addMovieToList} from "../../services/auth-service";
 import * as service from "../../services/review-service";
 import ReviewItem from "./reviewItem";
 import PostReview from "./post-review-component";
+import ReviewItemAdmin from "./ReviewItemAdmin";
 
 
 const OmdbDetails = () => {
@@ -21,7 +22,7 @@ const OmdbDetails = () => {
     const {imdbID} = useParams()
 
     const [login, setLogin] = useState(false);
-    const [currentUser,setCurrentUser] = useState({});
+    const [currentUser,setCurrentUser] = useState(undefined);
     // const searchMovieByImdbID = async () => {
     //     const response = await axios.get(`${url}&i=${imdbID}`)
     //     setMovieDetails(response.data)
@@ -41,7 +42,6 @@ const OmdbDetails = () => {
             setCurrentUser(user);
             setLogin(true);
         } catch (e) {
-
         }
         // if(username!==user.username){
         //     user = await authService.findUser(username);
@@ -69,7 +69,9 @@ const OmdbDetails = () => {
 
     },[])
 
-
+    const deleteReview = async (rid) => {
+        await service.deleteReview(rid).then(findReviewsByOMDB);
+    }
 
     // useEffect(() => {
     //     searchMovieByImdbID()
@@ -95,6 +97,37 @@ const OmdbDetails = () => {
     return (
         <div className="text-warning">
 
+{/*<<<<<<< HEAD*/}
+{/*            <div className="row mt-3 ms-5 me-5">*/}
+{/*                /!*<Navigation/>*!/*/}
+{/*            </div>*/}
+{/*=======*/}
+{/*            {currentUser.accountType !== "PERSONAL"  && currentUser.accountType !== "ACTOR"  &&currentUser.accountType !== "ADMIN"  &&*/}
+{/*            {!login &&*/}
+{/*                <div className="row mt-3 ms-5 me-5">*/}
+{/*                    <Navigation/>*/}
+
+{/*                </div>}*/}
+
+{/*            /!*{(currentUser.accountType === "PERSONAL"|| currentUser.accountType === "ACTOR" || currentUser.accountType === "ADMIN")  &&*!/*/}
+{/*            {login &&*/}
+{/*                <div className="row mt-3 ms-5 me-5">*/}
+{/*                    <NavigationPersonal/>*/}
+
+{/*                </div>}*/}
+
+            {/*<div className="row mt-3 ms-5 me-5">*/}
+            {/*    <Navigation/>*/}
+
+            {/*</div>*/}
+{/*>>>>>>> 91772299754e40a9bd63a9680370a0868b5240f2*/}
+
+            {/*<div className="row ms-5 me-5">*/}
+            {/*    <Link to="/result/:movieSearch">*/}
+            {/*        <i className="fa-solid fa-circle-chevron-left"></i>*/}
+            {/*    </Link>*/}
+            {/*</div>*/}
+
             <div>
             <div className="row ms-5 me-5">
 
@@ -107,11 +140,11 @@ const OmdbDetails = () => {
                     <img src={movieDetails.Poster} height={300} alt=""/>
                     <p className="mt-3"><i className="fa-solid fa-star-sharp"></i> {movieDetails.imdbRating}</p>
                     {/*<button className="btn btn-warning"><i className="fa-solid fa-thumbs-up"></i> </button>*/}
-                    <button onClick={()=>addMovieToList(currentUser.username, imdbID)} className="btn btn-block btn-warning" ><i className="fa-solid fa-plus"></i> Add to List</button>
+                    {currentUser!==undefined &&<button onClick={()=>addMovieToList(currentUser.username, imdbID)} className="btn btn-block btn-warning" ><i className="fa-solid fa-plus"></i></button>}
                 </div>
 
 
-                <div className="col-9 d-none d-md-block">
+                <div className="col-9 d-none d-lg-block">
                     <p>{movieDetails.Plot}</p>
                     <p> Year Released: {movieDetails.Year}</p>
                     <p> Rated: {movieDetails.Rated}</p>
@@ -123,8 +156,8 @@ const OmdbDetails = () => {
                     <p> Country: {movieDetails.Country}</p>
                     <p> Award: {movieDetails.Awards}</p>
                     <p> Box Office :{movieDetails.BoxOffice}</p>
-                    <h2>Post your review</h2>
-                    <PostReview mid={imdbID} findReviewsByOMDB={findReviewsByOMDB}/>
+
+                    {currentUser!==undefined &&<PostReview mid={imdbID} findReviewsByOMDB={findReviewsByOMDB}/>}
 
 
 
@@ -145,11 +178,19 @@ const OmdbDetails = () => {
                         <h5 className="wd-white">No reviews for this movie. Be the first!</h5>
                     }
                 <ul className="list-group">
-                    {
+
+                    {/*{currentUser&&*/}
+                    {/*    reviews && reviews.map(review =>*/}
+                    {/*        <ReviewItem key={review._id}*/}
+                    {/*                    item={review}/>)*/}
+                    {/*}*/}
+                    {currentUser && currentUser.accountType ==="ADMIN" ? (
                         reviews && reviews.map(review =>
-                            <ReviewItem key={review._id}
-                                        item={review}/>)
-                    }
+                            <ReviewItemAdmin key={review._id}
+                                        item={review} deleteReview={deleteReview}/>)) : (reviews && reviews.map(review =>
+                        <ReviewItem key={review._id}
+                                    item={review}/>))}
+
                 </ul>
                 </div>
 
