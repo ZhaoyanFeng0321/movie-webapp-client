@@ -17,10 +17,13 @@ const ResultScreen = () =>{
     const [movies, setMovies] = useState([])
     const searchUrl = 'https://www.omdbapi.com/?apikey=b2bd5979'
     const searchByTitle = async () => {
-        const searchStr = titleRef.current.value || movieSearch || null
+
+        const searchStr = titleRef.current.value || movieSearch
         const response = await axios.get(`${searchUrl}&s=${searchStr}`)
-        setMovies(response.data.Search)
-        titleRef.current.value = searchStr
+        if(response.data.Response === 'True'){
+            setMovies(response.data.Search)
+        }
+        // titleRef.current.value = searchStr
         if(searchStr !== null && response.data.Response !=='False'){
             navigate(`/result/${searchStr}`)
         }
