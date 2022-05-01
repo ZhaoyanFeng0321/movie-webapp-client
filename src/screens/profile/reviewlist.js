@@ -6,8 +6,6 @@ import {useNavigate, useParams} from "react-router-dom";
 
 const ReviewList = ({profile, cur}) => {
 
-    //const {username} = useParams();
-
     const [reviews, setReviews] = useState([]);
 
     const navigate = useNavigate();
@@ -34,8 +32,6 @@ const ReviewList = ({profile, cur}) => {
         }
     }
 
-    // console.log(user)
-    // console.log(reviews)
 
     return(
         <>
@@ -45,10 +41,9 @@ const ReviewList = ({profile, cur}) => {
             </div>
 
 
-            {/*<h3 style={{marginTop:'10px', color:'#F5DE50'}}>Reviews</h3>*/}
-            {reviews.length === 0 && profile.username === cur.username &&
+            {cur&&reviews.length === 0 && profile.username === cur.username &&
                 <h5>No reviews history.</h5>}
-            {reviews.length === 0 && profile.username !== cur.username &&
+            {cur&&reviews.length === 0 && profile.username !== cur.username &&
                 <h5>This user hasn't write a review.</h5>}
             {reviews.length !== 0 &&
             <ul className="list-group">

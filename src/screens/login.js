@@ -8,7 +8,8 @@ const Login = () => {
     const navigate = useNavigate();
     const login = () => {
         service.login(loginUser)
-            .then((user) => navigate(`/home`))
+            // .then(() => navigate(`/home`))
+            .then(() => navigate(`/home`))
             .catch(e => alert(e));
     }
 

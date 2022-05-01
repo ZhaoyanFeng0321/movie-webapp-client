@@ -3,8 +3,6 @@ import React, {useEffect, useState} from "react";
 import * as authService from "../../services/auth-service";
 
 const Navigation = ({logout}) => {
-
-    // const {username} = useParams();
     const navigate = useNavigate();
     const [currentUser, setCurrentUser] = useState({});
     //
@@ -12,12 +10,6 @@ const Navigation = ({logout}) => {
         try {
             let user = await authService.profile();
             setCurrentUser(user);
-            // if(username!==user.username){
-            //     user = await authService.findUser(username);
-            // }else{
-            //     user = await authService.findUser(username);
-            //     setCurrentUser(user);
-            // }
         } catch (e) {
             navigate('/login');
         }
@@ -33,7 +25,7 @@ const Navigation = ({logout}) => {
             <div className="row mb-5">
 
                 <div className="col-2 mt-2">
-                    <Link to={`/home/`}><i
+                    <Link to={`/home`}><i
                         className="fa fa-solid fa-film wd-film-icon"/></Link>
                 </div>
 

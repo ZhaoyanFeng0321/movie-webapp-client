@@ -9,9 +9,10 @@ import Watchlist from "../../home/WatchList/WatchList";
 import * as authService from "../../services/auth-service";
 import WatchlistItem from "../../home/WatchList/WatchlistItem";
 import WatchListPersonal from "../../home/WatchList/WatchListPersonal";
+import FollowedList from "../follow/followed-list";
+import FollowList from "../follow/follow-list";
 
 const UserProfile = ({profile,cur}) => {
-
     const [wlist, setMovies] = useState([]);
 
     const findMovies =  async (name) => {
@@ -68,7 +69,7 @@ const UserProfile = ({profile,cur}) => {
             <ReviewList profile={profile} cur={cur}/>
             {/*<Watchlist profile={profile} cur={cur}/>*/}
 
-                {wlist.length !== 0 && cur.username === profile.username &&
+                {cur&&wlist.length !== 0 && cur.username === profile.username &&
                     <div className="mt-5 mb-5">
 
                         <div className="row ">
@@ -89,8 +90,15 @@ const UserProfile = ({profile,cur}) => {
                     </div>
                 }
 
-
-                {wlist.length === 0 && cur.username === profile.username &&
+                {
+                    cur && profile.username === cur.username &&
+                    <FollowList profile={profile} cur={cur}/>
+                }
+                {
+                    cur && profile.username === cur.username &&
+                    <FollowedList profile={profile} cur={cur}/>
+                }
+                {cur&&wlist.length === 0 && cur.username === profile.username &&
                     <WatchListPersonal/>
                 }
         </div>
