@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import "./profile.css"
 import WatchlistItem from "../../home/WatchList/WatchlistItem";
 import * as service from "../../services/auth-service";
@@ -11,6 +11,7 @@ import * as followService from "../../services/follow-service";
 const ActorProfile = ({actor, cur, onEdit}) => {
     const [wlist, setMovies] = useState([]);
     const [follow, setFollow] = useState(false);
+    const username = useParams();
 
     const findMovies =  async (name) => {
         await service.findWatchListByUser(name).then(list =>setMovies(list.movie));
@@ -38,7 +39,7 @@ const ActorProfile = ({actor, cur, onEdit}) => {
             await createWatchListByUser({user:actor.username, movie:[]})
                 .then(list=>setMovies(list.movie));
         }
-    },[actor])
+    },[actor, username])
 
     return (
         <div className="mb-4 mt-2">
