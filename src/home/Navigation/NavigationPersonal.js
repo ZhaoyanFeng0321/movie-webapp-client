@@ -22,7 +22,7 @@ const Navigation = ({logout}) => {
 
     return (
         <>
-            <div className="row">
+            <div className="row mt-3">
 
                 <div className="col-2 mt-2">
                     <Link to={`/home`}><i

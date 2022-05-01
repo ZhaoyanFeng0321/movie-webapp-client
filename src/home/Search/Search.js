@@ -40,7 +40,7 @@ const Search = () =>{
 
     return (
         <>
-            <div className="row ms-5 me-5">
+            <div className="row mt-5">
 
                 <input ref={titleRef} className="form-control w-75" placeholder="Search movies.."/>
                 <button className="btn btn-primary float-end w-25" onClick={searchByTitle}>Search</button>

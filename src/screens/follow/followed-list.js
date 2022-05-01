@@ -36,7 +36,7 @@ const FollowedList = ({profile, cur}) => {
             <div className="row mt-5">
                 <p className="wd-title wd-gold">Followers</p>
             </div>
-            <ul className="list-group">
+            <ul className="list-group mb-5">
                 {
                     follows && follows.map(following =>
                                                <FollowedItem key={following._id}
