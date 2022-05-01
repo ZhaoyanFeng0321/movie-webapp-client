@@ -21,20 +21,13 @@ const FollowedList = ({profile, cur}) => {
 
     }, [])
 
-    // const followNewUser = async (followingname) => {
-    //     if(profile !== undefined){
-    //         await service.followUser(profile.username, followingname)
-    //         await findFollowersOfUser();
-    //     }else{
-    //         alert("Please log in!");
-    //         navigate('/login');
-    //     }
-    // }
-
     return (
         <>
             <div className="row mt-5">
                 <p className="wd-title wd-gold">Followers</p>
+                {follows.length===0 &&
+                 <p className="row mt-5">You don't have follower.</p>
+                }
             </div>
             <ul className="list-group">
                 {

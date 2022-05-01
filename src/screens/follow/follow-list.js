@@ -38,6 +38,9 @@ const FollowList = ({profile, cur}) => {
         <>
             <div className="row mt-5">
                 <p className="wd-title wd-gold">Followings</p>
+                {follows.length===0 &&
+                 <p>You are not following anyone.</p>
+                }
             </div>
             <ul className="list-group">
                 {
@@ -48,6 +51,7 @@ const FollowList = ({profile, cur}) => {
                                                            profile={profile}
                                                            cur={cur}/>)
                 }
+
             </ul>
         </>
     )
