@@ -22,13 +22,13 @@ const WatchlistItem = ({movie, deleteMovieForUser, profile, cur}) => {
                     <div className="col-10 col-sm-12 col-md-10">
                         {
                             cur && profile.username === cur.username &&
-                            <i className="fas fa-times-circle float-end"
+                            <i className="fas fa-times-circle float-end fa-2x"
                                style={{color:'#F5DE50'}}
                                onClick={() => deleteMovieForUser(profile.username, movie)}> </i>
                         }
                         {
                             cur && cur.accountType === "ADMIN" &&
-                            <i className="fas fa-times-circle float-end"
+                            <i className="fas fa-times-circle float-end fa-2x"
                                style={{color:'#F5DE50'}}
                                onClick={() => deleteMovieForUser(profile.username, movie)}> </i>
                         }

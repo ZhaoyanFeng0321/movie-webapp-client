@@ -5,14 +5,11 @@ import FollowedItem from "./followed-item";
 
 const FollowedList = ({profile, cur}) => {
 
-    // const {username} = useParams();
-
     const [follows, setFollows] = useState([]);
 
     const navigate = useNavigate();
 
     const findFollowersOfUser = async () =>
-        // const currentUser = profile._id
         await service.findAllFollowedUser(profile.username)
             .then(followings => setFollows(followings));
 
@@ -24,10 +21,20 @@ const FollowedList = ({profile, cur}) => {
 
     }, [])
 
+    // const followNewUser = async (followingname) => {
+    //     if(profile !== undefined){
+    //         await service.followUser(profile.username, followingname)
+    //         await findFollowersOfUser();
+    //     }else{
+    //         alert("Please log in!");
+    //         navigate('/login');
+    //     }
+    // }
+
     return (
         <>
             <div className="row mt-5">
-                <p className="wd-title wd-gold">Followed By</p>
+                <p className="wd-title wd-gold">Followers</p>
             </div>
             <ul className="list-group">
                 {

@@ -12,7 +12,6 @@ const FollowList = ({profile, cur}) => {
     const navigate = useNavigate();
 
     const findFollowingsOfUser = async () =>
-        // const currentUser = profile._id
         await service.findAllFollowingsOfUser(profile.username)
             .then(followings => setFollows(followings));
 

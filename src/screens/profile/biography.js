@@ -5,8 +5,6 @@ import {useParams} from "react-router-dom";
 import * as authService from "../../services/auth-service";
 
 const Biography = ({profile, cur}) => {
-   // const {username} = useParams();
-   // const [user, setUser] = useState(undefined);
     const [wlist, setMovies] = useState([]);
 
     const findMovies = (user) => {
@@ -14,11 +12,8 @@ const Biography = ({profile, cur}) => {
         setMovies(wlist);
     }
 
-    //const [wlist, setWlist] = useState([]);
     useEffect(async () => {
         try {
-            //const u = await authService.findUser(username)
-            //setUser(u);
             findMovies(profile);
         } catch (e) {
         }

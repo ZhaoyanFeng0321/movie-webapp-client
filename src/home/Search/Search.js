@@ -38,26 +38,8 @@ const Search = () =>{
         }catch(e){}
     },[])
 
-
-    // useEffect(() => {
-    //     searchByTitle();
-    // }, [])
-
     return (
         <>
-            {/*{!login &&*/}
-            {/*<div className="row mt-3 ms-5 me-5">*/}
-            {/*    <Navigation/>*/}
-            {/*</div>}*/}
-
-            {/*{login&&*/}
-            {/*    <div className="row mt-3 ms-5 me-5">*/}
-            {/*        <NavigationPersonal/>*/}
-            {/*    </div>}*/}
-
-
-
-
             <div className="row ms-5 me-5">
 
                 <input ref={titleRef} className="form-control w-75" placeholder="Search movies.."/>

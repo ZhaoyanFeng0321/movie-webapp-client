@@ -11,13 +11,11 @@ import * as authService from "../../services/auth-service"
 import UserProfile from "./user-profile";
 import ActorProfile from "./actor-profile";
 import AdminProfile from "./admin-profile";
-import * as followService from "../../services/follow-service"
 
 const Profile = ({onEdit}) => {
     const [profile, setProfile] = useState({});
     const {username} = useParams();
     const [currentUser, setCurrentUser] = useState(undefined);
-    const [follow, setFollow] = useState(false);
 
     useEffect(async () => {
         try {
@@ -26,11 +24,7 @@ const Profile = ({onEdit}) => {
             if(username) {
                 let user = await authService.findUser(username);
                 if (username !== curUser.username) {
-                    if (await followService.findUserFollowUser(curUser.username, username)){
-                        setFollow(true);
-                    }
                     curUser = user;
-
                 }
             }
             setProfile(curUser);
@@ -39,59 +33,24 @@ const Profile = ({onEdit}) => {
             setCurrentUser(undefined);
             let user = await authService.findUser(username);
             setProfile(user);
-            //navigate(`/profile/${username}`);
         }
     }, [username]);
 
-    const changeFollow = async (cur, pro)=> {
-        let fl = await followService.findUserFollowUser(cur, pro);
-        if (fl) {
-            setFollow(false);
-            await followService.deleteFollowing(cur,pro);
-        } else {
-            setFollow(true);
-            await followService.followUser(cur,pro);
-        }
-    }
-
-    //const FollowUser = async (username, followname) => {
-    //     await followService.followUser(username, followname)
-    // }
 
     return (
         <div>
-            {
-                currentUser && profile.username === currentUser.username
-                && <div className="d-flex flex-row-reverse">
-                    <button type='submit' className="mt-2 me-2 btn btn-large btn-light border border-secondary fw-bolder rounded-pill fa-pull-right"
-                            onClick={onEdit}>
-                        Edit Profile
-                    </button>
 
-                </div>
-
-            }
-            {
-                currentUser && profile.username !== currentUser.username
-                && <div className="d-flex flex-row-reverse">
-                    <button type="button" onClick={() => changeFollow(currentUser.username, profile.username)} className="float-end btn btn-warning rounded-pill">
-                        {follow? `Unfollow`:`Follow`}
-                    </button>
-
-                </div>
-
-            }
             {
                 profile.accountType === "PERSONAL" &&
-                <UserProfile profile={profile} cur={currentUser}/>
+                <UserProfile profile={profile} cur={currentUser} onEdit={onEdit}/>
             }
             {
                 profile.accountType === "ACTOR" &&
-                <ActorProfile actor={profile} cur={currentUser}/>
+                <ActorProfile actor={profile} cur={currentUser} onEdit={onEdit}/>
             }
             {
                 profile.accountType === "ADMIN" &&
-                <AdminProfile profile={profile} cur={currentUser}/>
+                <AdminProfile profile={profile} cur={currentUser} onEdit={onEdit}/>
             }
 
         </div>

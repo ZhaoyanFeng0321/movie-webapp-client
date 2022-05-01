@@ -30,7 +30,6 @@ const Watchlist = ({profile, cur}) => {
     const deleteMovieForUser = async (username, mid) => {
         await service.removeMovieFromList(username, mid).catch(e => alert(e));
         await findMovies(username);
-
     }
 
     return (

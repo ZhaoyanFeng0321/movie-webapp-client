@@ -8,34 +8,24 @@ import userService from "../../services/user-service";
 
 const FollowItem = ({following, deleteFollowing, profile, cur}) => {
 
-
     return (
         <>
             <div className="list-group-item pt-2 pb-2">
                 <div className="row">
                     <div className="col">
-                        {/*<div className="col-2 col-sm-0 col-md-2 d-none d-md-block">*/}
-                        {/*    /!*<img src={user.profilePhoto} alt="poster" width="120px"/>*!/*/}
-                        {/*</div>*/}
-                        {/*<div className="col-10 col-sm-12 col-md-10">*/}
 
-                        {
-                            profile.username === cur.username &&
-                            <i className="fas fa-times-circle float-end fa-2x"
-                               style={{color:'#F5DE50'}}
-                               onClick={() => deleteFollowing(following.userFollowed)}> </i>
-                        }
+                        <button type="button"
+                                onClick={() => deleteFollowing(following.userFollowed)}
+                                className="float-end btn btn-warning rounded-pill">
+                            Unfollow
+                        </button>
+
 
                         <div style={{fontWeight: 'bold', fontSize: '20px'}}>
                             <Link to={`/profile/${following.userFollowed}`}>
                                 {following.userFollowed}
                             </Link>
                         </div>
-                        {/*<i className="fas fa-star" style={{color:'#F5DE50'}}></i> {review.rating}/10*/}
-                        {/*<br/>*/}
-                        {/*<div style={{fontSize: 'small', color: 'lightgray', marginBottom: '5px'}}>Posted On: {review.postedOn}</div>*/}
-
-                        {/*<div style={{fontStyle: 'italic'}}>"{review.review}"</div>*/}
                     </div>
 
                 </div>
