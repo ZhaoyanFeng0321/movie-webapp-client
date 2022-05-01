@@ -13,6 +13,7 @@ import * as followService from "../../services/follow-service";
 const UserProfile = ({profile, cur, onEdit}) => {
     const [wlist, setMovies] = useState([]);
     const [follow, setFollow] = useState(false);
+    const username = useParams();
 
     const findMovies = async (name) => {
         await service.findWatchListByUser(name).then(list => setMovies(list.movie));
@@ -40,7 +41,7 @@ const UserProfile = ({profile, cur, onEdit}) => {
             await createWatchListByUser({user: profile.username, movie: []})
                 .then(list => setMovies(list.movie));
         }
-    }, [profile])
+    }, [profile, username])
 
     return (
         <div>
