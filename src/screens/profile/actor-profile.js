@@ -62,7 +62,6 @@ const ActorProfile = ({actor, cur}) => {
 
                 </div>
             </div>
-            {/*<Watchlist profile={actor} cur={cur}/>*/}
 
             {wlist.length !== 0 &&
                 <div className="mt-5 mb-5">
@@ -82,7 +81,7 @@ const ActorProfile = ({actor, cur}) => {
                 </div>
             }
 
-            {wlist.length === 0 && actor.username === cur.username &&
+            {cur&&wlist.length === 0 && actor.username === cur.username &&
                 <div className="mt-5 mb-5">
 
                     <div className="row">
@@ -99,7 +98,7 @@ const ActorProfile = ({actor, cur}) => {
                 </div>
             }
 
-            {wlist.length === 0 && actor.username !== cur.username &&
+            {cur&&wlist.length === 0 && actor.username !== cur.username &&
                 <div className="mt-5 mb-5">
 
                     <div className="row">

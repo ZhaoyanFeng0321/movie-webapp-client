@@ -2,8 +2,8 @@ import React, {useEffect, useState} from "react";
 import * as authService from "../../services/auth-service";
 import {Link, useNavigate} from "react-router-dom";
 
-const EditProfile = ({profile, newUser, leaveEdit}) => {
-    //const [profile, setProfile] = useState({});
+const EditProfile = ({leaveEdit}) => {
+    const [profile, setProfile] = useState({});
     const [updateUser, setUpdateUser] = useState({});
     const navigate = useNavigate();
 
@@ -42,8 +42,9 @@ const EditProfile = ({profile, newUser, leaveEdit}) => {
     useEffect(async () => {
         try {
             //let user = await authService.findUser("dummy");
-            //setProfile(toUpdate);
-            setUpdateUser(profile);
+            let user = await authService.profile();
+            setProfile(user);
+            setUpdateUser(user);
         } catch (e) {
         }
     }, []);
@@ -51,7 +52,7 @@ const EditProfile = ({profile, newUser, leaveEdit}) => {
     /**
      * Update user information
      */
-    const saveProfile = async (updateUser) => {
+    const saveProfile = async () => {
         try {
             await authService.update(updateUser).then(leaveEdit());
         } catch (e) {
@@ -67,8 +68,8 @@ const EditProfile = ({profile, newUser, leaveEdit}) => {
                     <i className="fa fa-close"> </i>
                 </button>
                 <button className="btn btn-dark rounded-pill fa-pull-right fw-bolder mt-2 mb-2 me-2"
-                        onClick={()=>
-                            saveProfile(updateUser)}>
+                        onClick={
+                            saveProfile}>
                     Save
                 </button>
                 <h4 className="p-2 mb-0 pb-0 fw-bolder">Edit profile</h4>

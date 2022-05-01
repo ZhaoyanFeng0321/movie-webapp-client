@@ -11,8 +11,53 @@ import * as authService from "../../services/auth-service"
 import UserProfile from "./user-profile";
 import ActorProfile from "./actor-profile";
 import AdminProfile from "./admin-profile";
+import * as followService from "../../services/follow-service"
 
-const Profile = ({profile, currentUser, onEdit}) => {
+const Profile = ({onEdit}) => {
+    const [profile, setProfile] = useState({});
+    const {username} = useParams();
+    const [currentUser, setCurrentUser] = useState(undefined);
+    const [follow, setFollow] = useState(false);
+
+    useEffect(async () => {
+        try {
+            let curUser = await authService.profile();
+            setCurrentUser(curUser);
+            if(username) {
+                let user = await authService.findUser(username);
+                if (username !== curUser.username) {
+                    if (await followService.findUserFollowUser(curUser.username, username)){
+                        setFollow(true);
+                    }
+                    curUser = user;
+
+                }
+            }
+            setProfile(curUser);
+
+        } catch (e) {
+            setCurrentUser(undefined);
+            let user = await authService.findUser(username);
+            setProfile(user);
+            //navigate(`/profile/${username}`);
+        }
+    }, [username]);
+
+    const changeFollow = async (cur, pro)=> {
+        let fl = await followService.findUserFollowUser(cur, pro);
+        if (fl) {
+            setFollow(false);
+            await followService.deleteFollowing(cur,pro);
+        } else {
+            setFollow(true);
+            await followService.followUser(cur,pro);
+        }
+    }
+
+    //const FollowUser = async (username, followname) => {
+    //     await followService.followUser(username, followname)
+    // }
+
     return (
         <div>
             {
@@ -27,14 +72,15 @@ const Profile = ({profile, currentUser, onEdit}) => {
 
             }
             {
-                profile.username !== currentUser.username &&
-                <div className='d-flex flex-row-reverse'>
-                    <button type="button" onClick={() => FollowUser(currentUser.username, profile.username)} className="mt-2 float-end btn btn-warning rounded-pill">
-                        Follow
+                currentUser && profile.username !== currentUser.username
+                && <div>
+                    <button type="button" onClick={() => changeFollow(currentUser.username, profile.username)} className="mt-2 float-end btn btn-warning rounded-pill">
+                        {follow? `Unfollow`:`Follow`}
                     </button>
-                </div>
-            }
 
+                </div>
+
+            }
             {
                 profile.accountType === "PERSONAL" &&
                 <UserProfile profile={profile} cur={currentUser}/>

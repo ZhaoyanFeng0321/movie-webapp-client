@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import * as service from "../../services/follow-service"
 import {useNavigate, useParams} from "react-router-dom";
-import FollowItem from "./follow-item";
 import FollowedItem from "./followed-item";
 
 const FollowedList = ({profile, cur}) => {
@@ -17,35 +16,26 @@ const FollowedList = ({profile, cur}) => {
         await service.findAllFollowedUser(profile.username)
             .then(followings => setFollows(followings));
 
-
     useEffect(async () => {
         try {
             await findFollowersOfUser();
-        }catch (e) {
+        } catch (e) {
         }
 
-    },[])
+    }, [])
 
-    // const deleteFollowing = async (followingname) => {
-    //     if(profile !== undefined){
-    //         await service.deleteFollowing(username, followingname)
-    //         await findFollowersOfUser();
-    //     }else{
-    //         alert("Please log in!");
-    //         navigate('/login');
-    //     }
-    // }
-
-    return(
+    return (
         <>
-            <h3 style={{marginTop:'10px', color:'#F5DE50'}}>Followed By</h3>
+            <div className="row mt-5">
+                <p className="wd-title wd-gold">Followed By</p>
+            </div>
             <ul className="list-group">
                 {
                     follows && follows.map(following =>
                                                <FollowedItem key={following._id}
-                                                           following={following}
-                                                           profile={profile}
-                                                           cur={cur}/>)
+                                                             following={following}
+                                                             profile={profile}
+                                                             cur={cur}/>)
                 }
             </ul>
         </>

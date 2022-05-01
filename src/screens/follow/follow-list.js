@@ -35,12 +35,11 @@ const FollowList = ({profile, cur}) => {
         }
     }
 
-    // console.log(user)
-    // console.log(reviews)
-
     return(
         <>
-            <h3 style={{marginTop:'10px', color:'#F5DE50'}}>Followings</h3>
+            <div className="row mt-5">
+                <p className="wd-title wd-gold">Followings</p>
+            </div>
             <ul className="list-group">
                 {
                     follows && follows.map(following =>

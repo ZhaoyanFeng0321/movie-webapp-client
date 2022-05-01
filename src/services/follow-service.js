@@ -22,7 +22,11 @@ export const deleteFollowing = async (username, followingname) => {
         .delete(`${USER_API}/${username}/unfollows/${followingname}`);
     return response.data;
 }
-
+export const findUserFollowUser = async (username, followingname) => {
+    const response = await axios
+        .get(`${USER_API}/${username}/follows/${followingname}`);
+    return response.data;
+}
 export const followUser = async (username, followingname) => {
     const response = await axios
         .post(`${USER_API}/${username}/follows/${followingname}`);
