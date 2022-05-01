@@ -38,9 +38,10 @@ const ReviewItem = ({review, deleteReview, profile, cur}) => {
                                 {movies.Title}
                             </Link>
                         </div>
-                        {/*<i className="fas fa-star" style={{color:'#F5DE50'}}> </i> {review.rating}/10*/}
-                        {/*<br/>*/}
-                        <div style={{fontSize: 'small', color: 'lightgray', marginBottom: '5px'}}>Posted On: {review.postedOn}</div>
+                        <i className="fas fa-star" style={{color:'#F5DE50'}}> </i> {review.rating}/10
+                        <br/>
+                        <div style={{fontSize: 'small', color: 'lightgray', marginBottom: '5px'}}>Posted On: {review.postedOn.substring(
+                            0, 10)}</div>
 
                         <div style={{fontStyle: 'italic'}}>"{review.review}"</div>
                     </div>

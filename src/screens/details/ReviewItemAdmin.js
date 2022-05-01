@@ -52,14 +52,16 @@ const ReviewItem = ({item,deleteReview}) => {
 
                     {/*<div className="col-9 col-sm-8">*/}
 
-                        {/*<i className="fa fa-solid fa-star wd-gold"/>
-                        <span className="fw-bold">{item.rating}/10</span>*/}
+                        {/*<i className="fa fa-solid fa-star wd-gold">*/}
+                        {/*<span className="fw-bold wd-white"> {item.rating}/10</span></i>*/}
+                    <i className="fas fa-star" style={{color:'#F5DE50'}}> </i> {item.rating}/10
 
 
 
                         <p className="mt-3">"{item.review}"<i className="fas fa-times-circle float-end wd-gold wd-signin" onClick={() => deleteReview(item._id)}/></p>
                         <p className="wd-white wd-signin">by.<Link to={`/profile/${item.from}`} className="wd-white" ><span className="fst-italic">{item.from}</span></Link></p>
-                        <p className="wd-signin me-1">{item.postedOn}</p>
+                        <p className="wd-signin me-1">{item.postedOn.substring(
+                            0, 10)}</p>
 
 
 
