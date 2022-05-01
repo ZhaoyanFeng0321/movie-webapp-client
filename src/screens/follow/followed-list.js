@@ -29,7 +29,7 @@ const FollowedList = ({profile, cur}) => {
                  <p className="row mt-5">You don't have follower.</p>
                 }
             </div>
-            <ul className="list-group">
+            <ul className="list-group mb-5">
                 {
                     follows && follows.map(following =>
                                                <FollowedItem key={following._id}

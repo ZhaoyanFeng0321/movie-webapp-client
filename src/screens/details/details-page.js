@@ -69,13 +69,13 @@ const OmdbDetails = () => {
         <div className="text-warning">
 
             <div>
-            <div className="row ms-5 me-5">
+            <div className="row">
 
                 <h1 className="fw-bold wd-gold">{movieDetails.Title}</h1>
             </div>
 
 
-            <div className="row ms-5 me-5">
+            <div className="row">
                 <div className="col-3">
                     <img src={movieDetails.Poster} height={300} alt=""/>
                     <p className="mt-3"><i className="fa-solid fa-star-sharp"></i> {movieDetails.imdbRating}</p>
@@ -104,7 +104,7 @@ const OmdbDetails = () => {
             </div>
 
 
-                <div className="row ms-5 me-5 mt-5">
+                <div className="row mt-5 mb-5">
                     <h3 className="fw-bold wd-gold">User reviews</h3>
                     {reviews.length === 0 &&
                         <h5 className="wd-white">No reviews for this movie. Be the first!</h5>

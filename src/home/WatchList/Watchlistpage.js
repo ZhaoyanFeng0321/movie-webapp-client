@@ -50,7 +50,7 @@ const WatchListPage = () => {
 
 
 
-               <div className="row mt-3 ms-5 me-5">
+               <div className="row mt-3 mb-5">
                    {/*<NavigationPersonal/>*/}
                    <Watchlist profile={profile} cur={currentUser}/>
                </div>

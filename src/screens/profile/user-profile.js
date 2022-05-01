@@ -123,7 +123,7 @@ const UserProfile = ({profile, cur, onEdit}) => {
                 {/*<Watchlist profile={profile} cur={cur}/>*/}
 
                 {cur && wlist.length !== 0 && cur.username === profile.username &&
-                 <div className="mt-5 mb-5">
+                 <div className="mt-5">
 
                      <div className="row ">
                          <p className="wd-title wd-gold">What to watch</p>
@@ -144,6 +144,9 @@ const UserProfile = ({profile, cur, onEdit}) => {
 
                  </div>
                 }
+                {cur && wlist.length === 0 && cur.username === profile.username &&
+                    <WatchListPersonal/>
+                }
 
                 {
                     cur && profile.username === cur.username &&
@@ -153,9 +156,7 @@ const UserProfile = ({profile, cur, onEdit}) => {
                     cur && profile.username === cur.username &&
                     <FollowedList profile={profile} cur={cur}/>
                 }
-                {cur && wlist.length === 0 && cur.username === profile.username &&
-                 <WatchListPersonal/>
-                }
+
             </div>
         </div>
     )

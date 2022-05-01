@@ -4,7 +4,7 @@ const Navigation = () =>{
 
     return(
         <>
-            <div className="row mb-5">
+            <div className="row mt-3">
 
                 <div className="col-1 mt-2">
                     <Link to="/home"><i className="fa fa-solid fa-film wd-film-icon"/></Link>
