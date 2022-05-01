@@ -42,7 +42,7 @@ const PostReview = ({mid, findReviewsByOMDB}) => {
 
         <div className="d-flex">
 
-            <textarea className="form-control form-group w-100 h-100"
+            <textarea className="form-control form-group w-100 h-100" placeholder="write a review!"
                       onChange={(event) => setNewReview({...newReview,
                                                            review: event.target.value})}>
             </textarea>
