@@ -1,12 +1,7 @@
 import React, {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
-import {Link, useNavigate} from "react-router-dom";
-import {createReview} from "../../actions/review-action";
-// import axios from "axios";
 import * as service from "../../services/auth-service";
 import * as reviewService from "../../services/review-service";
-// import StarRating from 'react-star-rating';
-//<link rel="stylesheet" href="node_modules/react-star-rating/dist/css/react-star-rating.min.css">
+import ReactStars from 'react-stars';
 
 
 const PostReview = ({mid, findReviewsByOMDB}) => {
@@ -14,6 +9,7 @@ const PostReview = ({mid, findReviewsByOMDB}) => {
     const [newReview, setNewReview] = useState({review:''});
     const [profile, setProfile] = useState({});
     // const dispatch = useDispatch();
+    const [value, setValue] = useState(0);
 
     const postHandler = (uid, newReview) => {
         const review = {
@@ -35,22 +31,29 @@ const PostReview = ({mid, findReviewsByOMDB}) => {
 
     }, []);
 
-
+    const ratingChanged = (newRating) => {
+        setValue(newRating);
+        setNewReview({...newReview,
+                         rating: newRating})
+    }
 
     return ( <>
-        <h2>Post your review</h2>
+        <label for="rtext"> <h2>Post your review</h2> </label>
 
         <div className="d-flex">
 
-            <textarea className="form-control form-group w-100 h-100"
+            <textarea id="rtext" className="form-control form-group w-100 h-100" placeholder="write a review!"
                       onChange={(event) => setNewReview({...newReview,
                                                            review: event.target.value})}>
             </textarea>
-            {/*<textarea className="form-control form-group w-50 h-100"*/}
-            {/*          onChange={(event) => setNewReview({...newReview,*/}
-            {/*                                                rating: event.target.value})}>*/}
-            {/*</textarea>*/}
-        </div>
+
+        </div><span>Rating: </span>
+        <ReactStars
+            count={10}
+            value={value}
+            onChange={ratingChanged}
+            size={24}
+            color2={'#ffd700'} />
 
         <div className="d-flex">
 
@@ -61,8 +64,8 @@ const PostReview = ({mid, findReviewsByOMDB}) => {
             </div>
         </div>
 
+</>
 
-
-    </> );
+    );
 }
 export default PostReview;

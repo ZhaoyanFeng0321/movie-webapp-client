@@ -17,20 +17,12 @@ import ReviewItemAdmin from "./ReviewItemAdmin";
 
 const OmdbDetails = () => {
     const [movieDetails, setMovieDetails] = useState([])
-    // const [ourMovieDetails, setOurMovieDetails] = useState({})
     const url = 'https://www.omdbapi.com/?apikey=b2bd5979'
     const {imdbID} = useParams()
 
     const [login, setLogin] = useState(false);
     const [currentUser,setCurrentUser] = useState(undefined);
-    // const searchMovieByImdbID = async () => {
-    //     const response = await axios.get(`${url}&i=${imdbID}`)
-    //     setMovieDetails(response.data)
-    // }
-    // const searchOurMovieByImdbID = async () => {
-    //     const response = await axios.get(`http://localhost:4000/api/movies/${imdbID}`)
-    //     setOurMovieDetails(response.data)
-    // }
+
     const searchMovieByImdbID = async (imdbID)=> {
         const response = await axios.get(`${url}&i=${imdbID}`)
         setMovieDetails(response.data)
@@ -43,13 +35,6 @@ const OmdbDetails = () => {
             setLogin(true);
         } catch (e) {
         }
-        // if(username!==user.username){
-        //     user = await authService.findUser(username);
-        // }else{
-        //     user = await authService.findUser(username);
-        //     setCurrentUser(user);
-        // }
-        // setProfile(user);
 
 
     },[])
@@ -73,20 +58,6 @@ const OmdbDetails = () => {
         await service.deleteReview(rid).then(findReviewsByOMDB);
     }
 
-    // useEffect(() => {
-    //     searchMovieByImdbID()
-    //     // searchOurMovieByImdbID()
-    // }, [])
-
-    // const handleLike = async () => {
-    //     const movie = {
-    //         title: movieDetails.Title,
-    //         poster: movieDetails.Poster,
-    //         imdbID: movieDetails.imdbID
-    //     }
-    //     const response = await axios.post("http://localhost:4000/api/likes", movie)
-    //     setOurMovieDetails(response.data)
-    // }
 
     const addMovieToList = async (uid, movieID) =>
 
@@ -96,37 +67,6 @@ const OmdbDetails = () => {
 
     return (
         <div className="text-warning">
-
-{/*<<<<<<< HEAD*/}
-{/*            <div className="row mt-3 ms-5 me-5">*/}
-{/*                /!*<Navigation/>*!/*/}
-{/*            </div>*/}
-{/*=======*/}
-{/*            {currentUser.accountType !== "PERSONAL"  && currentUser.accountType !== "ACTOR"  &&currentUser.accountType !== "ADMIN"  &&*/}
-{/*            {!login &&*/}
-{/*                <div className="row mt-3 ms-5 me-5">*/}
-{/*                    <Navigation/>*/}
-
-{/*                </div>}*/}
-
-{/*            /!*{(currentUser.accountType === "PERSONAL"|| currentUser.accountType === "ACTOR" || currentUser.accountType === "ADMIN")  &&*!/*/}
-{/*            {login &&*/}
-{/*                <div className="row mt-3 ms-5 me-5">*/}
-{/*                    <NavigationPersonal/>*/}
-
-{/*                </div>}*/}
-
-            {/*<div className="row mt-3 ms-5 me-5">*/}
-            {/*    <Navigation/>*/}
-
-            {/*</div>*/}
-{/*>>>>>>> 91772299754e40a9bd63a9680370a0868b5240f2*/}
-
-            {/*<div className="row ms-5 me-5">*/}
-            {/*    <Link to="/result/:movieSearch">*/}
-            {/*        <i className="fa-solid fa-circle-chevron-left"></i>*/}
-            {/*    </Link>*/}
-            {/*</div>*/}
 
             <div>
             <div className="row ms-5 me-5">
@@ -160,14 +100,6 @@ const OmdbDetails = () => {
                     {currentUser!==undefined &&<PostReview mid={imdbID} findReviewsByOMDB={findReviewsByOMDB}/>}
 
 
-
-
-
-                    {/*<SecureContent>*/}
-                    {/*    <button onClick={handleLike}>Like ({ourMovieDetails && ourMovieDetails.likes})</button>*/}
-                    {/*</SecureContent>*/}
-
-                    {/*<Preformatted obj={movieDetails}/>*/}
                 </div>
             </div>
 
@@ -179,11 +111,6 @@ const OmdbDetails = () => {
                     }
                 <ul className="list-group">
 
-                    {/*{currentUser&&*/}
-                    {/*    reviews && reviews.map(review =>*/}
-                    {/*        <ReviewItem key={review._id}*/}
-                    {/*                    item={review}/>)*/}
-                    {/*}*/}
                     {currentUser && currentUser.accountType ==="ADMIN" ? (
                         reviews && reviews.map(review =>
                             <ReviewItemAdmin key={review._id}
