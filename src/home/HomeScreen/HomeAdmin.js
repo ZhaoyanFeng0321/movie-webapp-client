@@ -21,7 +21,7 @@ const store = createStore(reducer);
 const HomeScreen= ({profile,cur}) => {
     return (
         <Provider store={store}>
-            <div className="row mt-3 ms-5 me-5">
+            <div className="row mt-3">
 
                 {/*<NavigationPersonal/>*/}
                 <ReviewListAdmin/>

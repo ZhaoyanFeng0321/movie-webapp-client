@@ -22,7 +22,7 @@ const Navigation = ({logout}) => {
 
     return (
         <>
-            <div className="row mb-5">
+            <div className="row">
 
                 <div className="col-2 mt-2">
                     <Link to={`/home`}><i
@@ -43,12 +43,12 @@ const Navigation = ({logout}) => {
                 </div>
 
                 <div className="col-4 ">
-                    <ul className="nav mb-2 nav-tabs wd-nav-tab-override">
+                    <ul className="nav mb-2 nav-tabs wd-nav-tab-override d-flex">
                         {currentUser.accountType === "ACTOR" &&
-                         <li className="nav-item d-sm-none d-md-none d-lg-block d-none">
+                         <li className="nav-item d-none d-xl-block">
 
                              <Link to="/list" className="wd-link">
-                                 <div className="nav-link ">
+                                 <div className="nav-link">
                                      <i className="fa fa-list me-3 wd-grey"/>
                                      <span className="fw-bold">Filmography</span></div>
                              </Link>
@@ -56,7 +56,7 @@ const Navigation = ({logout}) => {
 
                         }
                         {currentUser.accountType === "PERSONAL" &&
-                         <li className="nav-item d-sm-none d-md-none d-lg-block d-none">
+                         <li className="nav-item d-none d-xl-block">
 
                              <Link to="/list" className="wd-link">
                                  <div className="nav-link ">
@@ -64,22 +64,20 @@ const Navigation = ({logout}) => {
                                      <span className="fw-bold">Watchlist</span></div>
                              </Link>
                          </li>
-
                         }
 
-
+                        <li className="nav-item d-none d-xl-block">
+                            <button type="button" onClick={signout}
+                            className="nav-link wd-signin wd-white fw-bold">
+                            Logout
+                            </button>
+                        </li>
                         <li className="nav-item">
                             <Link to={`/profile`} className="wd-link">
                                 <div className="nav-link wd-signin wd-white">
-                                    <span className="fw-bold ">Profile</span>
+                                <span className="fw-bold ">Profile</span>
                                 </div>
                             </Link>
-                        </li>
-                        <li className="nav-item">
-                            <button type="button" onClick={signout}
-                                    className="nav-link wd-signin wd-white fw-bold">
-                                Logout
-                            </button>
                         </li>
 
 

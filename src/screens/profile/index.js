@@ -62,7 +62,7 @@ const Profile = ({onEdit}) => {
         <div>
             {
                 currentUser && profile.username === currentUser.username
-                && <div>
+                && <div className="d-flex flex-row-reverse">
                     <button type='submit' className="mt-2 me-2 btn btn-large btn-light border border-secondary fw-bolder rounded-pill fa-pull-right"
                             onClick={onEdit}>
                         Edit Profile
@@ -73,8 +73,8 @@ const Profile = ({onEdit}) => {
             }
             {
                 currentUser && profile.username !== currentUser.username
-                && <div>
-                    <button type="button" onClick={() => changeFollow(currentUser.username, profile.username)} className="mt-2 float-end btn btn-warning rounded-pill">
+                && <div className="d-flex flex-row-reverse">
+                    <button type="button" onClick={() => changeFollow(currentUser.username, profile.username)} className="float-end btn btn-warning rounded-pill">
                         {follow? `Unfollow`:`Follow`}
                     </button>
 

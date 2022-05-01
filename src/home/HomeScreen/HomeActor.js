@@ -38,7 +38,7 @@ const HomeScreen= ({profile,cur}) => {
     },[profile])
     return (
         <Provider store={store}>
-            <div className="row mt-3 ms-5 me-5">
+            <div className="row mt-3">
 
                 {/*<NavigationPersonal/>*/}
                 <ReviewList/>
