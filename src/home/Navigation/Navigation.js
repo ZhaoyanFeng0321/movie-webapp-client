@@ -12,7 +12,7 @@ const Navigation = () =>{
 
                 <div className="col-6 ">
 
-                        <p className="d-none d-md-block mt-1 fw-bold fs-5 wd-gold wd-web-title">Movie Reviews Web</p>
+                        <p className="d-none d-md-block mt-1 fw-bold fs-5 wd-gold wd-web-title">WeWatch - MRDb</p>
 
 
                 </div>
